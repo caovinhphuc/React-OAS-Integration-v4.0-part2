@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  # Frontend - React App
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_API_URL=http://backend:3001
+      - REACT_APP_AI_URL=http://ai-service:8001
+    depends_on:
+      - backend
+      - ai-service
+    volumes:
+      - ./nginx.prod.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/ssl/certs
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  # Backend API - Node.js
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - '3001:3001'
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - CORS_ORIGIN=http://frontend
+    depends_on:
+      - ai-service
+    restart: unless-stopped
+    networks:
+      - app-network
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3001/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # AI Service - FastAPI
+  ai-service:
+    build:
+      context: ./ai-service
+      dockerfile: Dockerfile
+    ports:
+      - '8001:8001'
+    environment:
+      - PYTHONPATH=/app
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
+    networks:
+      - app-network
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8001/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Automation Service
+  automation:
+    build:
+      context: ./automation
+      dockerfile: Dockerfile.automation
+    environment:
+      - PYTHONPATH=/app
+    restart: unless-stopped
+    networks:
+      - app-network
+    volumes:
+      - ./automation/config:/app/config
+      - ./automation/logs:/app/logs
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  app-data:
+  ssl-certs:

@@ -1,0 +1,319 @@
+import { App as AntApp, ConfigProvider, theme } from 'antd'
+import viVN from 'antd/locale/vi_VN'
+import { Suspense, lazy } from 'react'
+import { Provider } from 'react-redux'
+import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import './App.css'
+import ProtectedRoute from './components/auth/ProtectedRoute'
+import Loading from './components/Common/Loading'
+import Layout from './components/layout/Layout'
+import { BRAND_CONFIG } from './config/brand'
+import './global.css' /* ✅ Import global styles first */
+import { store } from './store/store'
+
+// Enhanced lazy loading with preloading strategy
+
+const LiveDashboard = lazy(() => import('./components/Dashboard/LiveDashboard'))
+const AIDashboard = lazy(() => import('./components/ai/AIDashboard'))
+const GoogleSheetsIntegration = lazy(() => import('./components/google/GoogleSheetsIntegration'))
+const GoogleDriveIntegration = lazy(() => import('./components/google/GoogleDriveIntegration'))
+const GoogleAppsScriptIntegration = lazy(
+  () => import('./components/google/GoogleAppsScriptIntegration'),
+)
+const TelegramIntegration = lazy(() => import('./components/telegram/TelegramIntegration'))
+const AutomationDashboard = lazy(() => import('./components/automation/AutomationDashboard'))
+const MIARetailDashboard = lazy(() => import('./components/custom/MIARetailDashboard'))
+const AlertsManagement = lazy(() => import('./components/Alerts/AlertsManagement'))
+const AdvancedAnalyticsDashboard = lazy(
+  () => import('./components/analytics/AdvancedAnalyticsDashboard'),
+)
+const SmartAutomationDashboard = lazy(
+  () => import('./components/smart-automation/SmartAutomationDashboard'),
+)
+const NLPDashboard = lazy(() => import('./components/nlp/NLPDashboard'))
+const SecurityDashboard = lazy(() => import('./components/security/SecurityDashboard'))
+const Login = lazy(() => import('./components/auth/Login'))
+
+// Preload critical components
+const preloadComponent = (componentLoader) => {
+  componentLoader()
+}
+
+// Preload dashboard on app start
+if (typeof window !== 'undefined') {
+  setTimeout(() => {
+    preloadComponent(() => import('./components/Dashboard/LiveDashboard'))
+  }, 2000)
+}
+
+// Home component
+const Home = () => (
+  <div className="home-container">
+    <div className="hero-section">
+      <h1>🛒 {BRAND_CONFIG.productName}</h1>
+      <p>Hệ thống phân tích retail thông minh với AI và Google Integration</p>
+    </div>
+
+    <div className="features-grid">
+      <div className="feature-card primary">
+        <h3>📊 Live Dashboard</h3>
+        <p>
+          Theo dõi thời gian thực, giám sát hiệu suất và phân tích hệ thống với WebSocket
+          integration.
+        </p>
+        <div className="feature-stats">
+          <div className="stat">
+            <span className="stat-value">99.9%</span>
+            <span className="stat-label">Uptime</span>
+          </div>
+          <div className="stat">
+            <span className="stat-value">2.3s</span>
+            <span className="stat-label">Response Time</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="feature-card secondary">
+        <h3>🛒 Retail Analytics</h3>
+        <p>
+          Phân tích retail thông minh, dự đoán sales, quản lý inventory và tối ưu hóa hiệu suất cửa
+          hàng.
+        </p>
+        <div className="feature-stats">
+          <div className="stat">
+            <span className="stat-value">92%</span>
+            <span className="stat-label">Accuracy</span>
+          </div>
+          <div className="stat">
+            <span className="stat-value">15%</span>
+            <span className="stat-label">Cost Reduction</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="feature-card tertiary">
+        <h3>📋 Google Sheets</h3>
+        <p>Tích hợp Google Sheets để quản lý dữ liệu, báo cáo và tự động hóa quy trình làm việc.</p>
+        <div className="feature-stats">
+          <div className="stat">
+            <span className="stat-value">1,250</span>
+            <span className="stat-label">Records</span>
+          </div>
+          <div className="stat">
+            <span className="stat-value">24/7</span>
+            <span className="stat-label">Sync</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div className="features-grid">
+      <div className="feature-card">
+        <h3>📈 Trạng thái hệ thống</h3>
+        <div className="status-list">
+          <div className="status-item">
+            <span className="status-icon">✅</span>
+            <div className="status-content">
+              <span className="status-title">Frontend</span>
+              <span className="status-desc">Tối ưu hóa & Triển khai</span>
+            </div>
+          </div>
+          <div className="status-item">
+            <span className="status-icon">✅</span>
+            <div className="status-content">
+              <span className="status-title">Backend</span>
+              <span className="status-desc">WebSocket Ready</span>
+            </div>
+          </div>
+          <div className="status-item">
+            <span className="status-icon">✅</span>
+            <div className="status-content">
+              <span className="status-title">Automation</span>
+              <span className="status-desc">Hoạt động</span>
+            </div>
+          </div>
+        </div>
+        <div className="system-health">
+          <span className="health-label">Tình trạng hệ thống:</span>
+          <span className="health-status healthy">Khỏe mạnh</span>
+        </div>
+      </div>
+
+      <div className="feature-card">
+        <h3>🎯 Tính năng mới v3.0</h3>
+        <div className="feature-tags">
+          {[
+            '📡 Tích hợp WebSocket thời gian thực',
+            '📊 Dashboard hiệu suất trực tiếp',
+            '⚡ Cải thiện hiệu suất 50%',
+            '🎨 Thiết kế UI/UX hiện đại',
+            '📱 Hỗ trợ di động responsive',
+            '🔒 Tính năng bảo mật nâng cao',
+          ].map((feature, index) => (
+            <span key={index} className="feature-tag">
+              {feature}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+)
+
+// Main App component with Router
+function App() {
+  return (
+    <Provider store={store}>
+      <ConfigProvider
+        locale={viVN}
+        theme={{
+          algorithm: theme.defaultAlgorithm,
+          token: {
+            colorPrimary: BRAND_CONFIG.colors.primary,
+            borderRadius: 8,
+          },
+        }}
+      >
+        <Router
+          future={{
+            v7_startTransition: true,
+            v7_relativeSplatPath: true,
+          }}
+        >
+          <AntApp>
+            <div className="App">
+              <Suspense fallback={<Loading />}>
+                <Routes>
+                  {/* Public Routes - No Layout */}
+                  <Route path="/login" element={<Login />} />
+
+                  {/* Routes with Layout */}
+                  <Route
+                    path="/*"
+                    element={
+                      <Layout>
+                        <Routes>
+                          <Route path="/" element={<Home />} />
+
+                          {/* Protected Routes - Yêu cầu authentication */}
+                          <Route
+                            path="/dashboard"
+                            element={
+                              <ProtectedRoute>
+                                <LiveDashboard />
+                              </ProtectedRoute>
+                            }
+                          />
+                          <Route
+                            path="/ai-analytics"
+                            element={
+                              <ProtectedRoute>
+                                <AIDashboard />
+                              </ProtectedRoute>
+                            }
+                          />
+                          <Route
+                            path="/retail"
+                            element={
+                              <ProtectedRoute>
+                                <MIARetailDashboard />
+                              </ProtectedRoute>
+                            }
+                          />
+                          <Route
+                            path="/google-sheets"
+                            element={
+                              <ProtectedRoute>
+                                <GoogleSheetsIntegration />
+                              </ProtectedRoute>
+                            }
+                          />
+                          <Route
+                            path="/google-drive"
+                            element={
+                              <ProtectedRoute>
+                                <GoogleDriveIntegration />
+                              </ProtectedRoute>
+                            }
+                          />
+                          <Route
+                            path="/google-apps-script"
+                            element={
+                              <ProtectedRoute>
+                                <GoogleAppsScriptIntegration />
+                              </ProtectedRoute>
+                            }
+                          />
+                          <Route
+                            path="/telegram"
+                            element={
+                              <ProtectedRoute>
+                                <TelegramIntegration />
+                              </ProtectedRoute>
+                            }
+                          />
+                          <Route
+                            path="/automation"
+                            element={
+                              <ProtectedRoute>
+                                <AutomationDashboard />
+                              </ProtectedRoute>
+                            }
+                          />
+                          <Route
+                            path="/alerts"
+                            element={
+                              <ProtectedRoute>
+                                <AlertsManagement />
+                              </ProtectedRoute>
+                            }
+                          />
+                          <Route
+                            path="/advanced-analytics"
+                            element={
+                              <ProtectedRoute>
+                                <AdvancedAnalyticsDashboard />
+                              </ProtectedRoute>
+                            }
+                          />
+                          <Route
+                            path="/smart-automation"
+                            element={
+                              <ProtectedRoute>
+                                <SmartAutomationDashboard />
+                              </ProtectedRoute>
+                            }
+                          />
+                          <Route
+                            path="/nlp"
+                            element={
+                              <ProtectedRoute>
+                                <NLPDashboard />
+                              </ProtectedRoute>
+                            }
+                          />
+                          <Route
+                            path="/security"
+                            element={
+                              <ProtectedRoute>
+                                <SecurityDashboard />
+                              </ProtectedRoute>
+                            }
+                          />
+
+                          <Route path="*" element={<Navigate to="/" replace />} />
+                        </Routes>
+                      </Layout>
+                    }
+                  />
+                </Routes>
+              </Suspense>
+            </div>
+          </AntApp>
+        </Router>
+      </ConfigProvider>
+    </Provider>
+  )
+}
+
+export default App

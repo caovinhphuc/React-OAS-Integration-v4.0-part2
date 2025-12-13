@@ -1,0 +1,53 @@
+.ai-prediction-demo {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 0 40px;
+}
+
+.ai-prediction-demo .config-card label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+  color: #374151;
+}
+
+.ai-prediction-demo .inline-fields {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.ai-prediction-demo .json-block {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  max-height: 260px;
+  overflow: auto;
+  line-height: 1.4;
+}
+
+.ai-prediction-demo .hints-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #334155;
+}
+
+.ai-prediction-demo .hints-list li + li {
+  margin-top: 4px;
+}
+
+.ai-prediction-demo .result-card {
+  margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+  .ai-prediction-demo .inline-fields {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

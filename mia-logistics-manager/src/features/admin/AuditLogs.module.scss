@@ -1,0 +1,270 @@
+// AuditLogs.module.scss
+@use '../../shared/styles/variables' as *;
+@use '../../shared/styles/mixins' as *;
+
+.auditLogs {
+  .header {
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2d3748;
+      margin: 0 0 0.5rem 0;
+    }
+
+    p {
+      color: #718096;
+      margin: 0;
+      font-size: 1rem;
+    }
+  }
+
+  .error {
+    background: #fed7d7;
+    color: #c53030;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+
+    p {
+      margin: 0;
+      font-weight: 500;
+    }
+  }
+
+  .filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .searchBox {
+      flex: 1;
+      min-width: 250px;
+
+      input {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: #667eea;
+          box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        &::placeholder {
+          color: #a0aec0;
+        }
+      }
+    }
+
+    .filterGroup {
+      select {
+        padding: 0.8rem 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 1rem;
+        background: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: #667eea;
+          box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+      }
+    }
+  }
+
+  .logsContainer {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+    .logsTable {
+      .logsHeader {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr;
+        gap: 1rem;
+        padding: 1rem;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+
+        .logCell {
+          padding: 0.5rem;
+        }
+      }
+
+      .logRow {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr;
+        gap: 1rem;
+        padding: 1rem;
+        border-bottom: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: #f7fafc;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .logCell {
+          padding: 0.5rem;
+          display: flex;
+          align-items: center;
+
+          .timestamp {
+            font-size: 0.9rem;
+            color: #4a5568;
+          }
+
+          .user {
+            font-weight: 500;
+            color: #2d3748;
+          }
+
+          .action {
+            font-weight: 600;
+            font-size: 0.9rem;
+          }
+
+          .resource {
+            font-weight: 500;
+            color: #4a5568;
+          }
+
+          .details {
+            color: #718096;
+            font-size: 0.9rem;
+          }
+
+          .ip {
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #a0aec0;
+          }
+        }
+      }
+    }
+
+    .noData {
+      text-align: center;
+      padding: 3rem;
+      color: #718096;
+
+      p {
+        font-size: 1.1rem;
+        margin: 0;
+      }
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+
+    .paginationBtn {
+      padding: 0.8rem 1.5rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      background: white;
+      color: #4a5568;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover:not(:disabled) {
+        border-color: #667eea;
+        color: #667eea;
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    .pageInfo {
+      font-weight: 600;
+      color: #4a5568;
+    }
+  }
+
+  .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    color: #4a5568;
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #e2e8f0;
+      border-top: 3px solid #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 0;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .auditLogs {
+    .filters {
+      flex-direction: column;
+
+      .searchBox {
+        min-width: auto;
+      }
+    }
+
+    .logsContainer .logsTable {
+      .logsHeader,
+      .logRow {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+
+        .logCell {
+          padding: 0.3rem;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}

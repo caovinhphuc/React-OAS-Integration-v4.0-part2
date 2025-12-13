@@ -1,0 +1,455 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixins.scss";
+
+.tableContainer {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-base);
+  overflow: hidden;
+  max-height: 70vh; // Giới hạn chiều cao để tạo scroll
+  display: flex;
+  flex-direction: column;
+
+  @include mobile {
+    max-height: 60vh;
+  }
+}
+
+.tableWrapper {
+  flex: 1;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+
+  // Custom scrollbar styling
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-gray-100);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-gray-300);
+    border-radius: 4px;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: var(--color-gray-400);
+    }
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: var(--color-gray-100);
+  }
+
+  // Firefox scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray-300) var(--color-gray-100);
+}
+
+// Scroll indicators
+.scrollIndicator {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, var(--color-gray-200));
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+
+  &.scrollRight {
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--color-gray-200));
+  }
+
+  &.scrollLeft {
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(270deg, transparent, var(--color-gray-200));
+  }
+
+  &.scrollBottom {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(0deg, transparent, var(--color-gray-200));
+  }
+
+  &.scrollTop {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(180deg, transparent, var(--color-gray-200));
+  }
+
+  &.hidden {
+    opacity: 0;
+  }
+}
+
+// Scroll buttons
+.scrollButtons {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: flex;
+  gap: var(--space-1);
+
+  &.scrollButtonsLeft {
+    left: var(--space-2);
+  }
+
+  &.scrollButtonsRight {
+    right: var(--space-2);
+  }
+}
+
+.scrollButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  color: var(--color-gray-600);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+
+  &:hover {
+    background: var(--color-gray-50);
+    border-color: var(--color-gray-300);
+    color: var(--color-gray-700);
+    box-shadow: var(--shadow-md);
+  }
+
+  &:active {
+    background: var(--color-gray-100);
+    transform: scale(0.95);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--color-gray-100);
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-gray-900);
+
+  // Size variants
+  &--small {
+    font-size: var(--font-size-xxxs);
+
+    .tableHeader,
+    .tableCell {
+      padding: var(--space-1) var(--space-2);
+      height: 24px;
+    }
+  }
+
+  &--middle {
+    font-size: var(--font-size-xxs);
+
+    .tableHeader,
+    .tableCell {
+      padding: var(--space-1) var(--space-2);
+      height: 28px;
+    }
+  }
+
+  &--large {
+    font-size: var(--font-size-xs);
+
+    .tableHeader,
+    .tableCell {
+      padding: var(--space-2) var(--space-3);
+      height: 32px;
+    }
+  }
+
+  // Bordered variant
+  &Bordered {
+    border: 1px solid var(--color-gray-200);
+
+    .tableHeader,
+    .tableCell {
+      border: 1px solid var(--color-gray-200);
+    }
+  }
+
+  // Striped variant
+  &Striped {
+    .tableBody tr:nth-child(even) {
+      background-color: var(--color-gray-50);
+    }
+  }
+
+  // Hoverable variant
+  &Hoverable {
+    .tableBody tr:hover {
+      background-color: var(--color-primary-light);
+      transition: background-color 0.2s ease;
+    }
+  }
+}
+
+.tableHead {
+  background-color: var(--color-gray-50);
+  border-bottom: 2px solid var(--color-gray-200);
+}
+
+.tableHeader {
+  font-family: var(--font-family-base);
+  font-weight: 600;
+  font-size: var(--font-size-xxs);
+  line-height: 1.2;
+  color: var(--color-gray-800);
+  text-align: left;
+  position: relative;
+  user-select: none;
+  background-color: var(--color-gray-50);
+
+  &.sortable {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--color-gray-100);
+    }
+  }
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sortIcon {
+  display: flex;
+  align-items: center;
+  color: var(--color-gray-400);
+  transition: color 0.2s ease;
+
+  &Inactive {
+    opacity: 0.3;
+  }
+}
+
+.tableBody {
+  tr {
+    border-bottom: 1px solid var(--color-gray-100);
+    transition: all 0.2s ease;
+  }
+}
+
+.tableCell {
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-size: var(--font-size-xxs);
+  line-height: 1.2;
+  color: var(--color-gray-700);
+  vertical-align: middle;
+  word-break: break-word;
+}
+
+// Loading state
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12);
+  color: var(--color-gray-600);
+  gap: var(--space-3);
+}
+
+.loadingIcon {
+  animation: spin 1s linear infinite;
+  color: var(--color-primary);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Empty state
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12);
+  color: var(--color-gray-500);
+  gap: var(--space-3);
+}
+
+.emptyIcon {
+  color: var(--color-gray-300);
+}
+
+// Pagination
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--color-gray-200);
+  background-color: var(--color-gray-50);
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-600);
+
+  @include mobile {
+    flex-direction: column;
+    gap: var(--space-3);
+    text-align: center;
+  }
+}
+
+.paginationInfo {
+  font-weight: 500;
+}
+
+.paginationControls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+
+  @include mobile {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+}
+
+.pageSizeSelector {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-600);
+
+  span {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+}
+
+.pageSizeSelect {
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-base);
+  background: var(--color-white);
+  color: var(--color-gray-700);
+  font-size: var(--font-size-xs);
+  font-family: var(--font-family-base);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--color-primary);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary-light);
+  }
+}
+
+.paginationButtons {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.paginationButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-base);
+  background: var(--color-white);
+  color: var(--color-gray-600);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background-color: var(--color-primary-light);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.paginationPage {
+  font-weight: 600;
+  color: var(--color-gray-700);
+  min-width: 80px;
+  text-align: center;
+}
+
+// Responsive design
+@include responsive-table;
+
+// Mobile optimizations
+@include mobile {
+  .tableContainer {
+    border-radius: var(--radius-base);
+    margin: 0 var(--space-2);
+  }
+
+  .pagination {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-xs);
+  }
+
+  .paginationButton {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+// Tablet optimizations
+@include tablet {
+  .tableContainer {
+    margin: 0 var(--space-3);
+  }
+}
+
+// Desktop optimizations
+@include desktop {
+  .tableContainer {
+    margin: 0;
+  }
+}

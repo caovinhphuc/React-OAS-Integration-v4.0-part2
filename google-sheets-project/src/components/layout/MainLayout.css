@@ -1,0 +1,96 @@
+/* Main Layout Styles */
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 280px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+}
+
+.main-layout.sidebar-collapsed .main-content {
+  margin-left: 70px;
+}
+
+.content-area {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background: #f8f9fa;
+}
+
+/* Override header styles for sidebar layout */
+.main-content .header {
+  margin-left: 0;
+  position: static;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+/* Override footer styles */
+.main-content .footer {
+  margin-left: 0;
+  margin-top: auto;
+}
+
+/* Content wrapper for better spacing */
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+
+  .content-area {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-area {
+    padding: 1rem 0.75rem;
+  }
+}
+
+/* Mobile Menu Toggle (will be added later if needed) */
+.mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 1001;
+  background: var(--primary-600);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-lg);
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  font-size: var(--text-xl);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-all);
+}
+
+.mobile-menu-toggle:hover {
+  background: var(--primary-700);
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

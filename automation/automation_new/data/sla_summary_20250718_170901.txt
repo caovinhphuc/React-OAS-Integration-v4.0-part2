@@ -1,0 +1,31 @@
+📊 BÁO CÁO SLA - GIÁM SÁT THỜI HẠN BÀN GIAO
+============================================================
+
+🕐 Thời gian phân tích: 2025-07-18T17:07:41.275705
+📦 Tổng số đơn hàng: 319
+
+🛒 SHOPEE - SLA Analysis
+------------------------------
+📦 Tổng đơn Shopee: 112
+🕐 Đơn sau 18h hôm qua: 112
+✅ Cần xác nhận (trước 9h): 112
+🚚 Cần bàn giao (trước 12h): 112
+🚨 Quá hạn xác nhận: 112
+🚨 Quá hạn bàn giao: 112
+
+📱 TIKTOK - SLA Analysis
+------------------------------
+📦 Tổng đơn TikTok: 177
+🕐 Đơn sau 14h hôm qua: 177
+🚚 Cần bàn giao (trước 21h mai): 177
+🚨 Quá hạn bàn giao: 0
+
+🏪 CÁC SÀN KHÁC
+------------------------------
+📦 Tổng đơn khác: 30
+📅 Đơn hôm nay: 30
+
+🚨 CẢNH BÁO SLA
+------------------------------
+CRITICAL: 🚨 112 đơn hàng QUÁ HẠN xác nhận (9h sáng)
+CRITICAL: 🚨 112 đơn hàng QUÁ HẠN bàn giao (12h trước)

@@ -1,0 +1,7 @@
+.vscode/
+  settings.json
+  keybindings.json
+  extensions.json
+.editorconfig
+.prettierrc
+.eslintrc.json

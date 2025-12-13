@@ -1,0 +1,61 @@
+📊 BÁO CÁO TỔNG HỢP XUẤT DỮ LIỆU
+==================================================
+
+🕐 Thời gian xuất: 2025-07-17 02:16:41
+📦 Tổng số đơn hàng: 361
+📋 Số cột dữ liệu: 43
+
+📁 Các file đã xuất:
+  • CSV: data/orders_export_20250717_021640.csv (294.3 KB)
+  • DASHBOARD_CSV: data/orders_dashboard_20250717_021640.csv (48.1 KB)
+
+📋 Cấu trúc dữ liệu:
+  1. row_index
+  2. total_columns
+  3. scraped_at
+  4. col_1
+  5. id
+  6. order_code
+  7. col_4
+  8. customer
+  9. col_2
+  10. col_3
+  11. col_5
+  12. col_7
+  13. col_8
+  14. col_9
+  15. col_10
+  16. col_11
+  17. col_12
+  18. col_13
+  19. col_14
+  20. col_15
+  21. col_16
+  22. col_17
+  23. col_18
+  24. col_19
+  25. col_20
+  26. col_21
+  27. col_22
+  28. col_23
+  29. products
+  30. product_count
+  31. raw_product_detail
+  32. api_customer
+  33. api_amount
+  34. api_transporter
+  35. api_address
+  36. api_phone
+  37. product_summary
+  38. total_items
+  39. col_6
+  40. sla_platform
+  41. sla_deadline
+  42. sla_status
+  43. sla_priority
+
+📊 Thống kê cơ bản:
+  • row_index: Min=1, Max=361, Avg=181.00
+  • total_columns: Min=23, Max=23, Avg=23.00
+  • product_count: Min=1, Max=8, Avg=2.78
+  • total_items: Min=1, Max=45, Avg=3.04

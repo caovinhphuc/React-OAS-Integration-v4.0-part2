@@ -1,0 +1,24 @@
+{
+  "orders": [
+    ["Ngày", "Sản phẩm", "Số lượng", "Giá", "Trạng thái", "Khách hàng"],
+    ["2025-09-13", "Sản phẩm A", "5", "150000", "Hoàn thành", "Nguyễn Văn A"],
+    ["2025-09-13", "Sản phẩm B", "3", "200000", "Đang xử lý", "Trần Thị B"],
+    ["2025-09-12", "Sản phẩm C", "2", "300000", "Hoàn thành", "Lê Văn C"],
+    ["2025-09-12", "Sản phẩm A", "4", "150000", "Hoàn thành", "Phạm Thị D"],
+    ["2025-09-11", "Sản phẩm B", "1", "200000", "Hoàn thành", "Hoàng Văn E"]
+  ],
+  "dashboard": [
+    ["Metric", "Value", "Change", "Status"],
+    ["Tổng đơn hàng", "1250", "+12%", "Tăng"],
+    ["Doanh thu", "1250000000", "+8%", "Tăng"],
+    ["Khách hàng mới", "89", "+15%", "Tăng"],
+    ["Tỷ lệ chuyển đổi", "3.2%", "-0.5%", "Giảm"]
+  ],
+  "analytics": [
+    ["Thời gian", "Page Views", "Unique Visitors", "Bounce Rate", "Avg Session"],
+    ["2025-09-13", "15420", "3240", "45.2%", "2m 34s"],
+    ["2025-09-12", "14230", "2980", "47.1%", "2m 12s"],
+    ["2025-09-11", "16890", "3560", "43.8%", "2m 45s"],
+    ["2025-09-10", "13950", "3120", "46.3%", "2m 18s"]
+  ]
+}

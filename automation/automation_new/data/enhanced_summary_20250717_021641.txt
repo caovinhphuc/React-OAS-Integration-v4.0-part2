@@ -1,0 +1,53 @@
+📊 BÁO CÁO TỔNG HỢP ENHANCED
+==================================================
+
+🕐 Thời gian: 2025-07-17 02:16:41
+📦 Tổng đơn hàng: 361
+🛍️ Tổng sản phẩm: 1003
+📋 Đơn có sản phẩm: 361/361
+📊 Tỷ lệ thành công: 100.0%
+
+📋 Cấu trúc dữ liệu Enhanced:
+  1. row_index
+  2. total_columns
+  3. scraped_at
+  4. col_1
+  5. id
+  6. order_code
+  7. col_4
+  8. customer
+  9. col_2
+  10. col_3
+  11. col_5
+  12. col_7
+  13. col_8
+  14. col_9
+  15. col_10
+  16. col_11
+  17. col_12
+  18. col_13
+  19. col_14
+  20. col_15
+  21. col_16
+  22. col_17
+  23. col_18
+  24. col_19
+  25. col_20
+  26. col_21
+  27. col_22
+  28. col_23
+  29. products
+  30. product_count
+  31. raw_product_detail
+  32. api_customer
+  33. api_amount
+  34. api_transporter
+  35. api_address
+  36. api_phone
+  37. product_summary
+  38. total_items
+  39. col_6
+  40. sla_platform
+  41. sla_deadline
+  42. sla_status
+  43. sla_priority

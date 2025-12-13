@@ -1,0 +1,242 @@
+// RoleManagement.module.scss
+@use '../../shared/styles/variables' as *;
+@use '../../shared/styles/mixins' as *;
+
+.roleManagement {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2d3748;
+      margin: 0;
+    }
+
+    .createButton {
+      background: linear-gradient(135deg, #48bb78, #38a169);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(72, 187, 120, 0.4);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .error {
+    background: #fed7d7;
+    color: #c53030;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+
+    p {
+      margin: 0;
+      font-weight: 500;
+    }
+  }
+
+  .rolesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+
+    .roleCard {
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        border-color: #667eea;
+      }
+
+      .roleHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        h3 {
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: #2d3748;
+          margin: 0;
+        }
+
+        .roleId {
+          background: linear-gradient(135deg, #667eea, #764ba2);
+          color: white;
+          padding: 0.3rem 0.8rem;
+          border-radius: 20px;
+          font-size: 0.8rem;
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+      }
+
+      .roleDescription {
+        color: #718096;
+        margin: 0 0 1.5rem 0;
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+
+      .permissions {
+        margin-bottom: 1.5rem;
+
+        h4 {
+          font-size: 1rem;
+          font-weight: 600;
+          color: #2d3748;
+          margin: 0 0 0.8rem 0;
+        }
+
+        .permissionList {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+
+          .permission {
+            background: #f7fafc;
+            color: #4a5568;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+
+            &:hover {
+              background: #edf2f7;
+              border-color: #cbd5e0;
+            }
+          }
+        }
+      }
+
+      .roleActions {
+        display: flex;
+        gap: 0.8rem;
+
+        button {
+          flex: 1;
+          padding: 0.6rem 1rem;
+          border: none;
+          border-radius: 8px;
+          font-size: 0.9rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &.editBtn {
+            background: #bee3f8;
+            color: #2b6cb0;
+
+            &:hover {
+              background: #90cdf4;
+              transform: translateY(-1px);
+            }
+          }
+
+          &.deleteBtn {
+            background: #fed7d7;
+            color: #c53030;
+
+            &:hover {
+              background: #feb2b2;
+              transform: translateY(-1px);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    color: #4a5568;
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #e2e8f0;
+      border-top: 3px solid #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 0;
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .roleManagement {
+    .header {
+      flex-direction: column;
+      align-items: stretch;
+
+      .createButton {
+        align-self: center;
+      }
+    }
+
+    .rolesGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .roleManagement {
+    .rolesGrid .roleCard {
+      padding: 1rem;
+
+      .roleHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .roleActions {
+        flex-direction: column;
+      }
+    }
+  }
+}

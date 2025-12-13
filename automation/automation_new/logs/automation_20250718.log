@@ -1,0 +1,322 @@
+2025-07-18 17:07:41 - OneAutomation - INFO - 🚀 Khởi tạo Enhanced Automation System v2.1
+2025-07-18 17:07:42 - OneAutomation - INFO - ✅ Google Sheets config service initialized with user's spreadsheet
+2025-07-18 17:07:42 - OneAutomation - INFO - 🚀 Bắt đầu ENHANCED automation...
+2025-07-18 17:07:45 - OneAutomation - WARNING - ChromeDriverManager failed: [Errno 8] Exec format error: '/Users/phuccao/.wdm/drivers/chromedriver/mac64/138.0.7204.157/chromedriver-mac-arm64/THIRD_PARTY_NOTICES.chromedriver'
+2025-07-18 17:07:48 - OneAutomation - INFO - ✅ WebDriver tối ưu đã sẵn sàng
+2025-07-18 17:07:48 - OneAutomation - INFO - 🔐 Bắt đầu đăng nhập vào hệ thống ONE...
+2025-07-18 17:07:48 - OneAutomation - INFO - 🔐 Bắt đầu đăng nhập mới...
+2025-07-18 17:07:53 - OneAutomation - INFO - ✅ Tìm thấy username field: input[name='username']
+2025-07-18 17:07:54 - OneAutomation - INFO - ✅ Đã nhập username
+2025-07-18 17:07:54 - OneAutomation - INFO - ✅ Đã nhập password
+2025-07-18 17:07:54 - OneAutomation - INFO - ✅ Đã click nút đăng nhập
+2025-07-18 17:07:59 - OneAutomation - INFO - ✅ Đăng nhập thành công
+2025-07-18 17:07:59 - OneAutomation - INFO - 💾 Đã lưu session
+2025-07-18 17:07:59 - OneAutomation - INFO - 📋 Điều hướng đến trang danh sách đơn hàng...
+2025-07-18 17:07:59 - OneAutomation - INFO - ✅ Đã tải trang đơn hàng nhanh chóng
+2025-07-18 17:07:59 - OneAutomation - INFO - 🟠 Bấm vào tab 'Đơn chờ xuất kho'...
+2025-07-18 17:07:59 - OneAutomation - INFO - ✅ Tìm thấy tab 'Đơn chờ xuất kho' màu cam với selector: //a[contains(text(), 'Đơn chờ xuất kho')]
+2025-07-18 17:08:01 - OneAutomation - INFO - ✅ Đã bấm vào tab 'Đơn chờ xuất kho'
+2025-07-18 17:08:01 - OneAutomation - INFO - ⏳ Chờ trang 'Đơn chờ xuất kho' tải...
+2025-07-18 17:08:04 - OneAutomation - INFO - ⚙️ Cấu hình bộ lọc trang đơn hàng...
+2025-07-18 17:08:04 - OneAutomation - INFO - 📊 Thay đổi giới hạn hiển thị thành 2000 đơn...
+2025-07-18 17:08:04 - OneAutomation - INFO - ✅ Tìm thấy dropdown giới hạn với selector: select[name*='limit']
+2025-07-18 17:08:05 - OneAutomation - INFO - ✅ Đã chọn giới hạn 2000 đơn
+2025-07-18 17:08:07 - OneAutomation - INFO - 📅 Thay đổi bộ lọc thời gian thành 'Thời gian sàn TMĐT'...
+2025-07-18 17:08:07 - OneAutomation - INFO - ✅ Tìm thấy dropdown thời gian với selector: select[name='time_type']
+2025-07-18 17:08:08 - OneAutomation - INFO - ✅ Đã chọn 'Thời gian sàn TMĐT'
+2025-07-18 17:08:10 - OneAutomation - INFO - 🔍 Bấm nút tìm kiếm để áp dụng bộ lọc...
+2025-07-18 17:08:10 - OneAutomation - INFO - ✅ Tìm thấy nút tìm kiếm với selector: button[type='submit']
+2025-07-18 17:08:11 - OneAutomation - INFO - ✅ Đã bấm nút tìm kiếm
+2025-07-18 17:08:11 - OneAutomation - INFO - ⏳ Chờ trang tải lại với dữ liệu đã lọc...
+2025-07-18 17:08:16 - OneAutomation - INFO - ✅ Dữ liệu đã được tải lại
+2025-07-18 17:08:16 - OneAutomation - INFO - ✅ Hoàn thành cấu hình bộ lọc
+2025-07-18 17:08:16 - OneAutomation - INFO - 📊 Bắt đầu lấy dữ liệu đơn hàng ENHANCED...
+2025-07-18 17:08:16 - OneAutomation - INFO - 📊 Bắt đầu lấy dữ liệu đơn hàng...
+2025-07-18 17:08:16 - OneAutomation - INFO - ✅ Tìm thấy 319 dòng dữ liệu
+2025-07-18 17:08:16 - OneAutomation - INFO - 🐌 Full mode: Lấy tất cả 319 dòng
+2025-07-18 17:08:16 - OneAutomation - INFO - ⚡ Đã xử lý 50/319 dòng trong 0.3s
+2025-07-18 17:08:16 - OneAutomation - INFO - ⚡ Đã xử lý 100/319 dòng trong 0.3s
+2025-07-18 17:08:16 - OneAutomation - INFO - ⚡ Đã xử lý 150/319 dòng trong 0.3s
+2025-07-18 17:08:16 - OneAutomation - INFO - ⚡ Đã xử lý 200/319 dòng trong 0.3s
+2025-07-18 17:08:16 - OneAutomation - INFO - ⚡ Đã xử lý 250/319 dòng trong 0.3s
+2025-07-18 17:08:16 - OneAutomation - INFO - ⚡ Đã xử lý 300/319 dòng trong 0.3s
+2025-07-18 17:08:16 - OneAutomation - INFO - ✅ Hoàn thành lấy 319 đơn hàng trong 0.35 giây
+2025-07-18 17:08:16 - OneAutomation - INFO - 📝 Mẫu dữ liệu 1: ID=523616, Code=SO18072025:0933775
+2025-07-18 17:08:16 - OneAutomation - INFO - 📝 Mẫu dữ liệu 2: ID=523612, Code=SO18072025:0933771
+2025-07-18 17:08:16 - OneAutomation - INFO - 📦 Tìm thấy 319 order IDs để lấy chi tiết sản phẩm
+2025-07-18 17:08:16 - OneAutomation - INFO - 📦 Bắt đầu lấy chi tiết sản phẩm cho 319 đơn hàng...
+2025-07-18 17:08:16 - OneAutomation - INFO - 📦 Batch 1/64: 5 đơn hàng
+2025-07-18 17:08:17 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:17 - OneAutomation - INFO - ⚡ Đã xử lý 5/319 đơn hàng
+2025-07-18 17:08:17 - OneAutomation - INFO - 📦 Batch 2/64: 5 đơn hàng
+2025-07-18 17:08:17 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:17 - OneAutomation - INFO - ⚡ Đã xử lý 10/319 đơn hàng
+2025-07-18 17:08:18 - OneAutomation - INFO - 📦 Batch 3/64: 5 đơn hàng
+2025-07-18 17:08:18 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:18 - OneAutomation - INFO - ⚡ Đã xử lý 15/319 đơn hàng
+2025-07-18 17:08:19 - OneAutomation - INFO - 📦 Batch 4/64: 5 đơn hàng
+2025-07-18 17:08:19 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:19 - OneAutomation - INFO - ⚡ Đã xử lý 20/319 đơn hàng
+2025-07-18 17:08:19 - OneAutomation - INFO - 📦 Batch 5/64: 5 đơn hàng
+2025-07-18 17:08:19 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:19 - OneAutomation - INFO - ⚡ Đã xử lý 25/319 đơn hàng
+2025-07-18 17:08:20 - OneAutomation - INFO - 📦 Batch 6/64: 5 đơn hàng
+2025-07-18 17:08:20 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:20 - OneAutomation - INFO - ⚡ Đã xử lý 30/319 đơn hàng
+2025-07-18 17:08:20 - OneAutomation - INFO - 📦 Batch 7/64: 5 đơn hàng
+2025-07-18 17:08:21 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:21 - OneAutomation - INFO - ⚡ Đã xử lý 35/319 đơn hàng
+2025-07-18 17:08:21 - OneAutomation - INFO - 📦 Batch 8/64: 5 đơn hàng
+2025-07-18 17:08:21 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:21 - OneAutomation - INFO - ⚡ Đã xử lý 40/319 đơn hàng
+2025-07-18 17:08:22 - OneAutomation - INFO - 📦 Batch 9/64: 5 đơn hàng
+2025-07-18 17:08:22 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:22 - OneAutomation - INFO - ⚡ Đã xử lý 45/319 đơn hàng
+2025-07-18 17:08:23 - OneAutomation - INFO - 📦 Batch 10/64: 5 đơn hàng
+2025-07-18 17:08:23 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:23 - OneAutomation - INFO - ⚡ Đã xử lý 50/319 đơn hàng
+2025-07-18 17:08:23 - OneAutomation - INFO - 📦 Batch 11/64: 5 đơn hàng
+2025-07-18 17:08:23 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:23 - OneAutomation - INFO - ⚡ Đã xử lý 55/319 đơn hàng
+2025-07-18 17:08:24 - OneAutomation - INFO - 📦 Batch 12/64: 5 đơn hàng
+2025-07-18 17:08:24 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:24 - OneAutomation - INFO - ⚡ Đã xử lý 60/319 đơn hàng
+2025-07-18 17:08:24 - OneAutomation - INFO - 📦 Batch 13/64: 5 đơn hàng
+2025-07-18 17:08:25 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:25 - OneAutomation - INFO - ⚡ Đã xử lý 65/319 đơn hàng
+2025-07-18 17:08:25 - OneAutomation - INFO - 📦 Batch 14/64: 5 đơn hàng
+2025-07-18 17:08:25 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:25 - OneAutomation - INFO - ⚡ Đã xử lý 70/319 đơn hàng
+2025-07-18 17:08:26 - OneAutomation - INFO - 📦 Batch 15/64: 5 đơn hàng
+2025-07-18 17:08:26 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:26 - OneAutomation - INFO - ⚡ Đã xử lý 75/319 đơn hàng
+2025-07-18 17:08:27 - OneAutomation - INFO - 📦 Batch 16/64: 5 đơn hàng
+2025-07-18 17:08:27 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:27 - OneAutomation - INFO - ⚡ Đã xử lý 80/319 đơn hàng
+2025-07-18 17:08:27 - OneAutomation - INFO - 📦 Batch 17/64: 5 đơn hàng
+2025-07-18 17:08:27 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:27 - OneAutomation - INFO - ⚡ Đã xử lý 85/319 đơn hàng
+2025-07-18 17:08:28 - OneAutomation - INFO - 📦 Batch 18/64: 5 đơn hàng
+2025-07-18 17:08:28 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:28 - OneAutomation - INFO - ⚡ Đã xử lý 90/319 đơn hàng
+2025-07-18 17:08:28 - OneAutomation - INFO - 📦 Batch 19/64: 5 đơn hàng
+2025-07-18 17:08:29 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:29 - OneAutomation - INFO - ⚡ Đã xử lý 95/319 đơn hàng
+2025-07-18 17:08:29 - OneAutomation - INFO - 📦 Batch 20/64: 5 đơn hàng
+2025-07-18 17:08:29 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:29 - OneAutomation - INFO - ⚡ Đã xử lý 100/319 đơn hàng
+2025-07-18 17:08:30 - OneAutomation - INFO - 📦 Batch 21/64: 5 đơn hàng
+2025-07-18 17:08:30 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:30 - OneAutomation - INFO - ⚡ Đã xử lý 105/319 đơn hàng
+2025-07-18 17:08:30 - OneAutomation - INFO - 📦 Batch 22/64: 5 đơn hàng
+2025-07-18 17:08:31 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:31 - OneAutomation - INFO - ⚡ Đã xử lý 110/319 đơn hàng
+2025-07-18 17:08:31 - OneAutomation - INFO - 📦 Batch 23/64: 5 đơn hàng
+2025-07-18 17:08:31 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:31 - OneAutomation - INFO - ⚡ Đã xử lý 115/319 đơn hàng
+2025-07-18 17:08:32 - OneAutomation - INFO - 📦 Batch 24/64: 5 đơn hàng
+2025-07-18 17:08:32 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:32 - OneAutomation - INFO - ⚡ Đã xử lý 120/319 đơn hàng
+2025-07-18 17:08:32 - OneAutomation - INFO - 📦 Batch 25/64: 5 đơn hàng
+2025-07-18 17:08:33 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:33 - OneAutomation - INFO - ⚡ Đã xử lý 125/319 đơn hàng
+2025-07-18 17:08:33 - OneAutomation - INFO - 📦 Batch 26/64: 5 đơn hàng
+2025-07-18 17:08:33 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:33 - OneAutomation - INFO - ⚡ Đã xử lý 130/319 đơn hàng
+2025-07-18 17:08:34 - OneAutomation - INFO - 📦 Batch 27/64: 5 đơn hàng
+2025-07-18 17:08:35 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:35 - OneAutomation - INFO - ⚡ Đã xử lý 135/319 đơn hàng
+2025-07-18 17:08:35 - OneAutomation - INFO - 📦 Batch 28/64: 5 đơn hàng
+2025-07-18 17:08:35 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:35 - OneAutomation - INFO - ⚡ Đã xử lý 140/319 đơn hàng
+2025-07-18 17:08:36 - OneAutomation - INFO - 📦 Batch 29/64: 5 đơn hàng
+2025-07-18 17:08:36 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:36 - OneAutomation - INFO - ⚡ Đã xử lý 145/319 đơn hàng
+2025-07-18 17:08:36 - OneAutomation - INFO - 📦 Batch 30/64: 5 đơn hàng
+2025-07-18 17:08:37 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:37 - OneAutomation - INFO - ⚡ Đã xử lý 150/319 đơn hàng
+2025-07-18 17:08:37 - OneAutomation - INFO - 📦 Batch 31/64: 5 đơn hàng
+2025-07-18 17:08:37 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:37 - OneAutomation - INFO - ⚡ Đã xử lý 155/319 đơn hàng
+2025-07-18 17:08:38 - OneAutomation - INFO - 📦 Batch 32/64: 5 đơn hàng
+2025-07-18 17:08:38 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:38 - OneAutomation - INFO - ⚡ Đã xử lý 160/319 đơn hàng
+2025-07-18 17:08:38 - OneAutomation - INFO - 📦 Batch 33/64: 5 đơn hàng
+2025-07-18 17:08:39 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:39 - OneAutomation - INFO - ⚡ Đã xử lý 165/319 đơn hàng
+2025-07-18 17:08:39 - OneAutomation - INFO - 📦 Batch 34/64: 5 đơn hàng
+2025-07-18 17:08:39 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:39 - OneAutomation - INFO - ⚡ Đã xử lý 170/319 đơn hàng
+2025-07-18 17:08:40 - OneAutomation - INFO - 📦 Batch 35/64: 5 đơn hàng
+2025-07-18 17:08:40 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:40 - OneAutomation - INFO - ⚡ Đã xử lý 175/319 đơn hàng
+2025-07-18 17:08:40 - OneAutomation - INFO - 📦 Batch 36/64: 5 đơn hàng
+2025-07-18 17:08:41 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:41 - OneAutomation - INFO - ⚡ Đã xử lý 180/319 đơn hàng
+2025-07-18 17:08:41 - OneAutomation - INFO - 📦 Batch 37/64: 5 đơn hàng
+2025-07-18 17:08:41 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:41 - OneAutomation - INFO - ⚡ Đã xử lý 185/319 đơn hàng
+2025-07-18 17:08:42 - OneAutomation - INFO - 📦 Batch 38/64: 5 đơn hàng
+2025-07-18 17:08:42 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:42 - OneAutomation - INFO - ⚡ Đã xử lý 190/319 đơn hàng
+2025-07-18 17:08:42 - OneAutomation - INFO - 📦 Batch 39/64: 5 đơn hàng
+2025-07-18 17:08:42 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:42 - OneAutomation - INFO - ⚡ Đã xử lý 195/319 đơn hàng
+2025-07-18 17:08:43 - OneAutomation - INFO - 📦 Batch 40/64: 5 đơn hàng
+2025-07-18 17:08:43 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:43 - OneAutomation - INFO - ⚡ Đã xử lý 200/319 đơn hàng
+2025-07-18 17:08:44 - OneAutomation - INFO - 📦 Batch 41/64: 5 đơn hàng
+2025-07-18 17:08:44 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:44 - OneAutomation - INFO - ⚡ Đã xử lý 205/319 đơn hàng
+2025-07-18 17:08:44 - OneAutomation - INFO - 📦 Batch 42/64: 5 đơn hàng
+2025-07-18 17:08:45 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:45 - OneAutomation - INFO - ⚡ Đã xử lý 210/319 đơn hàng
+2025-07-18 17:08:45 - OneAutomation - INFO - 📦 Batch 43/64: 5 đơn hàng
+2025-07-18 17:08:45 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:45 - OneAutomation - INFO - ⚡ Đã xử lý 215/319 đơn hàng
+2025-07-18 17:08:46 - OneAutomation - INFO - 📦 Batch 44/64: 5 đơn hàng
+2025-07-18 17:08:46 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:46 - OneAutomation - INFO - ⚡ Đã xử lý 220/319 đơn hàng
+2025-07-18 17:08:46 - OneAutomation - INFO - 📦 Batch 45/64: 5 đơn hàng
+2025-07-18 17:08:46 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:46 - OneAutomation - INFO - ⚡ Đã xử lý 225/319 đơn hàng
+2025-07-18 17:08:47 - OneAutomation - INFO - 📦 Batch 46/64: 5 đơn hàng
+2025-07-18 17:08:47 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:47 - OneAutomation - INFO - ⚡ Đã xử lý 230/319 đơn hàng
+2025-07-18 17:08:48 - OneAutomation - INFO - 📦 Batch 47/64: 5 đơn hàng
+2025-07-18 17:08:48 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:48 - OneAutomation - INFO - ⚡ Đã xử lý 235/319 đơn hàng
+2025-07-18 17:08:48 - OneAutomation - INFO - 📦 Batch 48/64: 5 đơn hàng
+2025-07-18 17:08:49 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:49 - OneAutomation - INFO - ⚡ Đã xử lý 240/319 đơn hàng
+2025-07-18 17:08:49 - OneAutomation - INFO - 📦 Batch 49/64: 5 đơn hàng
+2025-07-18 17:08:49 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:49 - OneAutomation - INFO - ⚡ Đã xử lý 245/319 đơn hàng
+2025-07-18 17:08:50 - OneAutomation - INFO - 📦 Batch 50/64: 5 đơn hàng
+2025-07-18 17:08:51 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:51 - OneAutomation - INFO - ⚡ Đã xử lý 250/319 đơn hàng
+2025-07-18 17:08:51 - OneAutomation - INFO - 📦 Batch 51/64: 5 đơn hàng
+2025-07-18 17:08:52 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:52 - OneAutomation - INFO - ⚡ Đã xử lý 255/319 đơn hàng
+2025-07-18 17:08:52 - OneAutomation - INFO - 📦 Batch 52/64: 5 đơn hàng
+2025-07-18 17:08:52 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:52 - OneAutomation - INFO - ⚡ Đã xử lý 260/319 đơn hàng
+2025-07-18 17:08:53 - OneAutomation - INFO - 📦 Batch 53/64: 5 đơn hàng
+2025-07-18 17:08:53 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:53 - OneAutomation - INFO - ⚡ Đã xử lý 265/319 đơn hàng
+2025-07-18 17:08:53 - OneAutomation - INFO - 📦 Batch 54/64: 5 đơn hàng
+2025-07-18 17:08:54 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:54 - OneAutomation - INFO - ⚡ Đã xử lý 270/319 đơn hàng
+2025-07-18 17:08:54 - OneAutomation - INFO - 📦 Batch 55/64: 5 đơn hàng
+2025-07-18 17:08:54 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:54 - OneAutomation - INFO - ⚡ Đã xử lý 275/319 đơn hàng
+2025-07-18 17:08:55 - OneAutomation - INFO - 📦 Batch 56/64: 5 đơn hàng
+2025-07-18 17:08:55 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:55 - OneAutomation - INFO - ⚡ Đã xử lý 280/319 đơn hàng
+2025-07-18 17:08:55 - OneAutomation - INFO - 📦 Batch 57/64: 5 đơn hàng
+2025-07-18 17:08:56 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:56 - OneAutomation - INFO - ⚡ Đã xử lý 285/319 đơn hàng
+2025-07-18 17:08:56 - OneAutomation - INFO - 📦 Batch 58/64: 5 đơn hàng
+2025-07-18 17:08:56 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:56 - OneAutomation - INFO - ⚡ Đã xử lý 290/319 đơn hàng
+2025-07-18 17:08:57 - OneAutomation - INFO - 📦 Batch 59/64: 5 đơn hàng
+2025-07-18 17:08:57 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:57 - OneAutomation - INFO - ⚡ Đã xử lý 295/319 đơn hàng
+2025-07-18 17:08:57 - OneAutomation - INFO - 📦 Batch 60/64: 5 đơn hàng
+2025-07-18 17:08:58 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:58 - OneAutomation - INFO - ⚡ Đã xử lý 300/319 đơn hàng
+2025-07-18 17:08:58 - OneAutomation - INFO - 📦 Batch 61/64: 5 đơn hàng
+2025-07-18 17:08:58 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:58 - OneAutomation - INFO - ⚡ Đã xử lý 305/319 đơn hàng
+2025-07-18 17:08:59 - OneAutomation - INFO - 📦 Batch 62/64: 5 đơn hàng
+2025-07-18 17:08:59 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:08:59 - OneAutomation - INFO - ⚡ Đã xử lý 310/319 đơn hàng
+2025-07-18 17:08:59 - OneAutomation - INFO - 📦 Batch 63/64: 5 đơn hàng
+2025-07-18 17:09:00 - OneAutomation - INFO - ✅ API Direct: Lấy được 5 đơn hàng
+2025-07-18 17:09:00 - OneAutomation - INFO - ⚡ Đã xử lý 315/319 đơn hàng
+2025-07-18 17:09:00 - OneAutomation - INFO - 📦 Batch 64/64: 4 đơn hàng
+2025-07-18 17:09:00 - OneAutomation - INFO - ✅ API Direct: Lấy được 4 đơn hàng
+2025-07-18 17:09:00 - OneAutomation - INFO - ⚡ Đã xử lý 319/319 đơn hàng
+2025-07-18 17:09:01 - OneAutomation - INFO - ✅ Hoàn thành lấy chi tiết 319 đơn hàng
+2025-07-18 17:09:01 - OneAutomation - INFO - ✅ Enhanced 319 đơn hàng với chi tiết sản phẩm
+2025-07-18 17:09:01 - OneAutomation - INFO - 📊 Processing order data with SLA analysis...
+2025-07-18 17:09:01 - OneAutomation - INFO - ✅ Converted 319 orders to DataFrame
+2025-07-18 17:09:01 - OneAutomation - INFO - 🕐 Running SLA analysis...
+2025-07-18 17:09:01 - OneAutomation - INFO - 📊 SLA SUMMARY:
+2025-07-18 17:09:01 - OneAutomation - INFO - ==================================================
+2025-07-18 17:09:01 - OneAutomation - INFO - 🛒 SHOPEE:
+2025-07-18 17:09:01 - OneAutomation - INFO -    📦 Đơn sau 18h: 112
+2025-07-18 17:09:01 - OneAutomation - INFO -    ✅ Cần xác nhận: 112
+2025-07-18 17:09:01 - OneAutomation - INFO -    🚚 Cần bàn giao: 112
+2025-07-18 17:09:01 - OneAutomation - WARNING -    🚨 QUÁ HẠN xác nhận: 112
+2025-07-18 17:09:01 - OneAutomation - WARNING -    🚨 QUÁ HẠN bàn giao: 112
+2025-07-18 17:09:01 - OneAutomation - INFO - 📱 TIKTOK:
+2025-07-18 17:09:01 - OneAutomation - INFO -    📦 Đơn sau 14h: 177
+2025-07-18 17:09:01 - OneAutomation - INFO -    🚚 Cần bàn giao: 177
+2025-07-18 17:09:01 - OneAutomation - WARNING - 🚨 CẢNH BÁO NGHIÊM TRỌNG:
+2025-07-18 17:09:01 - OneAutomation - WARNING -    🚨 112 đơn hàng QUÁ HẠN xác nhận (9h sáng)
+2025-07-18 17:09:01 - OneAutomation - WARNING -    🚨 112 đơn hàng QUÁ HẠN bàn giao (12h trước)
+2025-07-18 17:09:01 - OneAutomation - INFO - 📁 Xuất dữ liệu ENHANCED...
+2025-07-18 17:09:01 - OneAutomation - INFO - 📁 Bắt đầu xuất dữ liệu...
+2025-07-18 17:09:01 - OneAutomation - INFO - ✅ Đã xuất CSV: data/orders_export_20250718_170901.csv
+2025-07-18 17:09:01 - OneAutomation - INFO - 🔄 Chuyển đổi sang format dashboard...
+2025-07-18 17:09:01 - OneAutomation - INFO - ✅ Đã chuyển đổi 319 đơn hàng sang format dashboard
+2025-07-18 17:09:01 - OneAutomation - INFO - ✅ Đã xuất Dashboard CSV: data/orders_dashboard_20250718_170901.csv
+2025-07-18 17:09:01 - OneAutomation - INFO - ✅ Đã cập nhật file mới nhất: data/orders_latest.csv
+2025-07-18 17:09:01 - OneAutomation - INFO - ✅ Đã tạo báo cáo tổng hợp: data/summary_report_20250718_170901.txt
+2025-07-18 17:09:01 - OneAutomation - INFO - 🎉 Hoàn thành xuất dữ liệu: 3 file
+2025-07-18 17:09:01 - OneAutomation - INFO - ✅ Đã xuất Products CSV: data/products_detail_20250718_170901.csv
+2025-07-18 17:09:01 - OneAutomation - INFO - ✅ Đã tạo Enhanced Summary: data/enhanced_summary_20250718_170901.txt
+2025-07-18 17:09:01 - OneAutomation - INFO - 🎉 ENHANCED automation hoàn thành: 319 đơn hàng, 319 có chi tiết sản phẩm
+2025-07-18 17:09:02 - OneAutomation - WARNING - ⚠️ Failed to log to Google Sheets
+2025-07-18 17:09:42 - OneAutomation - INFO - 🚀 Bắt đầu quy trình tự động hóa ONE...
+2025-07-18 17:09:43 - OneAutomation - WARNING - ChromeDriverManager failed: [Errno 8] Exec format error: '/Users/phuccao/.wdm/drivers/chromedriver/mac64/138.0.7204.157/chromedriver-mac-arm64/THIRD_PARTY_NOTICES.chromedriver'
+2025-07-18 17:09:45 - OneAutomation - INFO - ✅ WebDriver tối ưu đã sẵn sàng
+2025-07-18 17:09:45 - OneAutomation - INFO - 🔐 Bắt đầu đăng nhập vào hệ thống ONE...
+2025-07-18 17:09:45 - OneAutomation - INFO - 🔄 Thử sử dụng session đã lưu...
+2025-07-18 17:09:49 - OneAutomation - INFO - ✅ Session hợp lệ - đã đăng nhập từ trước
+2025-07-18 17:09:49 - OneAutomation - INFO - 📋 Điều hướng đến trang danh sách đơn hàng...
+2025-07-18 17:09:50 - OneAutomation - INFO - ✅ Đã tải trang đơn hàng nhanh chóng
+2025-07-18 17:09:50 - OneAutomation - INFO - 🟠 Bấm vào tab 'Đơn chờ xuất kho'...
+2025-07-18 17:09:50 - OneAutomation - INFO - ✅ Tìm thấy tab 'Đơn chờ xuất kho' màu cam với selector: //a[contains(text(), 'Đơn chờ xuất kho')]
+2025-07-18 17:09:52 - OneAutomation - INFO - ✅ Đã bấm vào tab 'Đơn chờ xuất kho'
+2025-07-18 17:09:52 - OneAutomation - INFO - ⏳ Chờ trang 'Đơn chờ xuất kho' tải...
+2025-07-18 17:09:55 - OneAutomation - INFO - ⚙️ Cấu hình bộ lọc trang đơn hàng...
+2025-07-18 17:09:55 - OneAutomation - INFO - 📊 Thay đổi giới hạn hiển thị thành 2000 đơn...
+2025-07-18 17:09:55 - OneAutomation - INFO - ✅ Tìm thấy dropdown giới hạn với selector: select[name*='limit']
+2025-07-18 17:09:56 - OneAutomation - INFO - ✅ Đã chọn giới hạn 2000 đơn
+2025-07-18 17:09:58 - OneAutomation - INFO - 📅 Thay đổi bộ lọc thời gian thành 'Thời gian sàn TMĐT'...
+2025-07-18 17:09:58 - OneAutomation - INFO - ✅ Tìm thấy dropdown thời gian với selector: select[name='time_type']
+2025-07-18 17:09:59 - OneAutomation - INFO - ✅ Đã chọn 'Thời gian sàn TMĐT'
+2025-07-18 17:10:01 - OneAutomation - INFO - 🔍 Bấm nút tìm kiếm để áp dụng bộ lọc...
+2025-07-18 17:10:01 - OneAutomation - INFO - ✅ Tìm thấy nút tìm kiếm với selector: button[type='submit']
+2025-07-18 17:10:02 - OneAutomation - INFO - ✅ Đã bấm nút tìm kiếm
+2025-07-18 17:10:02 - OneAutomation - INFO - ⏳ Chờ trang tải lại với dữ liệu đã lọc...
+2025-07-18 17:10:07 - OneAutomation - INFO - ✅ Dữ liệu đã được tải lại
+2025-07-18 17:10:07 - OneAutomation - INFO - ✅ Hoàn thành cấu hình bộ lọc
+2025-07-18 17:10:07 - OneAutomation - INFO - 📊 Bắt đầu lấy dữ liệu đơn hàng...
+2025-07-18 17:10:08 - OneAutomation - INFO - ✅ Tìm thấy 319 dòng dữ liệu
+2025-07-18 17:10:08 - OneAutomation - INFO - 🐌 Full mode: Lấy tất cả 319 dòng
+2025-07-18 17:10:08 - OneAutomation - INFO - ⚡ Đã xử lý 50/319 dòng trong 0.3s
+2025-07-18 17:10:08 - OneAutomation - INFO - ⚡ Đã xử lý 100/319 dòng trong 0.3s
+2025-07-18 17:10:08 - OneAutomation - INFO - ⚡ Đã xử lý 150/319 dòng trong 0.3s
+2025-07-18 17:10:08 - OneAutomation - INFO - ⚡ Đã xử lý 200/319 dòng trong 0.3s
+2025-07-18 17:10:08 - OneAutomation - INFO - ⚡ Đã xử lý 250/319 dòng trong 0.3s
+2025-07-18 17:10:08 - OneAutomation - INFO - ⚡ Đã xử lý 300/319 dòng trong 0.3s
+2025-07-18 17:10:08 - OneAutomation - INFO - ✅ Hoàn thành lấy 319 đơn hàng trong 0.35 giây
+2025-07-18 17:10:08 - OneAutomation - INFO - 📝 Mẫu dữ liệu 1: ID=523616, Code=SO18072025:0933775
+2025-07-18 17:10:08 - OneAutomation - INFO - 📝 Mẫu dữ liệu 2: ID=523612, Code=SO18072025:0933771
+2025-07-18 17:10:08 - OneAutomation - INFO - 🔄 Bắt đầu xử lý dữ liệu đơn hàng...
+2025-07-18 17:10:08 - OneAutomation - INFO - 📊 Dữ liệu gốc: 319 đơn hàng
+2025-07-18 17:10:08 - OneAutomation - INFO - 🧹 Loại bỏ trùng lặp: 319 đơn còn lại
+2025-07-18 17:10:08 - OneAutomation - INFO - ✅ Hoàn thành xử lý: 319 đơn hàng, 30 cột
+2025-07-18 17:10:08 - OneAutomation - INFO - 📁 Bắt đầu xuất dữ liệu...
+2025-07-18 17:10:08 - OneAutomation - INFO - ✅ Đã xuất CSV: data/orders_export_20250718_171008.csv
+2025-07-18 17:10:08 - OneAutomation - INFO - 🔄 Chuyển đổi sang format dashboard...
+2025-07-18 17:10:08 - OneAutomation - INFO - ✅ Đã chuyển đổi 319 đơn hàng sang format dashboard
+2025-07-18 17:10:08 - OneAutomation - INFO - ✅ Đã xuất Dashboard CSV: data/orders_dashboard_20250718_171008.csv
+2025-07-18 17:10:08 - OneAutomation - INFO - ✅ Đã cập nhật file mới nhất: data/orders_latest.csv
+2025-07-18 17:10:08 - OneAutomation - INFO - ✅ Đã tạo báo cáo tổng hợp: data/summary_report_20250718_171008.txt
+2025-07-18 17:10:08 - OneAutomation - INFO - 🎉 Hoàn thành xuất dữ liệu: 3 file
+2025-07-18 17:10:08 - OneAutomation - INFO - 🎉 Hoàn thành tự động hóa: 319 đơn hàng
+2025-07-18 17:10:08 - OneAutomation - INFO - 📧 Thông báo email đã bị tắt

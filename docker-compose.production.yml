@@ -1,0 +1,181 @@
+version: "3.8"
+
+services:
+  # Google Sheets Backend
+  google-sheets-backend:
+    build:
+      context: ./google-sheets-project
+      dockerfile: Dockerfile.backend
+    container_name: react-oas-google-backend
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=production
+      - PORT=3003
+      - REACT_APP_GOOGLE_SHEET_ID=${REACT_APP_GOOGLE_SHEET_ID}
+      - REACT_APP_GOOGLE_CLIENT_EMAIL=${REACT_APP_GOOGLE_CLIENT_EMAIL}
+      - REACT_APP_GOOGLE_PROJECT_ID=${REACT_APP_GOOGLE_PROJECT_ID}
+      - REACT_APP_GOOGLE_PRIVATE_KEY=${REACT_APP_GOOGLE_PRIVATE_KEY}
+    volumes:
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3003/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - react-oas-network
+
+  # Google Sheets Frontend
+  google-sheets-frontend:
+    build:
+      context: ./google-sheets-project
+      dockerfile: Dockerfile.frontend
+    container_name: react-oas-google-frontend
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_API_BASE_URL=http://google-sheets-backend:3003/api
+    depends_on:
+      google-sheets-backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+    networks:
+      - react-oas-network
+
+  # MIA Logistics Frontend
+  mia-logistics-frontend:
+    build:
+      context: ./shared
+      dockerfile: Dockerfile.frontend
+    container_name: react-oas-mia-frontend
+    ports:
+      - "5173:80"
+    environment:
+      - VITE_API_BASE_URL=http://google-sheets-backend:3003/api
+    depends_on:
+      google-sheets-backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+    networks:
+      - react-oas-network
+
+  # AI Service
+  ai-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.ai
+    container_name: react-oas-ai-service
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app
+      - LOG_LEVEL=INFO
+      - MODEL_CACHE_SIZE=1000
+    volumes:
+      - ./ai-models:/app/models
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - react-oas-network
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: react-oas-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.production.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - ./logs/nginx:/var/log/nginx
+    depends_on:
+      - google-sheets-frontend
+      - google-sheets-backend
+      - mia-logistics-frontend
+      - ai-service
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - react-oas-network
+
+  # Redis for caching (optional)
+  redis:
+    image: redis:7-alpine
+    container_name: react-oas-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+      - ./redis.conf:/etc/redis/redis.conf:ro
+    command: redis-server /etc/redis/redis.conf
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - react-oas-network
+
+  # PostgreSQL Database (optional)
+  postgres:
+    image: postgres:15-alpine
+    container_name: react-oas-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-react_oas}
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - react-oas-network
+
+networks:
+  react-oas-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  redis-data:
+    driver: local
+  postgres-data:
+    driver: local
+  ai-models:
+    driver: local

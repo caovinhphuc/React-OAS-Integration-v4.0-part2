@@ -1,0 +1,40 @@
+// Color Variables - Orange Corporate Theme
+:root {
+  // Primary Orange Colors
+  --color-primary: #ff6b35;
+  --color-primary-light: #ff8c65;
+  --color-primary-dark: #e55a2b;
+  --color-secondary: #ff9500;
+  
+  // Text Colors
+  --color-text-primary: #2c3e50;
+  --color-text-secondary: #7f8c8d;
+  
+  // Background Colors
+  --color-white: #ffffff;
+  --color-gray-100: #f8f9fa;
+  --color-gray-200: #e9ecef;
+  
+  // Border Colors
+  --color-border: #dee2e6;
+  --color-border-light: #f1f3f4;
+  
+  // Status Colors
+  --color-success: #28a745;
+  --color-error: #dc3545;
+  --color-warning: #ffc107;
+  --color-info: #17a2b8;
+  
+  // Radius
+  --radius-base: 8px;
+  --radius-large: 12px;
+  
+  // Shadows
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.12);
+  --shadow-lg: 0 8px 16px rgba(0,0,0,0.15);
+  
+  // Transitions
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}

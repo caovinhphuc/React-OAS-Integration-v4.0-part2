@@ -1,0 +1,7 @@
+if (requireAuth && isInitializing) {
+  return <LoadingSpinnerOrSkeleton />;
+}
+if (requireAuth && !isInitializing && !isAuthenticated) {
+  navigate('/login', { replace: true });
+  return null;
+}

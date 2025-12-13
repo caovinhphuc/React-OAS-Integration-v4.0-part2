@@ -1,0 +1,11 @@
+Timestamp,Success,Duration_Seconds,Order_Count,Enhanced_Order_Count,Config_Source,Sheets_Integration,System_URL,Automation_Version,Error,Start_Time,End_Time,Export_Files,Platform,Notes
+2025-07-17 17:40:11,TRUE,22.604864,250,240,google_sheets,TRUE,https://one.tga.com.vn,2.1_enhanced,,2025-07-17 17:39:48,2025-07-17 17:40:11,"{'orders_csv': 'data/orders_enhanced.csv', 'products_json': 'data/products_enhanced.json', 'summary_xlsx': 'data/automation_summary.xlsx'}",multiple,Enhanced automation run
+2025-07-17 17:38:34,TRUE,12.5,25,23,google_sheets,TRUE,unknown,2.1_verified,,2025-07-17 17:38:33,2025-07-17 17:38:33,{},multiple,Enhanced automation run
+2025-07-17 04:49:15,TRUE,15.8,35,30,google_sheets,TRUE,unknown,2.1_enhanced,,2025-07-17 14:30:00,2025-07-17 14:45:48,{},multiple,Enhanced automation run
+2025-07-17 04:48:08,TRUE,15.8,35,30,google_sheets,TRUE,unknown,2.1_enhanced,,2025-07-17 14:30:00,2025-07-17 14:45:48,{},multiple,Enhanced automation run
+2025-07-17 04:42:10,TRUE,10.5,25,20,google_sheets,TRUE,unknown,2.1_test,,,,{},multiple,Enhanced automation run
+2025-07-17 04:37:52,TRUE,10.5,25,20,google_sheets,TRUE,unknown,2.1_test,,,,{},multiple,Enhanced automation run
+2025-07-17 04:37:15,TRUE,10.5,25,20,google_sheets,TRUE,unknown,2.1_test,,,,{},multiple,Enhanced automation run
+2025-07-17 04:35:08,TRUE,10.5,25,20,google_sheets,TRUE,unknown,2.1_test,,,,{},multiple,Enhanced automation run
+2025-07-17 04:25:44,TRUE,10.5,25,20,google_sheets,TRUE,unknown,2.1_test,,,,{},multiple,Enhanced automation run
+2025-07-17 04:21:24,TRUE,10.5,25,20,google_sheets,TRUE,unknown,2.1_test,,,,{},multiple,Enhanced automation run

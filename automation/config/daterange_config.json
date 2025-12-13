@@ -1,0 +1,23 @@
+{
+  "date_range": {
+    "mode": "custom",
+    "start_date": "2025-05-01",
+    "end_date": "2025-05-31",
+    "auto_calculate": false,
+    "default_range_days": 31
+  },
+  "system": {
+    "max_rows_for_testing": 200,
+    "fast_mode": true,
+    "enable_daterange": true
+  },
+  "browser": {
+    "headless": true,
+    "timeout": 30,
+    "page_load_timeout": 60
+  },
+  "credentials": {
+    "username_env": "ONE_USERNAME",
+    "password_env": "ONE_PASSWORD"
+  }
+}

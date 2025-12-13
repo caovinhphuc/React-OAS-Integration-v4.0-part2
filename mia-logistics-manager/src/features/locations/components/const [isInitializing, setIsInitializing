@@ -1,0 +1,9 @@
+const [isInitializing, setIsInitializing] = useState(true);
+useEffect(() => {
+  const token = localStorage.getItem('mia_access_token');
+  if (token) {
+    setIsAuthenticated(true);
+    // load permissions (await)...
+  }
+  setIsInitializing(false);
+}, []);

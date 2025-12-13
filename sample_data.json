@@ -1,0 +1,33 @@
+{
+  "dashboard": {
+    "total_orders": 1250,
+    "active_users": 89,
+    "revenue": 1250000,
+    "conversion_rate": 3.2,
+    "timestamp": "2025-09-13T19:35:00Z"
+  },
+  "orders": [
+    {
+      "id": "ORD-001",
+      "customer": "Nguyễn Văn A",
+      "amount": 150000,
+      "status": "completed",
+      "date": "2025-09-13",
+      "product": "Sản phẩm A"
+    },
+    {
+      "id": "ORD-002", 
+      "customer": "Trần Thị B",
+      "amount": 250000,
+      "status": "pending",
+      "date": "2025-09-13",
+      "product": "Sản phẩm B"
+    }
+  ],
+  "analytics": {
+    "page_views": 15420,
+    "unique_visitors": 3240,
+    "bounce_rate": 45.2,
+    "avg_session_duration": "2m 34s"
+  }
+}

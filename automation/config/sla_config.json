@@ -1,0 +1,50 @@
+{
+  "shopee": {
+    "name": "Shopee",
+    "cutoff_time": "18:00",
+    "rules": {
+      "confirm_deadline": "09:00",
+      "handover_deadline": "12:00"
+    },
+    "description": "Đơn hàng phát sinh sau 18h ngày N phải xác nhận trước 9h và bàn giao trước 12h ngày N+1"
+  },
+  "tiktok": {
+    "name": "TikTok",
+    "cutoff_time": "14:00",
+    "rules": {
+      "handover_deadline": "21:00"
+    },
+    "description": "Đơn hàng phát sinh sau 14h ngày N phải bàn giao trước 21h ngày N+1"
+  },
+  "other_platforms": {
+    "name": "Các sàn khác",
+    "rules": {
+      "default_deadline": "17:00"
+    },
+    "description": "Tất cả đơn hàng còn lại trong ngày N"
+  },
+  "warning_settings": {
+    "warning_hours": [2, 1, 0.5],
+    "critical_hours": [0.25],
+    "description": "Cảnh báo trước deadline (giờ)"
+  },
+  "business_rules": {
+    "working_hours": {
+      "start": "08:00",
+      "end": "22:00"
+    },
+    "timezone": "Asia/Ho_Chi_Minh",
+    "weekend_handling": "extend_to_monday"
+  },
+  "notification_channels": {
+    "email": true,
+    "sms": false,
+    "slack": true,
+    "dashboard": true
+  },
+  "export_settings": {
+    "auto_export": true,
+    "export_formats": ["json", "csv", "txt"],
+    "export_schedule": "hourly"
+  }
+}
