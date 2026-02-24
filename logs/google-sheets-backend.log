@@ -1,5 +1,21 @@
-[dotenv@17.2.2] injecting env (0) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
-🚀 Server running on port 3003
-📊 Google Sheets: Not configured
-📧 Email: Not configured
-📱 Telegram: Not configured
+node:internal/modules/cjs/loader:451
+      throw err;
+      ^
+
+Error: Cannot find module '/Users/phuccao/Projects/work/oas-integration/v4-part2/google-sheets-project/node_modules/googleapis/build/src/index.js'. Please verify that the package.json has a valid "main" entry
+    at tryPackage (node:internal/modules/cjs/loader:443:19)
+    at Module._findPath (node:internal/modules/cjs/loader:711:18)
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1126:27)
+    at Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at Object.<anonymous> (/Users/phuccao/Projects/work/oas-integration/v4-part2/google-sheets-project/server.js:5:20)
+    at Module._compile (node:internal/modules/cjs/loader:1364:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1422:10)
+    at Module.load (node:internal/modules/cjs/loader:1203:32) {
+  code: 'MODULE_NOT_FOUND',
+  path: '/Users/phuccao/Projects/work/oas-integration/v4-part2/google-sheets-project/node_modules/googleapis/package.json',
+  requestPath: 'googleapis'
+}
+
+Node.js v18.20.8

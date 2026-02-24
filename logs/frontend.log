@@ -2,6 +2,10 @@
 > react-oas-integration@3.0.0 dev
 > concurrently "npm run start" "npm run backend" "npm run ai-service"
 
+[2] 
+[2] > react-oas-integration@3.0.0 ai-service
+[2] > cd ai-service && python -m uvicorn main_simple:app --host 0.0.0.0 --port 8000 --reload
+[2] 
 [1] 
 [1] > react-oas-integration@3.0.0 backend
 [1] > cd backend && npm start
@@ -10,46 +14,22 @@
 [0] > react-oas-integration@3.0.0 start
 [0] > react-scripts start
 [0] 
-[2] 
-[2] > react-oas-integration@3.0.0 ai-service
-[2] > cd ai-service && python -m uvicorn main_simple:app --host 0.0.0.0 --port 8000 --reload
-[2] 
-[2] sh: python: command not found
-[2] npm run ai-service exited with code 127
 [1] 
 [1] > react-oas-integration-backend@1.0.0 start
 [1] > node src/server.js
 [1] 
-[1] node:events:497
-[1]       throw er; // Unhandled 'error' event
-[1]       ^
-[1] 
-[1] Error: listen EADDRINUSE: address already in use :::3001
-[1]     at Server.setupListenHandle [as _listen2] (node:net:1904:16)
-[1]     at listenInCluster (node:net:1961:12)
-[1]     at Server.listen (node:net:2063:7)
-[1]     at Object.<anonymous> (/Users/phuccao/Projects/React-OAS-Integration-v4.0/backend/src/server.js:1070:8)
-[1]     at Module._compile (node:internal/modules/cjs/loader:1469:14)
-[1]     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
-[1]     at Module.load (node:internal/modules/cjs/loader:1288:32)
-[1]     at Module._load (node:internal/modules/cjs/loader:1104:12)
-[1]     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)
-[1]     at node:internal/main/run_main_module:28:49
-[1] Emitted 'error' event on Server instance at:
-[1]     at emitErrorNT (node:net:1940:8)
-[1]     at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
-[1]   code: 'EADDRINUSE',
-[1]   errno: -48,
-[1]   syscall: 'listen',
-[1]   address: '::',
-[1]   port: 3001
-[1] }
-[1] 
-[1] Node.js v20.18.0
-[1] npm run backend exited with code 1
-[0] (node:49582) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+[2] INFO:     Will watch for changes in these directories: ['/Users/phuccao/Projects/work/oas-integration/v4-part2/ai-service']
+[2] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+[2] INFO:     Started reloader process [99199] using WatchFiles
+[1] 🚀 Backend server running on port 3001
+[1] 📊 Health check: http://localhost:3001/health
+[1] 🌐 WebSocket server ready for connections
+[2] INFO:     Started server process [99249]
+[2] INFO:     Waiting for application startup.
+[2] INFO:     Application startup complete.
+[0] (node:99206) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 [0] (Use `node --trace-deprecation ...` to show where the warning was created)
-[0] (node:49582) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+[0] (node:99206) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 [0] Starting the development server...
 [0] 
 [0] Compiled with warnings.
@@ -174,4 +154,11 @@
 [0]   Line 533:1:  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
 [0] 
 [0] webpack compiled with 1 warning
+[1] ::1 - - [24/Feb/2026:18:58:24 +0000] "GET /api/auth/verify HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+[1] ::1 - - [24/Feb/2026:18:58:24 +0000] "GET /api/auth/verify HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+[1] npm run backend exited with code SIGINT
+[2] INFO:     Shutting down
 [0] npm run start exited with code SIGINT
+[2] INFO:     Finished server process [99249]
+[2] INFO:     Stopping reloader process [99199]
+[2] npm run ai-service exited with code SIGTERM

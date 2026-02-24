@@ -52,28 +52,34 @@ const Dashboard = () => {
   ];
 
   const availableTabs = tabs.filter(
-    (tab) => !tab.permission || AuthService.hasPermission(tab.permission)
+    (tab) => !tab.permission || AuthService.hasPermission(tab.permission),
   );
 
-  const ActiveComponent = availableTabs.find((tab) => tab.id === activeTab)?.component;
+  const ActiveComponent = availableTabs.find(
+    (tab) => tab.id === activeTab,
+  )?.component;
 
   return (
-    <MainLayout 
-      activeTab={activeTab} 
-      setActiveTab={setActiveTab} 
+    <MainLayout
+      activeTab={activeTab}
+      setActiveTab={setActiveTab}
       configValid={configValid}
       user={user}
       showUserInfo={true}
     >
       {/* Main Content */}
       <div className="dashboard-content">
-        {activeTab === 'dashboard' ? (
+        {activeTab === "dashboard" ? (
           <div className="dashboard-home">
             {/* Hero Section */}
             <div className="dashboard-hero">
               <div className="hero-icon">🏢</div>
               <h1>MIA.vn</h1>
-              <p>Nền tảng quản lý kinh doanh thông minh với tích hợp Google APIs. Đơn giản hóa quy trình làm việc và tối ưu hóa hiệu suất doanh nghiệp.</p>
+              <p>
+                Nền tảng quản lý kinh doanh thông minh với tích hợp Google APIs.
+                Đơn giản hóa quy trình làm việc và tối ưu hóa hiệu suất doanh
+                nghiệp.
+              </p>
             </div>
           </div>
         ) : (
@@ -84,8 +90,8 @@ const Dashboard = () => {
       {/* User info footer */}
       <div className="dashboard-user-footer">
         <p>
-          🔒 Đã đăng nhập: <strong>{user?.email}</strong> | 
-          Quyền: <strong>{user?.permissions?.join(", ") || "Không có"}</strong>
+          🔒 Đã đăng nhập: <strong>{user?.email}</strong> | Quyền:{" "}
+          <strong>{user?.permissions?.join(", ") || "Không có"}</strong>
         </p>
       </div>
     </MainLayout>

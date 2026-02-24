@@ -7,7 +7,7 @@
 let _tfPromise = null;
 const getTF = async () => {
   if (!_tfPromise) {
-    _tfPromise = import('@tensorflow/tfjs');
+    _tfPromise = import("@tensorflow/tfjs");
   }
   return _tfPromise;
 };
@@ -15,7 +15,7 @@ const getTF = async () => {
 let _brainPromise = null;
 const getBrain = async () => {
   if (!_brainPromise) {
-    _brainPromise = import('brain.js').then((m) => m.default || m);
+    _brainPromise = import("brain.js").then((m) => m.default || m);
   }
   return _brainPromise;
 };
@@ -32,21 +32,21 @@ class AdvancedMLService {
    */
   async initialize() {
     try {
-      console.log('🚀 Initializing Advanced ML Service...');
+      console.log("🚀 Initializing Advanced ML Service...");
 
       // Initialize TensorFlow.js
       const tf = await getTF();
       await tf.ready();
-      console.log('✅ TensorFlow.js ready:', tf.getBackend());
+      console.log("✅ TensorFlow.js ready:", tf.getBackend());
 
       // Initialize Brain.js
       const brain = await getBrain();
-      console.log('✅ Brain.js ready');
+      console.log("✅ Brain.js ready");
 
       this.isInitialized = true;
       return true;
     } catch (error) {
-      console.error('❌ ML Service initialization failed:', error);
+      console.error("❌ ML Service initialization failed:", error);
       return false;
     }
   }
@@ -54,12 +54,12 @@ class AdvancedMLService {
   /**
    * Train LSTM model for time series prediction
    */
-  async trainTimeSeriesModel(data, labels, modelKey = 'timeseries') {
+  async trainTimeSeriesModel(data, labels, modelKey = "timeseries") {
     try {
       const tf = await getTF();
 
       if (!Array.isArray(data) || data.length < 10) {
-        throw new Error('Insufficient data for training');
+        throw new Error("Insufficient data for training");
       }
 
       // Normalize data
@@ -70,7 +70,7 @@ class AdvancedMLService {
       const { X, y } = this.prepareTimeSeriesData(normalized, lookback);
 
       if (X.length === 0) {
-        throw new Error('Not enough data for time series preparation');
+        throw new Error("Not enough data for time series preparation");
       }
 
       // Convert to tensors
@@ -98,8 +98,8 @@ class AdvancedMLService {
 
       model.compile({
         optimizer: tf.train.adam(0.001),
-        loss: 'meanSquaredError',
-        metrics: ['mae'],
+        loss: "meanSquaredError",
+        metrics: ["mae"],
       });
 
       // Train model
@@ -124,7 +124,7 @@ class AdvancedMLService {
         epochs: history.history.loss.length,
       };
     } catch (error) {
-      console.error('Time series model training failed:', error);
+      console.error("Time series model training failed:", error);
       throw error;
     }
   }
@@ -132,7 +132,7 @@ class AdvancedMLService {
   /**
    * Generate ensemble predictions
    */
-  async generateEnsemblePredictions(inputData, modelKeys = ['timeseries']) {
+  async generateEnsemblePredictions(inputData, modelKeys = ["timeseries"]) {
     try {
       const predictions = [];
       const confidences = [];
@@ -146,7 +146,9 @@ class AdvancedMLService {
           const { normalized } = this.normalizeData(inputData, scaler.method);
 
           // Make prediction
-          const input = tf.tensor3d([normalized.slice(-10).map((val) => [val])]);
+          const input = tf.tensor3d([
+            normalized.slice(-10).map((val) => [val]),
+          ]);
           const prediction = model.predict(input);
           const predValue = await prediction.data();
 
@@ -160,12 +162,14 @@ class AdvancedMLService {
       }
 
       if (predictions.length === 0) {
-        throw new Error('No trained models available');
+        throw new Error("No trained models available");
       }
 
       // Ensemble average
-      const avgPrediction = predictions.reduce((sum, pred) => sum + pred, 0) / predictions.length;
-      const avgConfidence = confidences.reduce((sum, conf) => sum + conf, 0) / confidences.length;
+      const avgPrediction =
+        predictions.reduce((sum, pred) => sum + pred, 0) / predictions.length;
+      const avgConfidence =
+        confidences.reduce((sum, conf) => sum + conf, 0) / confidences.length;
 
       return {
         prediction: avgPrediction,
@@ -174,7 +178,7 @@ class AdvancedMLService {
         modelCount: predictions.length,
       };
     } catch (error) {
-      console.error('Ensemble prediction failed:', error);
+      console.error("Ensemble prediction failed:", error);
       throw error;
     }
   }
@@ -182,7 +186,7 @@ class AdvancedMLService {
   /**
    * Predict with uncertainty quantification
    */
-  async predictWithUncertainty(inputData, modelKey = 'timeseries') {
+  async predictWithUncertainty(inputData, modelKey = "timeseries") {
     try {
       if (!this.models.has(modelKey)) {
         throw new Error(`Model ${modelKey} not found`);
@@ -200,7 +204,9 @@ class AdvancedMLService {
 
       for (let i = 0; i < numSamples; i++) {
         const input = tf.tensor3d([
-          normalized.slice(-10).map((val) => [val + (Math.random() - 0.5) * 0.01]),
+          normalized
+            .slice(-10)
+            .map((val) => [val + (Math.random() - 0.5) * 0.01]),
         ]);
         const prediction = model.predict(input);
         const predValue = await prediction.data();
@@ -211,9 +217,11 @@ class AdvancedMLService {
       }
 
       // Calculate statistics
-      const mean = predictions.reduce((sum, pred) => sum + pred, 0) / predictions.length;
+      const mean =
+        predictions.reduce((sum, pred) => sum + pred, 0) / predictions.length;
       const variance =
-        predictions.reduce((sum, pred) => sum + Math.pow(pred - mean, 2), 0) / predictions.length;
+        predictions.reduce((sum, pred) => sum + Math.pow(pred - mean, 2), 0) /
+        predictions.length;
       const uncertainty = Math.sqrt(variance);
 
       return {
@@ -222,7 +230,7 @@ class AdvancedMLService {
         confidence: Math.max(0.1, Math.min(0.95, 1 - uncertainty / mean)),
       };
     } catch (error) {
-      console.error('Uncertainty prediction failed:', error);
+      console.error("Uncertainty prediction failed:", error);
       throw error;
     }
   }
@@ -230,23 +238,23 @@ class AdvancedMLService {
   /**
    * Generate insights using OpenAI GPT
    */
-  async generateInsightsWithGPT(context, analysisType = 'general') {
+  async generateInsightsWithGPT(context, analysisType = "general") {
     try {
       if (!this.openaiApiKey) {
-        console.warn('OpenAI API key not configured, using fallback insights');
+        console.warn("OpenAI API key not configured, using fallback insights");
         return this.generateFallbackInsights(context);
       }
 
       // This would integrate with OpenAI API
       // For now, return structured insights
       return {
-        source: 'AI Analysis Engine',
+        source: "AI Analysis Engine",
         insights: this.generateStructuredInsights(context),
         confidence: 0.85,
         timestamp: new Date().toISOString(),
       };
     } catch (error) {
-      console.error('GPT insights generation failed:', error);
+      console.error("GPT insights generation failed:", error);
       return this.generateFallbackInsights(context);
     }
   }
@@ -260,33 +268,33 @@ class AdvancedMLService {
     // Performance insights
     if (context.deepLearning?.confidence > 0.8) {
       insights.push({
-        type: 'performance',
-        title: 'High Model Confidence',
+        type: "performance",
+        title: "High Model Confidence",
         description: `AI model shows ${(context.deepLearning.confidence * 100).toFixed(1)}% confidence in predictions`,
-        impact: 'high',
-        recommendation: 'Consider implementing these predictions in production',
+        impact: "high",
+        recommendation: "Consider implementing these predictions in production",
       });
     }
 
     // Pattern insights
     if (context.patterns?.overallPatternStrength > 0.7) {
       insights.push({
-        type: 'pattern',
-        title: 'Strong Pattern Detection',
+        type: "pattern",
+        title: "Strong Pattern Detection",
         description: `Detected ${(context.patterns.overallPatternStrength * 100).toFixed(1)}% pattern strength in data`,
-        impact: 'medium',
-        recommendation: 'Leverage patterns for better forecasting',
+        impact: "medium",
+        recommendation: "Leverage patterns for better forecasting",
       });
     }
 
     // Real-time insights
     if (context.realTime?.processingLatency < 1000) {
       insights.push({
-        type: 'performance',
-        title: 'Excellent Real-time Performance',
+        type: "performance",
+        title: "Excellent Real-time Performance",
         description: `Processing latency: ${context.realTime.processingLatency}ms`,
-        impact: 'high',
-        recommendation: 'System is performing optimally',
+        impact: "high",
+        recommendation: "System is performing optimally",
       });
     }
 
@@ -298,14 +306,15 @@ class AdvancedMLService {
    */
   generateFallbackInsights(context) {
     return {
-      source: 'Fallback Analysis',
+      source: "Fallback Analysis",
       insights: [
         {
-          type: 'general',
-          title: 'Basic Analysis Complete',
-          description: 'Performed basic statistical analysis on available data',
-          impact: 'medium',
-          recommendation: 'Consider enabling advanced AI features for deeper insights',
+          type: "general",
+          title: "Basic Analysis Complete",
+          description: "Performed basic statistical analysis on available data",
+          impact: "medium",
+          recommendation:
+            "Consider enabling advanced AI features for deeper insights",
         },
       ],
       confidence: 0.6,
@@ -316,7 +325,7 @@ class AdvancedMLService {
   /**
    * Normalize data for ML processing
    */
-  normalizeData(data, method = 'minmax') {
+  normalizeData(data, method = "minmax") {
     if (!Array.isArray(data) || data.length === 0) {
       return { normalized: [], scaler: { method, min: 0, max: 1 } };
     }

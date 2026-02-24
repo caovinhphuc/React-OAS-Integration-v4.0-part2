@@ -9,51 +9,51 @@ import {
   DatabaseOutlined,
   ThunderboltOutlined,
   UserOutlined,
-} from '@ant-design/icons'
-import { Card, Col, Row, Space, Spin, Statistic, Tag, Typography } from 'antd'
-import { useEffect, useState } from 'react'
-import { useWebSocket } from '../../hooks/useWebSocket'
-import { websocketService } from '../../services/websocketService'
-import './LiveDashboard.css'
+} from "@ant-design/icons";
+import { Card, Col, Row, Space, Spin, Statistic, Tag, Typography } from "antd";
+import { useEffect, useState } from "react";
+import { useWebSocket } from "../../hooks/useWebSocket";
+import { websocketService } from "../../services/websocketService";
+import "./LiveDashboard.css";
 
-const { Title, Text } = Typography
+const { Title, Text } = Typography;
 
 const LiveDashboard = () => {
-  const { connected, subscribe, unsubscribe } = useWebSocket(null, true)
+  const { connected, subscribe, unsubscribe } = useWebSocket(null, true);
   const [metrics, setMetrics] = useState({
     cpu: 0,
     memory: 0,
     activeUsers: 0,
     timestamp: null,
-  })
-  const [loading, setLoading] = useState(true)
+  });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!connected) return
+    if (!connected) return;
 
     // Subscribe to metrics updates
-    websocketService.subscribeMetrics()
+    websocketService.subscribeMetrics();
 
     // Listen for metrics updates
-    const unsubscribeMetrics = subscribe('metrics-update', (data) => {
+    const unsubscribeMetrics = subscribe("metrics-update", (data) => {
       setMetrics((prev) => ({
         ...prev,
         ...data,
-      }))
-      setLoading(false)
-    })
+      }));
+      setLoading(false);
+    });
 
     // Listen for connection status
-    const unsubscribeConnected = subscribe('connected', () => {
-      setLoading(false)
-    })
+    const unsubscribeConnected = subscribe("connected", () => {
+      setLoading(false);
+    });
 
     return () => {
-      unsubscribeMetrics()
-      unsubscribeConnected()
-      websocketService.unsubscribeMetrics()
-    }
-  }, [connected, subscribe])
+      unsubscribeMetrics();
+      unsubscribeConnected();
+      websocketService.unsubscribeMetrics();
+    };
+  }, [connected, subscribe]);
 
   return (
     <div className="live-dashboard">
@@ -62,8 +62,8 @@ const LiveDashboard = () => {
           <DashboardOutlined /> Live Dashboard
         </Title>
         <Space>
-          <Tag color={connected ? 'green' : 'red'}>
-            {connected ? '🟢 Connected' : '🔴 Disconnected'}
+          <Tag color={connected ? "green" : "red"}>
+            {connected ? "🟢 Connected" : "🔴 Disconnected"}
           </Tag>
           <Text type="secondary">Real-time metrics updates</Text>
         </Space>
@@ -86,7 +86,12 @@ const LiveDashboard = () => {
                 suffix="%"
                 prefix={<ThunderboltOutlined />}
                 valueStyle={{
-                  color: metrics.cpu > 80 ? '#cf1322' : metrics.cpu > 50 ? '#faad14' : '#3f8600',
+                  color:
+                    metrics.cpu > 80
+                      ? "#cf1322"
+                      : metrics.cpu > 50
+                        ? "#faad14"
+                        : "#3f8600",
                 }}
               />
               <div className="metric-bar">
@@ -95,7 +100,11 @@ const LiveDashboard = () => {
                   style={{
                     width: `${metrics.cpu}%`,
                     backgroundColor:
-                      metrics.cpu > 80 ? '#cf1322' : metrics.cpu > 50 ? '#faad14' : '#3f8600',
+                      metrics.cpu > 80
+                        ? "#cf1322"
+                        : metrics.cpu > 50
+                          ? "#faad14"
+                          : "#3f8600",
                   }}
                 />
               </div>
@@ -113,7 +122,11 @@ const LiveDashboard = () => {
                 prefix={<DatabaseOutlined />}
                 valueStyle={{
                   color:
-                    metrics.memory > 80 ? '#cf1322' : metrics.memory > 50 ? '#faad14' : '#3f8600',
+                    metrics.memory > 80
+                      ? "#cf1322"
+                      : metrics.memory > 50
+                        ? "#faad14"
+                        : "#3f8600",
                 }}
               />
               <div className="metric-bar">
@@ -122,7 +135,11 @@ const LiveDashboard = () => {
                   style={{
                     width: `${metrics.memory}%`,
                     backgroundColor:
-                      metrics.memory > 80 ? '#cf1322' : metrics.memory > 50 ? '#faad14' : '#3f8600',
+                      metrics.memory > 80
+                        ? "#cf1322"
+                        : metrics.memory > 50
+                          ? "#faad14"
+                          : "#3f8600",
                   }}
                 />
               </div>
@@ -136,7 +153,7 @@ const LiveDashboard = () => {
                 title="Active Users"
                 value={metrics.activeUsers || 0}
                 prefix={<UserOutlined />}
-                valueStyle={{ color: '#1890ff' }}
+                valueStyle={{ color: "#1890ff" }}
               />
               <Text type="secondary" style={{ fontSize: 12 }}>
                 WebSocket connections
@@ -149,15 +166,16 @@ const LiveDashboard = () => {
             <Card>
               <Statistic
                 title="Status"
-                value={connected ? 'Online' : 'Offline'}
-                prefix={connected ? '🟢' : '🔴'}
+                value={connected ? "Online" : "Offline"}
+                prefix={connected ? "🟢" : "🔴"}
                 valueStyle={{
-                  color: connected ? '#3f8600' : '#cf1322',
+                  color: connected ? "#3f8600" : "#cf1322",
                 }}
               />
               {metrics.timestamp && (
                 <Text type="secondary" style={{ fontSize: 12 }}>
-                  Last update: {new Date(metrics.timestamp).toLocaleTimeString('vi-VN')}
+                  Last update:{" "}
+                  {new Date(metrics.timestamp).toLocaleTimeString("vi-VN")}
                 </Text>
               )}
             </Card>
@@ -191,7 +209,7 @@ const LiveDashboard = () => {
         </Col>
       </Row>
     </div>
-  )
-}
+  );
+};
 
-export default LiveDashboard
+export default LiveDashboard;

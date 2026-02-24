@@ -1,8 +1,19 @@
+packages:
+  - .
+  - backend
+  - google-sheets-project
+  - mia-logistics-manager
+  - shared-services/**
+
+ignoredBuiltDependencies:
+  - gl
+
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - core-js
   - core-js-pure
   - esbuild
+  - gl
   - netlify-cli
   - sharp
   - unix-dgram
