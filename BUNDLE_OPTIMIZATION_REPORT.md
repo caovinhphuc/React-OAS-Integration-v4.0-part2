@@ -1,37 +1,38 @@
 # 📊 Bundle Optimization Report
 
-**Generated:** 04:58:47 13/12/2025
+**Generated:** 02:09:06 25/2/2026
 
 ## 📦 Bundle Sizes
 
 | Type | Current | Budget | Status |
 |------|---------|--------|--------|
-| JavaScript | 11.73 MB | 250 KB | ❌ OVER |
-| CSS | 245.94 KB | 50 KB | ❌ OVER |
+| JavaScript | 11.83 MB | 250 KB | ❌ OVER |
+| CSS | 245.88 KB | 50 KB | ❌ OVER |
 | Images | 0 Bytes | 500 KB | ✅ OK |
-| Total | 11.97 MB | 1 MB | ❌ OVER |
+| Total | 12.07 MB | 1 MB | ❌ OVER |
 
 ## 📁 Top Largest Files
 
 ```
-1. static/js/main.5b2ddcfc.js.map - 2.83 MB
-2. static/js/119.fb65cc23.chunk.js.map - 1.55 MB
-3. static/js/598.635cd680.chunk.js.map - 718.23 KB
-4. static/js/main.5b2ddcfc.js - 677.33 KB
-5. static/js/512.e2439796.chunk.js.map - 533.51 KB
-6. static/js/443.944232e3.chunk.js.map - 519.59 KB
-7. static/js/138.f2b61a74.chunk.js.map - 454.44 KB
-8. static/js/119.fb65cc23.chunk.js - 373.25 KB
-9. static/js/131.6e8db8e0.chunk.js.map - 368.53 KB
-10. static/js/37.ea055602.chunk.js.map - 350.78 KB
-11. static/js/576.77c49862.chunk.js.map - 215.33 KB
-12. static/js/403.3f1f9693.chunk.js.map - 175.7 KB
-13. static/js/598.635cd680.chunk.js - 165.52 KB
-14. static/js/645.23ee9d4a.chunk.js.map - 142.75 KB
-15. static/js/137.8b4bb879.chunk.js.map - 138.64 KB
+1. static/js/main.ae6351b8.js.map - 2.85 MB
+2. static/js/451.180067b7.chunk.js.map - 1.57 MB
+3. static/js/345.2034feeb.chunk.js.map - 730.5 KB
+4. static/js/main.ae6351b8.js - 667.84 KB
+5. static/js/419.3aa818ad.chunk.js.map - 544.05 KB
+6. static/js/63.f18bf811.chunk.js.map - 519.81 KB
+7. static/js/138.3a65c5d1.chunk.js.map - 460.85 KB
+8. static/js/931.c22049b4.chunk.js.map - 374.25 KB
+9. static/js/451.180067b7.chunk.js - 373.33 KB
+10. static/js/537.42547dd8.chunk.js.map - 355.7 KB
+11. static/js/788.e458d241.chunk.js.map - 219.52 KB
+12. static/js/699.1e140506.chunk.js.map - 179.14 KB
+13. static/js/345.2034feeb.chunk.js - 165.5 KB
+14. static/js/352.efe4b992.chunk.js.map - 144.96 KB
+15. static/js/545.47aac4ee.chunk.js.map - 141.32 KB
 ```
 
 ## 💡 Recommendations
+
 
 ### 1. JavaScript bundle quá lớn [HIGH]
 
@@ -42,12 +43,14 @@
 - Sử dụng tree-shaking để loại bỏ code không dùng
 - Code splitting theo routes thay vì chỉ components
 
+
 ### 2. CSS bundle quá lớn [MEDIUM]
 
 - Import chỉ các component Ant Design cần thiết
 - Sử dụng CSS modules thay vì global CSS
 - Xóa unused CSS classes
 - Sử dụng PurgeCSS để loại bỏ CSS không dùng
+
 
 ### 3. Tổng bundle size vượt quá budget [HIGH]
 
@@ -56,6 +59,7 @@
 - Tối ưu hóa images (WebP, compression)
 - Chỉ load libraries khi cần (lazy loading)
 - Enable gzip/brotli compression trên server
+
 
 ## 🚀 Next Steps
 
