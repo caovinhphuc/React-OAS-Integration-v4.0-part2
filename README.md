@@ -115,12 +115,12 @@
 
 ### 📋 Yêu cầu hệ thống
 
-| Component | Version | Ghi chú |
-|-----------|---------|---------|
-| **Node.js** | 18+ | Runtime cho Frontend & Backend |
-| **Python** | 3.9+ | Runtime cho Automation & AI Service |
-| **npm/yarn** | Latest | Package manager |
-| **Git** | Latest | Version control |
+| Component    | Version | Ghi chú                             |
+| ------------ | ------- | ----------------------------------- |
+| **Node.js**  | 18+     | Runtime cho Frontend & Backend      |
+| **Python**   | 3.9+    | Runtime cho Automation & AI Service |
+| **npm/yarn** | Latest  | Package manager                     |
+| **Git**      | Latest  | Version control                     |
 
 ### ⚡ Khởi chạy nhanh
 
@@ -206,15 +206,15 @@ python main.py
 
 Sau khi khởi chạy thành công, truy cập các endpoints:
 
-| Service | URL | Mô tả |
-|---------|-----|-------|
-| 🎨 **Frontend** | <http://localhost:8080> | Giao diện chính |
-| 📊 **Dashboard** | <http://localhost:8080/dashboard> | Live Dashboard |
-| 🧠 **AI Analytics** | <http://localhost:8080/ai-analytics> | AI Analytics |
-| 📋 **Google Sheets** | <http://localhost:8080/google-sheets> | Google Sheets UI |
-| 🔧 **Backend API** | <http://localhost:3001/health> | Health check |
-| 🧠 **AI Service** | <http://localhost:8000/health> | AI Service health |
-| 📚 **API Docs** | <http://localhost:8000/docs> | FastAPI Swagger UI |
+| Service              | URL                                   | Mô tả              |
+| -------------------- | ------------------------------------- | ------------------ |
+| 🎨 **Frontend**      | <http://localhost:8080>               | Giao diện chính    |
+| 📊 **Dashboard**     | <http://localhost:8080/dashboard>     | Live Dashboard     |
+| 🧠 **AI Analytics**  | <http://localhost:8080/ai-analytics>  | AI Analytics       |
+| 📋 **Google Sheets** | <http://localhost:8080/google-sheets> | Google Sheets UI   |
+| 🔧 **Backend API**   | <http://localhost:3001/health>        | Health check       |
+| 🧠 **AI Service**    | <http://localhost:8000/health>        | AI Service health  |
+| 📚 **API Docs**      | <http://localhost:8000/docs>          | FastAPI Swagger UI |
 
 ---
 
@@ -222,24 +222,24 @@ Sau khi khởi chạy thành công, truy cập các endpoints:
 
 ### ✅ Đã hoàn thành
 
-| Feature | Status | Mô tả |
-|---------|--------|-------|
-| 🤖 **Automation System** | ✅ | Thu thập dữ liệu từ ONE Page tự động |
-| 📊 **Google Sheets Integration** | ✅ | Tích hợp đầy đủ với Google Sheets API |
-| 🧠 **AI Service** | ✅ | FastAPI service với ML capabilities |
-| 🎨 **Frontend Dashboard** | ✅ | React dashboard với real-time updates |
-| 🔧 **Backend API** | ✅ | Node.js server với WebSocket |
-| 📈 **Live Dashboard** | ✅ | Real-time charts và metrics |
+| Feature                          | Status | Mô tả                                 |
+| -------------------------------- | ------ | ------------------------------------- |
+| 🤖 **Automation System**         | ✅     | Thu thập dữ liệu từ ONE Page tự động  |
+| 📊 **Google Sheets Integration** | ✅     | Tích hợp đầy đủ với Google Sheets API |
+| 🧠 **AI Service**                | ✅     | FastAPI service với ML capabilities   |
+| 🎨 **Frontend Dashboard**        | ✅     | React dashboard với real-time updates |
+| 🔧 **Backend API**               | ✅     | Node.js server với WebSocket          |
+| 📈 **Live Dashboard**            | ✅     | Real-time charts và metrics           |
 
 ### ⚠️ Đang phát triển
 
-| Feature | Status | Ưu tiên |
-|---------|--------|---------|
-| 📈 **Analytics Module** | 🚧 | **RẤT CAO** - Statistics & Reports engine |
-| 💡 **Recommendations Engine** | 🚧 | **RẤT CAO** - Đề xuất giải pháp |
-| 🔄 **Data Pipeline** | 🚧 | **CAO** - Kết nối Automation → Sheets → AI |
-| ⏰ **Scheduler Service** | 🚧 | **CAO** - Cron jobs cho automation |
-| 📝 **OnePage Service** | 🚧 | **CAO** - Service lấy dữ liệu nguồn |
+| Feature                       | Status | Ưu tiên                                    |
+| ----------------------------- | ------ | ------------------------------------------ |
+| 📈 **Analytics Module**       | 🚧     | **RẤT CAO** - Statistics & Reports engine  |
+| 💡 **Recommendations Engine** | 🚧     | **RẤT CAO** - Đề xuất giải pháp            |
+| 🔄 **Data Pipeline**          | 🚧     | **CAO** - Kết nối Automation → Sheets → AI |
+| ⏰ **Scheduler Service**      | 🚧     | **CAO** - Cron jobs cho automation         |
+| 📝 **OnePage Service**        | 🚧     | **CAO** - Service lấy dữ liệu nguồn        |
 
 ---
 
@@ -395,33 +395,33 @@ Xem hướng dẫn chi tiết tại: [`GOOGLE_SHEETS_SETUP_GUIDE.md`](GOOGLE_SHE
 
 ### 🔧 Backend API (Port 3001)
 
-| Method | Endpoint | Mô tả |
-|--------|----------|-------|
-| `GET` | `/health` | Health check |
-| `GET` | `/api/status` | Service status |
-| `WebSocket` | `/` | Real-time data updates |
+| Method      | Endpoint      | Mô tả                  |
+| ----------- | ------------- | ---------------------- |
+| `GET`       | `/health`     | Health check           |
+| `GET`       | `/api/status` | Service status         |
+| `WebSocket` | `/`           | Real-time data updates |
 
 ### 🧠 AI Service API (Port 8000)
 
-| Method | Endpoint | Mô tả |
-|--------|----------|-------|
-| `GET` | `/health` | Health check |
-| `GET` | `/docs` | Swagger UI documentation |
-| `GET` | `/ai/predictions` | Get AI predictions |
-| `GET` | `/ai/anomalies` | Detect anomalies |
-| `POST` | `/ai/optimization/solve` | Solve optimization problem |
-| `GET` | `/ai/optimization/status` | Check optimization engine |
+| Method | Endpoint                  | Mô tả                      |
+| ------ | ------------------------- | -------------------------- |
+| `GET`  | `/health`                 | Health check               |
+| `GET`  | `/docs`                   | Swagger UI documentation   |
+| `GET`  | `/ai/predictions`         | Get AI predictions         |
+| `GET`  | `/ai/anomalies`           | Detect anomalies           |
+| `POST` | `/ai/optimization/solve`  | Solve optimization problem |
+| `GET`  | `/ai/optimization/status` | Check optimization engine  |
 
 ### 🤖 Automation API (Port 8000)
 
-| Method | Endpoint | Mô tả |
-|--------|----------|-------|
-| `GET` | `/` | Health check |
-| `GET` | `/health` | Detailed health check |
-| `POST` | `/api/automation/run` | Run automation task |
-| `GET` | `/api/google-sheets/{id}` | Get Sheets data |
-| `POST` | `/api/google-sheets/{id}` | Update Sheets data |
-| `POST` | `/api/email/send` | Send email |
+| Method | Endpoint                  | Mô tả                 |
+| ------ | ------------------------- | --------------------- |
+| `GET`  | `/`                       | Health check          |
+| `GET`  | `/health`                 | Detailed health check |
+| `POST` | `/api/automation/run`     | Run automation task   |
+| `GET`  | `/api/google-sheets/{id}` | Get Sheets data       |
+| `POST` | `/api/google-sheets/{id}` | Update Sheets data    |
+| `POST` | `/api/email/send`         | Send email            |
 
 ---
 
@@ -526,13 +526,13 @@ Kiểm tra logs trong thư mục `logs/`:
 
 ## 📚 Documentation
 
-| Document | Mô tả |
-|----------|-------|
-| [`ARCHITECTURE_GUIDE.md`](ARCHITECTURE_GUIDE.md) | 📖 Kiến trúc hệ thống chi tiết |
-| [`ROADMAP_NEXT_STEPS.md`](ROADMAP_NEXT_STEPS.md) | 🗺️ Roadmap phát triển |
+| Document                                                       | Mô tả                            |
+| -------------------------------------------------------------- | -------------------------------- |
+| [`ARCHITECTURE_GUIDE.md`](ARCHITECTURE_GUIDE.md)               | 📖 Kiến trúc hệ thống chi tiết   |
+| [`ROADMAP_NEXT_STEPS.md`](ROADMAP_NEXT_STEPS.md)               | 🗺️ Roadmap phát triển            |
 | [`GOOGLE_SHEETS_SETUP_GUIDE.md`](GOOGLE_SHEETS_SETUP_GUIDE.md) | 📊 Hướng dẫn setup Google Sheets |
-| [`PHASE_1_DETAILED_GUIDE.md`](PHASE_1_DETAILED_GUIDE.md) | 📝 Chi tiết Phase 1 |
-| [`STEP_BY_STEP_GUIDE.md`](STEP_BY_STEP_GUIDE.md) | 🔄 Hướng dẫn từng bước |
+| [`PHASE_1_DETAILED_GUIDE.md`](PHASE_1_DETAILED_GUIDE.md)       | 📝 Chi tiết Phase 1              |
+| [`STEP_BY_STEP_GUIDE.md`](STEP_BY_STEP_GUIDE.md)               | 🔄 Hướng dẫn từng bước           |
 
 ---
 
@@ -584,14 +584,14 @@ Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more informa
 
 ## 🎯 Project Status
 
-| Component | Status | Version |
-|-----------|--------|---------|
-| Frontend | ✅ Stable | 3.0.0 |
-| Backend | ✅ Stable | 3.0.0 |
-| AI Service | ✅ Stable | 4.0.0 |
-| Automation | ✅ Stable | 1.0.0 |
-| Analytics | 🚧 In Development | - |
-| Recommendations | 🚧 In Development | - |
+| Component       | Status            | Version |
+| --------------- | ----------------- | ------- |
+| Frontend        | ✅ Stable         | 3.0.0   |
+| Backend         | ✅ Stable         | 3.0.0   |
+| AI Service      | ✅ Stable         | 4.0.0   |
+| Automation      | ✅ Stable         | 1.0.0   |
+| Analytics       | 🚧 In Development | -       |
+| Recommendations | 🚧 In Development | -       |
 
 ---
 

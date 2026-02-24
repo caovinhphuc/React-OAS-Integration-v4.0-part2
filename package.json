@@ -123,5 +123,6 @@
     "dashboard"
   ],
   "author": "React OAS Team",
-  "license": "MIT"
+  "license": "MIT",
+  "packageManager": "pnpm@10.30.2"
 }

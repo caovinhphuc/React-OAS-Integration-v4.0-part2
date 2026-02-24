@@ -33,7 +33,6 @@
 
 ## 💡 Recommendations
 
-
 ### 1. JavaScript bundle quá lớn [HIGH]
 
 - Đã có lazy loading trong App.jsx - cần cải thiện thêm
@@ -43,14 +42,12 @@
 - Sử dụng tree-shaking để loại bỏ code không dùng
 - Code splitting theo routes thay vì chỉ components
 
-
 ### 2. CSS bundle quá lớn [MEDIUM]
 
 - Import chỉ các component Ant Design cần thiết
 - Sử dụng CSS modules thay vì global CSS
 - Xóa unused CSS classes
 - Sử dụng PurgeCSS để loại bỏ CSS không dùng
-
 
 ### 3. Tổng bundle size vượt quá budget [HIGH]
 
@@ -59,7 +56,6 @@
 - Tối ưu hóa images (WebP, compression)
 - Chỉ load libraries khi cần (lazy loading)
 - Enable gzip/brotli compression trên server
-
 
 ## 🚀 Next Steps
 
