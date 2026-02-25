@@ -1,64 +1,29 @@
 # 📊 Bundle Optimization Report
 
-**Generated:** 02:09:06 25/2/2026
+**Generated:** 06:59:44 25/2/2026
 
 ## 📦 Bundle Sizes
 
 | Type | Current | Budget | Status |
 |------|---------|--------|--------|
-| JavaScript | 11.83 MB | 250 KB | ❌ OVER |
-| CSS | 245.88 KB | 50 KB | ❌ OVER |
+| JavaScript | 0 Bytes | 250 KB | ✅ OK |
+| CSS | 0 Bytes | 50 KB | ✅ OK |
 | Images | 0 Bytes | 500 KB | ✅ OK |
-| Total | 12.07 MB | 1 MB | ❌ OVER |
+| Total | 0 Bytes | 1 MB | ✅ OK |
 
 ## 📁 Top Largest Files
 
 ```
-1. static/js/main.ae6351b8.js.map - 2.85 MB
-2. static/js/451.180067b7.chunk.js.map - 1.57 MB
-3. static/js/345.2034feeb.chunk.js.map - 730.5 KB
-4. static/js/main.ae6351b8.js - 667.84 KB
-5. static/js/419.3aa818ad.chunk.js.map - 544.05 KB
-6. static/js/63.f18bf811.chunk.js.map - 519.81 KB
-7. static/js/138.3a65c5d1.chunk.js.map - 460.85 KB
-8. static/js/931.c22049b4.chunk.js.map - 374.25 KB
-9. static/js/451.180067b7.chunk.js - 373.33 KB
-10. static/js/537.42547dd8.chunk.js.map - 355.7 KB
-11. static/js/788.e458d241.chunk.js.map - 219.52 KB
-12. static/js/699.1e140506.chunk.js.map - 179.14 KB
-13. static/js/345.2034feeb.chunk.js - 165.5 KB
-14. static/js/352.efe4b992.chunk.js.map - 144.96 KB
-15. static/js/545.47aac4ee.chunk.js.map - 141.32 KB
+1. test-login.html - 5.21 KB
+2. favicon.ico - 1.46 KB
+3. login.html - 1.27 KB
+4. browserconfig.xml - 391 Bytes
+5. manifest.json - 328 Bytes
+6. _redirects - 24 Bytes
 ```
 
 ## 💡 Recommendations
 
-
-### 1. JavaScript bundle quá lớn [HIGH]
-
-- Đã có lazy loading trong App.jsx - cần cải thiện thêm
-- Kiểm tra dependencies lớn: antd, recharts, socket.io-client
-- Sử dụng dynamic imports cho các components không cần thiết ngay
-- Xóa unused imports và dependencies
-- Sử dụng tree-shaking để loại bỏ code không dùng
-- Code splitting theo routes thay vì chỉ components
-
-
-### 2. CSS bundle quá lớn [MEDIUM]
-
-- Import chỉ các component Ant Design cần thiết
-- Sử dụng CSS modules thay vì global CSS
-- Xóa unused CSS classes
-- Sử dụng PurgeCSS để loại bỏ CSS không dùng
-
-
-### 3. Tổng bundle size vượt quá budget [HIGH]
-
-- Sử dụng source-map-explorer để phân tích chi tiết
-- Chạy: npm run analyze:bundle
-- Tối ưu hóa images (WebP, compression)
-- Chỉ load libraries khi cần (lazy loading)
-- Enable gzip/brotli compression trên server
 
 
 ## 🚀 Next Steps

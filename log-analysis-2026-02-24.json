@@ -1,22 +1,50 @@
 {
-  "timestamp": "2026-02-24T19:09:45.672Z",
+  "timestamp": "2026-02-24T23:59:34.412Z",
   "logDir": "logs",
   "files": [
     {
       "file": "ai-service.log",
-      "totalLines": 1,
-      "errors": [
+      "totalLines": 8,
+      "errors": [],
+      "warnings": [],
+      "info": [
         {
           "line": 1,
-          "content": "ERROR:    Error loading ASGI app. Could not import module \"ai_service.main\"."
+          "content": "INFO:     Started server process [21357]"
+        },
+        {
+          "line": 2,
+          "content": "INFO:     Waiting for application startup."
+        },
+        {
+          "line": 3,
+          "content": "INFO:     Application startup complete."
+        },
+        {
+          "line": 4,
+          "content": "INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)"
+        },
+        {
+          "line": 5,
+          "content": "INFO:     Shutting down"
+        },
+        {
+          "line": 6,
+          "content": "INFO:     Waiting for application shutdown."
+        },
+        {
+          "line": 7,
+          "content": "INFO:     Application shutdown complete."
+        },
+        {
+          "line": 8,
+          "content": "INFO:     Finished server process [21357]"
         }
       ],
-      "warnings": [],
-      "info": [],
       "timestamps": [],
-      "errorCount": 1,
+      "errorCount": 0,
       "warningCount": 0,
-      "infoCount": 0,
+      "infoCount": 8,
       "patterns": {}
     },
     {
@@ -92,120 +120,42 @@
     {
       "file": "backend.log",
       "totalLines": 12,
-      "errors": [],
+      "errors": [
+        {
+          "line": 4,
+          "content": "Error: Cannot find module '/Users/phuccao/Projects/work/oas-integration/v4-part2/backend/server.js'"
+        }
+      ],
       "warnings": [],
       "info": [],
       "timestamps": [],
-      "errorCount": 0,
+      "errorCount": 1,
       "warningCount": 0,
       "infoCount": 0,
-      "patterns": {
-        "connection": 1,
-        "api": 2
-      }
+      "patterns": {}
     },
     {
       "file": "frontend.log",
-      "totalLines": 183,
-      "errors": [
-        {
-          "line": 23,
-          "content": "[1]       throw er; // Unhandled 'error' event"
-        },
-        {
-          "line": 26,
-          "content": "[1] Error: listen EADDRINUSE: address already in use :::3001"
-        },
-        {
-          "line": 37,
-          "content": "[1] Emitted 'error' event on Server instance at:"
-        },
-        {
-          "line": 38,
-          "content": "[1]     at emitErrorNT (node:net:1844:8)"
-        }
-      ],
-      "warnings": [
-        {
-          "line": 52,
-          "content": "[0] (node:2339) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option."
-        },
-        {
-          "line": 53,
-          "content": "[0] (Use `node --trace-deprecation ...` to show where the warning was created)"
-        },
-        {
-          "line": 54,
-          "content": "[0] (node:2339) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option."
-        },
-        {
-          "line": 57,
-          "content": "[0] Compiled with warnings."
-        },
-        {
-          "line": 117,
-          "content": "[0] Search for the keywords to learn more about each warning."
-        },
-        {
-          "line": 120,
-          "content": "[0] WARNING in [eslint] "
-        },
-        {
-          "line": 178,
-          "content": "[0] webpack compiled with 1 warning"
-        }
-      ],
+      "totalLines": 2,
+      "errors": [],
+      "warnings": [],
       "info": [
         {
-          "line": 19,
-          "content": "[2] INFO:     Will watch for changes in these directories: ['/Users/phuccao/Projects/work/oas-integration/v4-part2/ai-service']"
+          "line": 1,
+          "content": " INFO  Accepting connections at http://localhost:8080"
         },
         {
-          "line": 20,
-          "content": "[2] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)"
-        },
-        {
-          "line": 21,
-          "content": "[2] INFO:     Started reloader process [2305] using WatchFiles"
-        },
-        {
-          "line": 49,
-          "content": "[2] INFO:     Started server process [2377]"
-        },
-        {
-          "line": 50,
-          "content": "[2] INFO:     Waiting for application startup."
-        },
-        {
-          "line": 51,
-          "content": "[2] INFO:     Application startup complete."
-        },
-        {
-          "line": 109,
-          "content": "[0]   Line 89:6:   React Hook useEffect has missing dependencies: 'sampleBotInfo', 'sampleChats', and 'sampleMessages'. Either include them or remove the dependency array  react-hooks/exhaustive-deps"
-        },
-        {
-          "line": 170,
-          "content": "[0]   Line 89:6:   React Hook useEffect has missing dependencies: 'sampleBotInfo', 'sampleChats', and 'sampleMessages'. Either include them or remove the dependency array  react-hooks/exhaustive-deps"
-        },
-        {
-          "line": 180,
-          "content": "[2] INFO:     Shutting down"
-        },
-        {
-          "line": 181,
-          "content": "[2] INFO:     Finished server process [2377]"
-        },
-        {
-          "line": 182,
-          "content": "[2] INFO:     Stopping reloader process [2305]"
+          "line": 2,
+          "content": " INFO  Gracefully shutting down. Please wait..."
         }
       ],
       "timestamps": [],
-      "errorCount": 4,
-      "warningCount": 7,
-      "infoCount": 11,
-      "patterns": {}
+      "errorCount": 0,
+      "warningCount": 0,
+      "infoCount": 2,
+      "patterns": {
+        "connection": 1
+      }
     },
     {
       "file": "google-backend.log",
@@ -305,7 +255,7 @@
       "warnings": [
         {
           "line": 3,
-          "content": "(node:108) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option."
+          "content": "(node:17716) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option."
         },
         {
           "line": 4,
@@ -313,7 +263,7 @@
         },
         {
           "line": 5,
-          "content": "(node:108) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option."
+          "content": "(node:17716) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option."
         },
         {
           "line": 27,
@@ -387,8 +337,8 @@
   ],
   "summary": {
     "totalFiles": 11,
-    "totalLines": 402,
-    "totalErrors": 15,
-    "totalWarnings": 18
+    "totalLines": 228,
+    "totalErrors": 11,
+    "totalWarnings": 11
   }
 }
