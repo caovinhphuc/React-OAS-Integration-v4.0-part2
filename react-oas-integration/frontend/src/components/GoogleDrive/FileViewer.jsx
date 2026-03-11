@@ -1,72 +1,71 @@
-import React, { useState, useEffect } from 'react';
-import { googleDriveApiService } from '../../services/googleDriveApi';
+import React, { useState, useEffect } from 'react'
+import { googleDriveApiService } from '../../services/googleDriveApi'
 
 const FileViewer = ({ fileId, fileName }) => {
-  const [fileMetadata, setFileMetadata] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [fileMetadata, setFileMetadata] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   const handleGetFileMetadata = React.useCallback(async () => {
-    setLoading(true);
-    setError(null);
+    setLoading(true)
+    setError(null)
 
     try {
-      const metadata = await googleDriveApiService.getFileMetadata(fileId);
-      setFileMetadata(metadata);
+      const metadata = await googleDriveApiService.getFileMetadata(fileId)
+      setFileMetadata(metadata)
     } catch (err) {
-      setError(`Failed to get file metadata: ${err.message}`);
+      setError(`Failed to get file metadata: ${err.message}`)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  }, [fileId]);
+  }, [fileId])
 
   useEffect(() => {
     if (fileId) {
-      handleGetFileMetadata();
+      handleGetFileMetadata()
     }
-  }, [fileId, handleGetFileMetadata]);
+  }, [fileId, handleGetFileMetadata])
 
-  const formatFileSize = bytes => {
-    if (!bytes) return 'N/A';
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(1024));
-    return Math.round((bytes / Math.pow(1024, i)) * 100) / 100 + ' ' + sizes[i];
-  };
+  const formatFileSize = (bytes) => {
+    if (!bytes) return 'N/A'
+    const sizes = ['Bytes', 'KB', 'MB', 'GB']
+    const i = Math.floor(Math.log(bytes) / Math.log(1024))
+    return Math.round((bytes / Math.pow(1024, i)) * 100) / 100 + ' ' + sizes[i]
+  }
 
-  const formatDate = dateString => {
-    return new Date(dateString).toLocaleString();
-  };
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleString()
+  }
 
-  const getFileTypeIcon = mimeType => {
-    if (mimeType.includes('folder')) return '📁';
-    if (mimeType.includes('image')) return '🖼️';
-    if (mimeType.includes('video')) return '🎥';
-    if (mimeType.includes('audio')) return '🎵';
-    if (mimeType.includes('pdf')) return '📄';
-    if (mimeType.includes('word')) return '📝';
-    if (mimeType.includes('excel') || mimeType.includes('spreadsheet'))
-      return '📊';
-    if (mimeType.includes('presentation')) return '📋';
-    if (mimeType.includes('text')) return '📄';
-    return '📄';
-  };
+  const getFileTypeIcon = (mimeType) => {
+    if (mimeType.includes('folder')) return '📁'
+    if (mimeType.includes('image')) return '🖼️'
+    if (mimeType.includes('video')) return '🎥'
+    if (mimeType.includes('audio')) return '🎵'
+    if (mimeType.includes('pdf')) return '📄'
+    if (mimeType.includes('word')) return '📝'
+    if (mimeType.includes('excel') || mimeType.includes('spreadsheet')) return '📊'
+    if (mimeType.includes('presentation')) return '📋'
+    if (mimeType.includes('text')) return '📄'
+    return '📄'
+  }
 
-  const canPreview = mimeType => {
+  const canPreview = (mimeType) => {
     return (
       mimeType.includes('image') ||
       mimeType.includes('pdf') ||
       mimeType.includes('text') ||
       mimeType.includes('spreadsheet') ||
       mimeType.includes('document')
-    );
-  };
+    )
+  }
 
   if (!fileId) {
     return (
       <div style={{ padding: '20px', textAlign: 'center', color: '#666' }}>
         <p>Select a file to view its details</p>
       </div>
-    );
+    )
   }
 
   return (
@@ -130,8 +129,7 @@ const FileViewer = ({ fileId, fileName }) => {
                 <strong>Created:</strong> {formatDate(fileMetadata.createdTime)}
               </div>
               <div>
-                <strong>Modified:</strong>{' '}
-                {formatDate(fileMetadata.modifiedTime)}
+                <strong>Modified:</strong> {formatDate(fileMetadata.modifiedTime)}
               </div>
             </div>
           </div>
@@ -140,8 +138,8 @@ const FileViewer = ({ fileId, fileName }) => {
           <div style={{ marginBottom: '20px' }}>
             <a
               href={fileMetadata.webViewLink}
-              target='_blank'
-              rel='noopener noreferrer'
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 display: 'inline-block',
                 padding: '10px 20px',
@@ -158,8 +156,8 @@ const FileViewer = ({ fileId, fileName }) => {
             {fileMetadata.webContentLink && (
               <a
                 href={fileMetadata.webContentLink}
-                target='_blank'
-                rel='noopener noreferrer'
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   display: 'inline-block',
                   padding: '10px 20px',
@@ -234,9 +232,7 @@ const FileViewer = ({ fileId, fileName }) => {
                   >
                     Name:
                   </td>
-                  <td style={{ border: '1px solid #ddd', padding: '8px' }}>
-                    {fileMetadata.name}
-                  </td>
+                  <td style={{ border: '1px solid #ddd', padding: '8px' }}>{fileMetadata.name}</td>
                 </tr>
                 <tr>
                   <td
@@ -327,8 +323,7 @@ const FileViewer = ({ fileId, fileName }) => {
               >
                 <p>Click "Preview" button above to view the file content</p>
                 <p style={{ fontSize: '14px', color: '#666' }}>
-                  Supported formats: Images, PDFs, Text files, Google Docs,
-                  Google Sheets
+                  Supported formats: Images, PDFs, Text files, Google Docs, Google Sheets
                 </p>
               </div>
             </div>
@@ -336,7 +331,7 @@ const FileViewer = ({ fileId, fileName }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default FileViewer;
+export default FileViewer

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const LoadingSpinner = ({
   size = 'medium',
@@ -10,9 +10,9 @@ const LoadingSpinner = ({
     small: '20px',
     medium: '40px',
     large: '60px',
-  };
+  }
 
-  const spinnerSize = sizeMap[size] || sizeMap.medium;
+  const spinnerSize = sizeMap[size] || sizeMap.medium
 
   const spinnerStyle = {
     width: spinnerSize,
@@ -22,7 +22,7 @@ const LoadingSpinner = ({
     borderRadius: '50%',
     animation: 'spin 1s linear infinite',
     margin: '0 auto',
-  };
+  }
 
   const containerStyle = overlay
     ? {
@@ -43,7 +43,7 @@ const LoadingSpinner = ({
         flexDirection: 'column',
         alignItems: 'center',
         padding: '20px',
-      };
+      }
 
   return (
     <div style={containerStyle}>
@@ -72,8 +72,8 @@ const LoadingSpinner = ({
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
 // Inline spinner component for buttons
 export const InlineSpinner = ({ size = '16px', color = '#ffffff' }) => (
@@ -89,7 +89,7 @@ export const InlineSpinner = ({ size = '16px', color = '#ffffff' }) => (
       marginRight: '8px',
     }}
   />
-);
+)
 
 // Dots spinner for smaller spaces
 export const DotsSpinner = ({ color = '#1976d2' }) => (
@@ -137,7 +137,7 @@ export const DotsSpinner = ({ color = '#1976d2' }) => (
       }
     `}</style>
   </div>
-);
+)
 
 // Skeleton loader for content
 export const SkeletonLoader = ({ lines = 3, width = '100%' }) => (
@@ -170,6 +170,6 @@ export const SkeletonLoader = ({ lines = 3, width = '100%' }) => (
       }
     `}</style>
   </div>
-);
+)
 
-export default LoadingSpinner;
+export default LoadingSpinner

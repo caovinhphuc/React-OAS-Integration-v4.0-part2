@@ -13,7 +13,7 @@ onlyBuiltDependencies:
   - core-js
   - core-js-pure
   - esbuild
-  - gl
+  # gl: skip (cần node-gyp + distutils, Python 3.12+ đã remove distutils)
   - netlify-cli
   - sharp
   - unix-dgram

@@ -22,9 +22,7 @@ import {
   ExportOutlined,
   FilterOutlined,
   EyeOutlined,
-  CalendarOutlined,
 } from '@ant-design/icons'
-import dayjs from 'dayjs'
 import securityService from '../../services/securityService'
 import { exportToCSV } from '../../utils/exportUtils'
 import './Security.css'
@@ -95,6 +93,7 @@ const AuditLogsViewer = () => {
   useEffect(() => {
     loadLogs()
     loadStatistics()
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- mount-only initial load
   }, [])
 
   const loadLogs = async () => {

@@ -1,4 +1,4 @@
-import './Loading.css';
+import './Loading.css'
 
 const Loading = ({
   size = 'medium',
@@ -10,7 +10,7 @@ const Loading = ({
     small: 'loading-small',
     medium: 'loading-medium',
     large: 'loading-large',
-  };
+  }
 
   const colorClasses = {
     primary: 'loading-primary',
@@ -18,25 +18,21 @@ const Loading = ({
     success: 'loading-success',
     warning: 'loading-warning',
     danger: 'loading-danger',
-  };
+  }
 
-  const containerClass = fullScreen
-    ? 'loading-fullscreen'
-    : 'loading-container';
+  const containerClass = fullScreen ? 'loading-fullscreen' : 'loading-container'
 
   return (
-    <div
-      className={`${containerClass} ${sizeClasses[size]} ${colorClasses[color]}`}
-    >
-      <div className='loading-spinner'>
-        <div className='spinner-ring'></div>
-        <div className='spinner-ring'></div>
-        <div className='spinner-ring'></div>
-        <div className='spinner-ring'></div>
+    <div className={`${containerClass} ${sizeClasses[size]} ${colorClasses[color]}`}>
+      <div className="loading-spinner">
+        <div className="spinner-ring"></div>
+        <div className="spinner-ring"></div>
+        <div className="spinner-ring"></div>
+        <div className="spinner-ring"></div>
       </div>
-      {text && <div className='loading-text'>{text}</div>}
+      {text && <div className="loading-text">{text}</div>}
     </div>
-  );
-};
+  )
+}
 
-export default Loading;
+export default Loading

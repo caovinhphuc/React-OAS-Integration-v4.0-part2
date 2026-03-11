@@ -300,10 +300,9 @@ const Login = () => {
           <div className="auth-footer">
             <Text type="secondary">
               {isRegister ? 'Đã có tài khoản? ' : 'Chưa có tài khoản? '}
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault()
+              <button
+                type="button"
+                onClick={() => {
                   setIsRegister(!isRegister)
                   form.resetFields()
                   setError(null)
@@ -311,7 +310,7 @@ const Login = () => {
                 className="auth-link"
               >
                 {isRegister ? 'Đăng nhập' : 'Đăng ký ngay'}
-              </a>
+              </button>
             </Text>
           </div>
         </Card>

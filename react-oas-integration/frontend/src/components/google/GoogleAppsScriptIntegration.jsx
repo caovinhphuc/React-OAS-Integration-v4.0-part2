@@ -1,22 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import Loading from '../Common/Loading';
-import { scriptService } from '../../services/scriptService';
-import { message } from 'antd';
-import './GoogleAppsScriptIntegration.css';
+import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import Loading from '../Common/Loading'
+import { scriptService } from '../../services/scriptService'
+import { message } from 'antd'
+import './GoogleAppsScriptIntegration.css'
 
 const GoogleAppsScriptIntegration = () => {
-  const { loading, error } = useSelector(state => state.auth);
-  const { isAuthenticated, serviceAccount } = useSelector(state => state.auth);
+  const { loading, error } = useSelector((state) => state.auth)
 
-  const [scripts, setScripts] = useState([]);
-  const [selectedScript, setSelectedScript] = useState(null);
-  const [scriptCode, setScriptCode] = useState('');
-  const [isRunning, setIsRunning] = useState(false);
-  const [executionLogs, setExecutionLogs] = useState([]);
-  const [showCreateModal, setShowCreateModal] = useState(false);
-  const [newScriptName, setNewScriptName] = useState('');
-  const [newScriptDescription, setNewScriptDescription] = useState('');
+  const [scripts, setScripts] = useState([])
+  const [selectedScript, setSelectedScript] = useState(null)
+  const [scriptCode, setScriptCode] = useState('')
+  const [isRunning, setIsRunning] = useState(false)
+  const [executionLogs, setExecutionLogs] = useState([])
+  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [newScriptName, setNewScriptName] = useState('')
+  const [newScriptDescription, setNewScriptDescription] = useState('')
 
   // Sample scripts
   const sampleScripts = [
@@ -81,22 +80,23 @@ const GoogleAppsScriptIntegration = () => {
   console.log('Backup đã được tạo thành công');
 }`,
     },
-  ];
+  ]
 
   useEffect(() => {
-    setScripts(sampleScripts);
-  }, []);
+    setScripts(sampleScripts)
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- init with static sample data
+  }, [])
 
-  const handleScriptSelect = script => {
-    setSelectedScript(script);
-    setScriptCode(script.code);
-  };
+  const handleScriptSelect = (script) => {
+    setSelectedScript(script)
+    setScriptCode(script.code)
+  }
 
   const handleRunScript = async () => {
-    if (!selectedScript) return;
+    if (!selectedScript) return
 
-    setIsRunning(true);
-    setExecutionLogs([]);
+    setIsRunning(true)
+    setExecutionLogs([])
 
     try {
       // Add initial log
@@ -106,27 +106,27 @@ const GoogleAppsScriptIntegration = () => {
           message: 'Bắt đầu thực thi script...',
           type: 'info',
         },
-      ]);
+      ])
 
       // If script has scriptId, use it; otherwise try inline execution
-      let result;
+      let result
       if (selectedScript.scriptId) {
         result = await scriptService.executeScript(
           selectedScript.scriptId,
           selectedScript.functionName || 'main',
-          selectedScript.parameters || []
-        );
+          selectedScript.parameters || [],
+        )
       } else {
         // Try inline execution (will fail gracefully if not supported)
         result = await scriptService.executeInline(
           selectedScript.code,
           selectedScript.functionName || 'main',
-          selectedScript.parameters || []
-        );
+          selectedScript.parameters || [],
+        )
       }
 
       if (result.success) {
-        setExecutionLogs(prev => [
+        setExecutionLogs((prev) => [
           ...prev,
           {
             time: new Date().toISOString(),
@@ -138,29 +138,29 @@ const GoogleAppsScriptIntegration = () => {
             message: `Kết quả: ${JSON.stringify(result.data)}`,
             type: 'info',
           },
-        ]);
-        message.success('Script đã được thực thi thành công!');
+        ])
+        message.success('Script đã được thực thi thành công!')
       } else {
-        throw new Error(result.error || 'Script execution failed');
+        throw new Error(result.error || 'Script execution failed')
       }
     } catch (error) {
-      console.error('Error executing script:', error);
-      setExecutionLogs(prev => [
+      console.error('Error executing script:', error)
+      setExecutionLogs((prev) => [
         ...prev,
         {
           time: new Date().toISOString(),
           message: `❌ Lỗi: ${error.message}`,
           type: 'error',
         },
-      ]);
-      message.error(`Lỗi thực thi script: ${error.message}`);
+      ])
+      message.error(`Lỗi thực thi script: ${error.message}`)
     } finally {
-      setIsRunning(false);
+      setIsRunning(false)
     }
-  };
+  }
 
   const handleCreateScript = () => {
-    if (!newScriptName.trim()) return;
+    if (!newScriptName.trim()) return
 
     const newScript = {
       id: `script_${Date.now()}`,
@@ -173,135 +173,116 @@ const GoogleAppsScriptIntegration = () => {
   // Viết code của bạn ở đây
   console.log('Script mới đã được tạo');
 }`,
-    };
+    }
 
-    setScripts(prev => [newScript, ...prev]);
-    setNewScriptName('');
-    setNewScriptDescription('');
-    setShowCreateModal(false);
-  };
+    setScripts((prev) => [newScript, ...prev])
+    setNewScriptName('')
+    setNewScriptDescription('')
+    setShowCreateModal(false)
+  }
 
   const handleSaveScript = () => {
-    if (!selectedScript) return;
+    if (!selectedScript) return
 
-    setScripts(prev =>
-      prev.map(script =>
+    setScripts((prev) =>
+      prev.map((script) =>
         script.id === selectedScript.id
           ? {
               ...script,
               code: scriptCode,
               lastModified: new Date().toISOString(),
             }
-          : script
-      )
-    );
+          : script,
+      ),
+    )
 
-    setSelectedScript(prev => ({
+    setSelectedScript((prev) => ({
       ...prev,
       code: scriptCode,
       lastModified: new Date().toISOString(),
-    }));
-  };
+    }))
+  }
 
-  const handleDeleteScript = scriptId => {
-    setScripts(prev => prev.filter(script => script.id !== scriptId));
+  const handleDeleteScript = (scriptId) => {
+    setScripts((prev) => prev.filter((script) => script.id !== scriptId))
     if (selectedScript?.id === scriptId) {
-      setSelectedScript(null);
-      setScriptCode('');
+      setSelectedScript(null)
+      setScriptCode('')
     }
-  };
+  }
 
-  const formatDate = dateString => {
-    return new Date(dateString).toLocaleDateString('vi-VN', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-  };
+  const getStatusColor = (status) => {
+    return status === 'active' ? '#22c55e' : '#ef4444'
+  }
 
-  const getStatusColor = status => {
-    return status === 'active' ? '#22c55e' : '#ef4444';
-  };
-
-  const getLogTypeColor = type => {
+  const getLogTypeColor = (type) => {
     switch (type) {
       case 'success':
-        return '#22c55e';
+        return '#22c55e'
       case 'error':
-        return '#ef4444';
+        return '#ef4444'
       case 'warning':
-        return '#f59e0b';
+        return '#f59e0b'
       default:
-        return '#3b82f6';
+        return '#3b82f6'
     }
-  };
+  }
 
-  if (loading) return <Loading />;
-  if (error) return <div className='error-state'>Lỗi: {error}</div>;
+  if (loading) return <Loading />
+  if (error) return <div className="error-state">Lỗi: {error}</div>
 
   return (
-    <div className='apps-script-container'>
+    <div className="apps-script-container">
       {/* Header */}
-      <div className='script-header'>
-        <div className='header-left'>
+      <div className="script-header">
+        <div className="header-left">
           <h1>⚙️ Google Apps Script</h1>
           <p>Tự động hóa công việc với Google Apps Script</p>
         </div>
 
-        <div className='header-right'>
-          <button
-            className='btn btn-primary'
-            onClick={() => setShowCreateModal(true)}
-          >
+        <div className="header-right">
+          <button className="btn btn-primary" onClick={() => setShowCreateModal(true)}>
             ➕ Tạo script mới
           </button>
         </div>
       </div>
 
-      <div className='script-content'>
+      <div className="script-content">
         {/* Scripts List */}
-        <div className='scripts-sidebar'>
-          <div className='sidebar-header'>
+        <div className="scripts-sidebar">
+          <div className="sidebar-header">
             <h3>📜 Danh sách Scripts</h3>
-            <span className='script-count'>{scripts.length} scripts</span>
+            <span className="script-count">{scripts.length} scripts</span>
           </div>
 
-          <div className='scripts-list'>
-            {scripts.map(script => (
+          <div className="scripts-list">
+            {scripts.map((script) => (
               <div
                 key={script.id}
-                className={`script-item ${
-                  selectedScript?.id === script.id ? 'active' : ''
-                }`}
+                className={`script-item ${selectedScript?.id === script.id ? 'active' : ''}`}
                 onClick={() => handleScriptSelect(script)}
               >
-                <div className='script-info'>
-                  <div className='script-name'>{script.name}</div>
-                  <div className='script-description'>{script.description}</div>
-                  <div className='script-meta'>
+                <div className="script-info">
+                  <div className="script-name">{script.name}</div>
+                  <div className="script-description">{script.description}</div>
+                  <div className="script-meta">
                     <span
-                      className='script-status'
+                      className="script-status"
                       style={{ color: getStatusColor(script.status) }}
                     >
-                      {script.status === 'active'
-                        ? '🟢 Hoạt động'
-                        : '🔴 Tạm dừng'}
+                      {script.status === 'active' ? '🟢 Hoạt động' : '🔴 Tạm dừng'}
                     </span>
-                    <span className='script-executions'>
-                      {script.executions} lần chạy
-                    </span>
+                    <span className="script-executions">{script.executions} lần chạy</span>
                   </div>
                 </div>
-                <div className='script-actions'>
+                <div className="script-actions">
                   <button
-                    className='action-btn'
-                    onClick={e => {
-                      e.stopPropagation();
-                      handleDeleteScript(script.id);
+                    className="action-btn"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      handleDeleteScript(script.id)
                     }}
-                    title='Xóa script'
+                    title="Xóa script"
                   >
                     🗑️
                   </button>
@@ -312,23 +293,20 @@ const GoogleAppsScriptIntegration = () => {
         </div>
 
         {/* Script Editor */}
-        <div className='script-editor'>
+        <div className="script-editor">
           {selectedScript ? (
             <>
-              <div className='editor-header'>
-                <div className='script-title'>
+              <div className="editor-header">
+                <div className="script-title">
                   <h3>{selectedScript.name}</h3>
-                  <span className='script-id'>ID: {selectedScript.id}</span>
+                  <span className="script-id">ID: {selectedScript.id}</span>
                 </div>
-                <div className='editor-actions'>
-                  <button
-                    className='btn btn-secondary'
-                    onClick={handleSaveScript}
-                  >
+                <div className="editor-actions">
+                  <button className="btn btn-secondary" onClick={handleSaveScript}>
                     💾 Lưu
                   </button>
                   <button
-                    className='btn btn-primary'
+                    className="btn btn-primary"
                     onClick={handleRunScript}
                     disabled={isRunning}
                   >
@@ -337,29 +315,26 @@ const GoogleAppsScriptIntegration = () => {
                 </div>
               </div>
 
-              <div className='code-editor'>
+              <div className="code-editor">
                 <textarea
                   value={scriptCode}
-                  onChange={e => setScriptCode(e.target.value)}
-                  placeholder='Viết code JavaScript của bạn ở đây...'
-                  className='code-textarea'
+                  onChange={(e) => setScriptCode(e.target.value)}
+                  placeholder="Viết code JavaScript của bạn ở đây..."
+                  className="code-textarea"
                 />
               </div>
 
               {/* Execution Logs */}
               {executionLogs.length > 0 && (
-                <div className='execution-logs'>
+                <div className="execution-logs">
                   <h4>📋 Nhật ký thực thi</h4>
-                  <div className='logs-container'>
+                  <div className="logs-container">
                     {executionLogs.map((log, index) => (
-                      <div key={index} className='log-entry'>
-                        <span className='log-time'>
+                      <div key={index} className="log-entry">
+                        <span className="log-time">
                           {new Date(log.time).toLocaleTimeString('vi-VN')}
                         </span>
-                        <span
-                          className='log-message'
-                          style={{ color: getLogTypeColor(log.type) }}
-                        >
+                        <span className="log-message" style={{ color: getLogTypeColor(log.type) }}>
                           {log.message}
                         </span>
                       </div>
@@ -369,8 +344,8 @@ const GoogleAppsScriptIntegration = () => {
               )}
             </>
           ) : (
-            <div className='no-script-selected'>
-              <div className='empty-icon'>⚙️</div>
+            <div className="no-script-selected">
+              <div className="empty-icon">⚙️</div>
               <h3>Chọn một script để chỉnh sửa</h3>
               <p>Tạo script mới hoặc chọn từ danh sách bên trái</p>
             </div>
@@ -380,48 +355,42 @@ const GoogleAppsScriptIntegration = () => {
 
       {/* Create Script Modal */}
       {showCreateModal && (
-        <div className='modal-overlay'>
-          <div className='modal'>
-            <div className='modal-header'>
+        <div className="modal-overlay">
+          <div className="modal">
+            <div className="modal-header">
               <h3>Tạo script mới</h3>
-              <button
-                className='close-btn'
-                onClick={() => setShowCreateModal(false)}
-              >
+              <button className="close-btn" onClick={() => setShowCreateModal(false)}>
                 ✕
               </button>
             </div>
-            <div className='modal-body'>
-              <div className='form-group'>
+            <div className="modal-body">
+              <div className="form-group">
                 <label>Tên script</label>
                 <input
-                  type='text'
+                  type="text"
                   value={newScriptName}
-                  onChange={e => setNewScriptName(e.target.value)}
-                  placeholder='Nhập tên script...'
-                  className='input-field'
+                  onChange={(e) => setNewScriptName(e.target.value)}
+                  placeholder="Nhập tên script..."
+                  className="input-field"
                 />
               </div>
-              <div className='form-group'>
+              <div className="form-group">
                 <label>Mô tả</label>
                 <textarea
                   value={newScriptDescription}
-                  onChange={e => setNewScriptDescription(e.target.value)}
-                  placeholder='Mô tả chức năng của script...'
-                  className='textarea-field'
-                  rows='3'
+                  onChange={(e) => setNewScriptDescription(e.target.value)}
+                  placeholder="Mô tả chức năng của script..."
+                  className="textarea-field"
+                  rows="3"
                 />
               </div>
             </div>
-            <div className='modal-footer'>
-              <button
-                className='btn btn-secondary'
-                onClick={() => setShowCreateModal(false)}
-              >
+            <div className="modal-footer">
+              <button className="btn btn-secondary" onClick={() => setShowCreateModal(false)}>
                 Hủy
               </button>
               <button
-                className='btn btn-primary'
+                className="btn btn-primary"
                 onClick={handleCreateScript}
                 disabled={!newScriptName.trim()}
               >
@@ -432,7 +401,7 @@ const GoogleAppsScriptIntegration = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default GoogleAppsScriptIntegration;
+export default GoogleAppsScriptIntegration

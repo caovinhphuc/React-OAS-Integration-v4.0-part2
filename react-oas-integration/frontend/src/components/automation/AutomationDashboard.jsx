@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import Loading from '../Common/Loading';
-import './AutomationDashboard.css';
+import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import Loading from '../Common/Loading'
+import './AutomationDashboard.css'
 
 const AutomationDashboard = () => {
-  const { loading, error } = useSelector(state => state.auth);
-  const { isAuthenticated, serviceAccount } = useSelector(state => state.auth);
+  const { loading, error } = useSelector((state) => state.auth)
 
-  const [automations, setAutomations] = useState([]);
-  const [selectedAutomation, setSelectedAutomation] = useState(null);
-  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [automations, setAutomations] = useState([])
+  const [selectedAutomation, setSelectedAutomation] = useState(null)
+  const [showCreateModal, setShowCreateModal] = useState(false)
   const [newAutomation, setNewAutomation] = useState({
     name: '',
     description: '',
     trigger: 'schedule',
     action: 'email',
     status: 'active',
-  });
-  const [executionLogs, setExecutionLogs] = useState([]);
+  })
+  const [executionLogs, setExecutionLogs] = useState([])
 
   // Sample automation data
   const sampleAutomations = [
@@ -101,7 +100,7 @@ const AutomationDashboard = () => {
       executions: 156,
       successRate: 92.3,
     },
-  ];
+  ]
 
   const sampleLogs = [
     {
@@ -136,19 +135,20 @@ const AutomationDashboard = () => {
       message: 'Lỗi kết nối email server',
       duration: '5.1s',
     },
-  ];
+  ]
 
   useEffect(() => {
-    setAutomations(sampleAutomations);
-    setExecutionLogs(sampleLogs);
-  }, []);
+    setAutomations(sampleAutomations)
+    setExecutionLogs(sampleLogs)
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- init with static sample data
+  }, [])
 
-  const handleAutomationSelect = automation => {
-    setSelectedAutomation(automation);
-  };
+  const handleAutomationSelect = (automation) => {
+    setSelectedAutomation(automation)
+  }
 
   const handleCreateAutomation = () => {
-    if (!newAutomation.name.trim()) return;
+    if (!newAutomation.name.trim()) return
 
     const automation = {
       id: `auto_${Date.now()}`,
@@ -157,128 +157,123 @@ const AutomationDashboard = () => {
       nextRun: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
       executions: 0,
       successRate: 0,
-    };
+    }
 
-    setAutomations(prev => [automation, ...prev]);
+    setAutomations((prev) => [automation, ...prev])
     setNewAutomation({
       name: '',
       description: '',
       trigger: 'schedule',
       action: 'email',
       status: 'active',
-    });
-    setShowCreateModal(false);
-  };
+    })
+    setShowCreateModal(false)
+  }
 
-  const handleToggleAutomation = automationId => {
-    setAutomations(prev =>
-      prev.map(auto =>
+  const handleToggleAutomation = (automationId) => {
+    setAutomations((prev) =>
+      prev.map((auto) =>
         auto.id === automationId
           ? {
               ...auto,
               status: auto.status === 'active' ? 'inactive' : 'active',
             }
-          : auto
-      )
-    );
-  };
+          : auto,
+      ),
+    )
+  }
 
-  const handleDeleteAutomation = automationId => {
-    setAutomations(prev => prev.filter(auto => auto.id !== automationId));
+  const handleDeleteAutomation = (automationId) => {
+    setAutomations((prev) => prev.filter((auto) => auto.id !== automationId))
     if (selectedAutomation?.id === automationId) {
-      setSelectedAutomation(null);
+      setSelectedAutomation(null)
     }
-  };
+  }
 
-  const formatDate = dateString => {
+  const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('vi-VN', {
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
       hour: '2-digit',
       minute: '2-digit',
-    });
-  };
+    })
+  }
 
-  const getStatusColor = status => {
-    return status === 'active' ? '#22c55e' : '#ef4444';
-  };
+  const getStatusColor = (status) => {
+    return status === 'active' ? '#22c55e' : '#ef4444'
+  }
 
-  const getLogStatusColor = status => {
+  const getLogStatusColor = (status) => {
     switch (status) {
       case 'success':
-        return '#22c55e';
+        return '#22c55e'
       case 'error':
-        return '#ef4444';
+        return '#ef4444'
       case 'warning':
-        return '#f59e0b';
+        return '#f59e0b'
       default:
-        return '#3b82f6';
+        return '#3b82f6'
     }
-  };
+  }
 
-  const getTriggerIcon = type => {
+  const getTriggerIcon = (type) => {
     switch (type) {
       case 'schedule':
-        return '⏰';
+        return '⏰'
       case 'webhook':
-        return '🔗';
+        return '🔗'
       case 'manual':
-        return '👆';
+        return '👆'
       default:
-        return '⚡';
+        return '⚡'
     }
-  };
+  }
 
-  const getActionIcon = type => {
+  const getActionIcon = (type) => {
     switch (type) {
       case 'email':
-        return '📧';
+        return '📧'
       case 'telegram':
-        return '💬';
+        return '💬'
       case 'backup':
-        return '💾';
+        return '💾'
       case 'sync':
-        return '🔄';
+        return '🔄'
       default:
-        return '⚡';
+        return '⚡'
     }
-  };
+  }
 
-  if (loading) return <Loading />;
-  if (error) return <div className='error-state'>Lỗi: {error}</div>;
+  if (loading) return <Loading />
+  if (error) return <div className="error-state">Lỗi: {error}</div>
 
   return (
-    <div className='automation-dashboard'>
+    <div className="automation-dashboard">
       {/* Header */}
-      <div className='automation-header'>
-        <div className='header-left'>
+      <div className="automation-header">
+        <div className="header-left">
           <h1>🤖 Automation</h1>
           <p>Tự động hóa quy trình và công việc</p>
         </div>
 
-        <div className='header-right'>
-          <button
-            className='btn btn-primary'
-            onClick={() => setShowCreateModal(true)}
-          >
+        <div className="header-right">
+          <button className="btn btn-primary" onClick={() => setShowCreateModal(true)}>
             ➕ Tạo automation mới
           </button>
         </div>
       </div>
 
-      <div className='automation-content'>
+      <div className="automation-content">
         {/* Automations List */}
-        <div className='automations-sidebar'>
-          <div className='sidebar-header'>
+        <div className="automations-sidebar">
+          <div className="sidebar-header">
             <h3>📋 Danh sách Automation</h3>
-            <span className='automation-count'>
-              {automations.length} automations
-            </span>
+            <span className="automation-count">{automations.length} automations</span>
           </div>
 
-          <div className='automations-list'>
-            {automations.map(automation => (
+          <div className="automations-list">
+            {automations.map((automation) => (
               <div
                 key={automation.id}
                 className={`automation-item ${
@@ -286,54 +281,48 @@ const AutomationDashboard = () => {
                 }`}
                 onClick={() => handleAutomationSelect(automation)}
               >
-                <div className='automation-info'>
-                  <div className='automation-header-item'>
-                    <span className='automation-name'>{automation.name}</span>
+                <div className="automation-info">
+                  <div className="automation-header-item">
+                    <span className="automation-name">{automation.name}</span>
                     <span
-                      className='automation-status'
+                      className="automation-status"
                       style={{ color: getStatusColor(automation.status) }}
                     >
                       {automation.status === 'active' ? '🟢' : '🔴'}
                     </span>
                   </div>
-                  <div className='automation-description'>
-                    {automation.description}
-                  </div>
-                  <div className='automation-meta'>
-                    <span className='automation-trigger'>
-                      {getTriggerIcon(automation.trigger.type)}{' '}
-                      {automation.trigger.type}
+                  <div className="automation-description">{automation.description}</div>
+                  <div className="automation-meta">
+                    <span className="automation-trigger">
+                      {getTriggerIcon(automation.trigger.type)} {automation.trigger.type}
                     </span>
-                    <span className='automation-action'>
-                      {getActionIcon(automation.action.type)}{' '}
-                      {automation.action.type}
+                    <span className="automation-action">
+                      {getActionIcon(automation.action.type)} {automation.action.type}
                     </span>
                   </div>
-                  <div className='automation-stats'>
+                  <div className="automation-stats">
                     <span>{automation.executions} lần chạy</span>
                     <span>{automation.successRate}% thành công</span>
                   </div>
                 </div>
-                <div className='automation-actions'>
+                <div className="automation-actions">
                   <button
-                    className='action-btn'
-                    onClick={e => {
-                      e.stopPropagation();
-                      handleToggleAutomation(automation.id);
+                    className="action-btn"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      handleToggleAutomation(automation.id)
                     }}
-                    title={
-                      automation.status === 'active' ? 'Tạm dừng' : 'Kích hoạt'
-                    }
+                    title={automation.status === 'active' ? 'Tạm dừng' : 'Kích hoạt'}
                   >
                     {automation.status === 'active' ? '⏸️' : '▶️'}
                   </button>
                   <button
-                    className='action-btn'
-                    onClick={e => {
-                      e.stopPropagation();
-                      handleDeleteAutomation(automation.id);
+                    className="action-btn"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      handleDeleteAutomation(automation.id)
                     }}
-                    title='Xóa automation'
+                    title="Xóa automation"
                   >
                     🗑️
                   </button>
@@ -344,140 +333,125 @@ const AutomationDashboard = () => {
         </div>
 
         {/* Automation Details */}
-        <div className='automation-details'>
+        <div className="automation-details">
           {selectedAutomation ? (
             <>
-              <div className='details-header'>
-                <div className='automation-title'>
+              <div className="details-header">
+                <div className="automation-title">
                   <h3>{selectedAutomation.name}</h3>
                   <span
-                    className='status-badge'
+                    className="status-badge"
                     style={{
-                      backgroundColor: getStatusColor(
-                        selectedAutomation.status
-                      ),
+                      backgroundColor: getStatusColor(selectedAutomation.status),
                     }}
                   >
-                    {selectedAutomation.status === 'active'
-                      ? 'Hoạt động'
-                      : 'Tạm dừng'}
+                    {selectedAutomation.status === 'active' ? 'Hoạt động' : 'Tạm dừng'}
                   </span>
                 </div>
-                <div className='details-actions'>
+                <div className="details-actions">
                   <button
-                    className='btn btn-secondary'
-                    onClick={() =>
-                      handleToggleAutomation(selectedAutomation.id)
-                    }
+                    className="btn btn-secondary"
+                    onClick={() => handleToggleAutomation(selectedAutomation.id)}
                   >
-                    {selectedAutomation.status === 'active'
-                      ? '⏸️ Tạm dừng'
-                      : '▶️ Kích hoạt'}
+                    {selectedAutomation.status === 'active' ? '⏸️ Tạm dừng' : '▶️ Kích hoạt'}
                   </button>
                 </div>
               </div>
 
-              <div className='details-content'>
-                <div className='detail-section'>
+              <div className="details-content">
+                <div className="detail-section">
                   <h4>📝 Mô tả</h4>
                   <p>{selectedAutomation.description}</p>
                 </div>
 
-                <div className='detail-section'>
+                <div className="detail-section">
                   <h4>⚡ Trigger</h4>
-                  <div className='trigger-info'>
-                    <span className='trigger-type'>
+                  <div className="trigger-info">
+                    <span className="trigger-type">
                       {getTriggerIcon(selectedAutomation.trigger.type)}{' '}
                       {selectedAutomation.trigger.type}
                     </span>
                     {selectedAutomation.trigger.schedule && (
-                      <span className='trigger-schedule'>
+                      <span className="trigger-schedule">
                         Lịch: {selectedAutomation.trigger.schedule}
                       </span>
                     )}
                     {selectedAutomation.trigger.endpoint && (
-                      <span className='trigger-endpoint'>
+                      <span className="trigger-endpoint">
                         Endpoint: {selectedAutomation.trigger.endpoint}
                       </span>
                     )}
                   </div>
                 </div>
 
-                <div className='detail-section'>
+                <div className="detail-section">
                   <h4>🎯 Action</h4>
-                  <div className='action-info'>
-                    <span className='action-type'>
+                  <div className="action-info">
+                    <span className="action-type">
                       {getActionIcon(selectedAutomation.action.type)}{' '}
                       {selectedAutomation.action.type}
                     </span>
                     {selectedAutomation.action.recipients && (
-                      <span className='action-recipients'>
-                        Người nhận:{' '}
-                        {selectedAutomation.action.recipients.join(', ')}
+                      <span className="action-recipients">
+                        Người nhận: {selectedAutomation.action.recipients.join(', ')}
                       </span>
                     )}
                     {selectedAutomation.action.chatId && (
-                      <span className='action-chat'>
+                      <span className="action-chat">
                         Chat ID: {selectedAutomation.action.chatId}
                       </span>
                     )}
                   </div>
                 </div>
 
-                <div className='detail-section'>
+                <div className="detail-section">
                   <h4>📊 Thống kê</h4>
-                  <div className='stats-grid'>
-                    <div className='stat-item'>
-                      <span className='stat-label'>Lần chạy cuối</span>
-                      <span className='stat-value'>
+                  <div className="stats-grid">
+                    <div className="stat-item">
+                      <span className="stat-label">Lần chạy cuối</span>
+                      <span className="stat-value">
                         {selectedAutomation.lastRun
                           ? formatDate(selectedAutomation.lastRun)
                           : 'Chưa chạy'}
                       </span>
                     </div>
-                    <div className='stat-item'>
-                      <span className='stat-label'>Lần chạy tiếp theo</span>
-                      <span className='stat-value'>
+                    <div className="stat-item">
+                      <span className="stat-label">Lần chạy tiếp theo</span>
+                      <span className="stat-value">
                         {selectedAutomation.nextRun !== 'N/A'
                           ? formatDate(selectedAutomation.nextRun)
                           : 'N/A'}
                       </span>
                     </div>
-                    <div className='stat-item'>
-                      <span className='stat-label'>Tổng lần chạy</span>
-                      <span className='stat-value'>
-                        {selectedAutomation.executions}
-                      </span>
+                    <div className="stat-item">
+                      <span className="stat-label">Tổng lần chạy</span>
+                      <span className="stat-value">{selectedAutomation.executions}</span>
                     </div>
-                    <div className='stat-item'>
-                      <span className='stat-label'>Tỷ lệ thành công</span>
-                      <span className='stat-value'>
-                        {selectedAutomation.successRate}%
-                      </span>
+                    <div className="stat-item">
+                      <span className="stat-label">Tỷ lệ thành công</span>
+                      <span className="stat-value">{selectedAutomation.successRate}%</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Execution Logs */}
-                <div className='detail-section'>
+                <div className="detail-section">
                   <h4>📋 Nhật ký thực thi</h4>
-                  <div className='logs-container'>
+                  <div className="logs-container">
                     {executionLogs
-                      .filter(log => log.automationId === selectedAutomation.id)
+                      .filter((log) => log.automationId === selectedAutomation.id)
                       .slice(0, 10)
-                      .map(log => (
-                        <div key={log.id} className='log-entry'>
-                          <span className='log-time'>
-                            {formatDate(log.timestamp)}
-                          </span>
+                      .map((log) => (
+                        <div key={log.id} className="log-entry">
+                          <span className="log-time">{formatDate(log.timestamp)}</span>
                           <span
-                            className='log-status'
+                            className="log-status"
                             style={{ color: getLogStatusColor(log.status) }}
                           >
                             {log.status === 'success' ? '✅' : '❌'}
                           </span>
-                          <span className='log-message'>{log.message}</span>
-                          <span className='log-duration'>{log.duration}</span>
+                          <span className="log-message">{log.message}</span>
+                          <span className="log-duration">{log.duration}</span>
                         </div>
                       ))}
                   </div>
@@ -485,8 +459,8 @@ const AutomationDashboard = () => {
               </div>
             </>
           ) : (
-            <div className='no-automation-selected'>
-              <div className='empty-icon'>🤖</div>
+            <div className="no-automation-selected">
+              <div className="empty-icon">🤖</div>
               <h3>Chọn một automation để xem chi tiết</h3>
               <p>Tạo automation mới hoặc chọn từ danh sách bên trái</p>
             </div>
@@ -496,93 +470,87 @@ const AutomationDashboard = () => {
 
       {/* Create Automation Modal */}
       {showCreateModal && (
-        <div className='modal-overlay'>
-          <div className='modal'>
-            <div className='modal-header'>
+        <div className="modal-overlay">
+          <div className="modal">
+            <div className="modal-header">
               <h3>Tạo automation mới</h3>
-              <button
-                className='close-btn'
-                onClick={() => setShowCreateModal(false)}
-              >
+              <button className="close-btn" onClick={() => setShowCreateModal(false)}>
                 ✕
               </button>
             </div>
-            <div className='modal-body'>
-              <div className='form-group'>
+            <div className="modal-body">
+              <div className="form-group">
                 <label>Tên automation</label>
                 <input
-                  type='text'
+                  type="text"
                   value={newAutomation.name}
-                  onChange={e =>
-                    setNewAutomation(prev => ({
+                  onChange={(e) =>
+                    setNewAutomation((prev) => ({
                       ...prev,
                       name: e.target.value,
                     }))
                   }
-                  placeholder='Nhập tên automation...'
-                  className='input-field'
+                  placeholder="Nhập tên automation..."
+                  className="input-field"
                 />
               </div>
-              <div className='form-group'>
+              <div className="form-group">
                 <label>Mô tả</label>
                 <textarea
                   value={newAutomation.description}
-                  onChange={e =>
-                    setNewAutomation(prev => ({
+                  onChange={(e) =>
+                    setNewAutomation((prev) => ({
                       ...prev,
                       description: e.target.value,
                     }))
                   }
-                  placeholder='Mô tả chức năng của automation...'
-                  className='textarea-field'
-                  rows='3'
+                  placeholder="Mô tả chức năng của automation..."
+                  className="textarea-field"
+                  rows="3"
                 />
               </div>
-              <div className='form-group'>
+              <div className="form-group">
                 <label>Trigger</label>
                 <select
                   value={newAutomation.trigger}
-                  onChange={e =>
-                    setNewAutomation(prev => ({
+                  onChange={(e) =>
+                    setNewAutomation((prev) => ({
                       ...prev,
                       trigger: e.target.value,
                     }))
                   }
-                  className='select-field'
+                  className="select-field"
                 >
-                  <option value='schedule'>Lịch trình</option>
-                  <option value='webhook'>Webhook</option>
-                  <option value='manual'>Thủ công</option>
+                  <option value="schedule">Lịch trình</option>
+                  <option value="webhook">Webhook</option>
+                  <option value="manual">Thủ công</option>
                 </select>
               </div>
-              <div className='form-group'>
+              <div className="form-group">
                 <label>Action</label>
                 <select
                   value={newAutomation.action}
-                  onChange={e =>
-                    setNewAutomation(prev => ({
+                  onChange={(e) =>
+                    setNewAutomation((prev) => ({
                       ...prev,
                       action: e.target.value,
                     }))
                   }
-                  className='select-field'
+                  className="select-field"
                 >
-                  <option value='email'>Gửi email</option>
-                  <option value='telegram'>Gửi Telegram</option>
-                  <option value='backup'>Backup dữ liệu</option>
-                  <option value='sync'>Đồng bộ dữ liệu</option>
+                  <option value="email">Gửi email</option>
+                  <option value="telegram">Gửi Telegram</option>
+                  <option value="backup">Backup dữ liệu</option>
+                  <option value="sync">Đồng bộ dữ liệu</option>
                 </select>
               </div>
             </div>
-            <div className='modal-footer'>
-              <button
-                className='btn btn-secondary'
-                onClick={() => setShowCreateModal(false)}
-              >
+            <div className="modal-footer">
+              <button className="btn btn-secondary" onClick={() => setShowCreateModal(false)}>
                 Hủy
               </button>
               <button
-                className='btn btn-primary'
+                className="btn btn-primary"
                 onClick={handleCreateAutomation}
                 disabled={!newAutomation.name.trim()}
               >
@@ -593,7 +561,7 @@ const AutomationDashboard = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default AutomationDashboard;
+export default AutomationDashboard

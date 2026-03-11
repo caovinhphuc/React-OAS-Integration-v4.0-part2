@@ -4,17 +4,17 @@
  * Shows real-time updates via WebSocket
  */
 
-import React, { useState, useEffect } from 'react';
-import { Card, Row, Col, Statistic, Typography, Tag, Space, Spin } from 'antd';
 import {
   DashboardOutlined,
-  UserOutlined,
-  ThunderboltOutlined,
   DatabaseOutlined,
-} from '@ant-design/icons';
-import { useWebSocket } from '../../hooks/useWebSocket';
-import { websocketService } from '../../services/websocketService';
-import './LiveDashboard.css';
+  ThunderboltOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { Card, Col, Row, Space, Spin, Statistic, Tag, Typography } from "antd";
+import { useEffect, useState } from "react";
+import { useWebSocket } from "../../hooks/useWebSocket";
+import { websocketService } from "../../services/websocketService";
+import "./LiveDashboard.css";
 
 const { Title, Text } = Typography;
 
@@ -35,8 +35,8 @@ const LiveDashboard = () => {
     websocketService.subscribeMetrics();
 
     // Listen for metrics updates
-    const unsubscribeMetrics = subscribe('metrics-update', data => {
-      setMetrics(prev => ({
+    const unsubscribeMetrics = subscribe("metrics-update", (data) => {
+      setMetrics((prev) => ({
         ...prev,
         ...data,
       }));
@@ -44,7 +44,7 @@ const LiveDashboard = () => {
     });
 
     // Listen for connection status
-    const unsubscribeConnected = subscribe('connected', () => {
+    const unsubscribeConnected = subscribe("connected", () => {
       setLoading(false);
     });
 
@@ -56,22 +56,22 @@ const LiveDashboard = () => {
   }, [connected, subscribe]);
 
   return (
-    <div className='live-dashboard'>
-      <div className='dashboard-header'>
+    <div className="live-dashboard">
+      <div className="dashboard-header">
         <Title level={2}>
           <DashboardOutlined /> Live Dashboard
         </Title>
         <Space>
-          <Tag color={connected ? 'green' : 'red'}>
-            {connected ? '🟢 Connected' : '🔴 Disconnected'}
+          <Tag color={connected ? "green" : "red"}>
+            {connected ? "🟢 Connected" : "🔴 Disconnected"}
           </Tag>
-          <Text type='secondary'>Real-time metrics updates</Text>
+          <Text type="secondary">Real-time metrics updates</Text>
         </Space>
       </div>
 
       {loading && !connected ? (
-        <div className='loading-container'>
-          <Spin size='large' />
+        <div className="loading-container">
+          <Spin size="large" />
           <Text>Connecting to WebSocket server...</Text>
         </div>
       ) : (
@@ -80,31 +80,31 @@ const LiveDashboard = () => {
           <Col xs={24} sm={12} md={6}>
             <Card>
               <Statistic
-                title='CPU Usage'
+                title="CPU Usage"
                 value={metrics.cpu}
                 precision={1}
-                suffix='%'
+                suffix="%"
                 prefix={<ThunderboltOutlined />}
                 valueStyle={{
                   color:
                     metrics.cpu > 80
-                      ? '#cf1322'
+                      ? "#cf1322"
                       : metrics.cpu > 50
-                        ? '#faad14'
-                        : '#3f8600',
+                        ? "#faad14"
+                        : "#3f8600",
                 }}
               />
-              <div className='metric-bar'>
+              <div className="metric-bar">
                 <div
-                  className='metric-bar-fill'
+                  className="metric-bar-fill"
                   style={{
                     width: `${metrics.cpu}%`,
                     backgroundColor:
                       metrics.cpu > 80
-                        ? '#cf1322'
+                        ? "#cf1322"
                         : metrics.cpu > 50
-                          ? '#faad14'
-                          : '#3f8600',
+                          ? "#faad14"
+                          : "#3f8600",
                   }}
                 />
               </div>
@@ -115,31 +115,31 @@ const LiveDashboard = () => {
           <Col xs={24} sm={12} md={6}>
             <Card>
               <Statistic
-                title='Memory Usage'
+                title="Memory Usage"
                 value={metrics.memory}
                 precision={1}
-                suffix='%'
+                suffix="%"
                 prefix={<DatabaseOutlined />}
                 valueStyle={{
                   color:
                     metrics.memory > 80
-                      ? '#cf1322'
+                      ? "#cf1322"
                       : metrics.memory > 50
-                        ? '#faad14'
-                        : '#3f8600',
+                        ? "#faad14"
+                        : "#3f8600",
                 }}
               />
-              <div className='metric-bar'>
+              <div className="metric-bar">
                 <div
-                  className='metric-bar-fill'
+                  className="metric-bar-fill"
                   style={{
                     width: `${metrics.memory}%`,
                     backgroundColor:
                       metrics.memory > 80
-                        ? '#cf1322'
+                        ? "#cf1322"
                         : metrics.memory > 50
-                          ? '#faad14'
-                          : '#3f8600',
+                          ? "#faad14"
+                          : "#3f8600",
                   }}
                 />
               </div>
@@ -150,12 +150,12 @@ const LiveDashboard = () => {
           <Col xs={24} sm={12} md={6}>
             <Card>
               <Statistic
-                title='Active Users'
+                title="Active Users"
                 value={metrics.activeUsers || 0}
                 prefix={<UserOutlined />}
-                valueStyle={{ color: '#1890ff' }}
+                valueStyle={{ color: "#1890ff" }}
               />
-              <Text type='secondary' style={{ fontSize: 12 }}>
+              <Text type="secondary" style={{ fontSize: 12 }}>
                 WebSocket connections
               </Text>
             </Card>
@@ -165,17 +165,17 @@ const LiveDashboard = () => {
           <Col xs={24} sm={12} md={6}>
             <Card>
               <Statistic
-                title='Status'
-                value={connected ? 'Online' : 'Offline'}
-                prefix={connected ? '🟢' : '🔴'}
+                title="Status"
+                value={connected ? "Online" : "Offline"}
+                prefix={connected ? "🟢" : "🔴"}
                 valueStyle={{
-                  color: connected ? '#3f8600' : '#cf1322',
+                  color: connected ? "#3f8600" : "#cf1322",
                 }}
               />
               {metrics.timestamp && (
-                <Text type='secondary' style={{ fontSize: 12 }}>
-                  Last update:{' '}
-                  {new Date(metrics.timestamp).toLocaleTimeString('vi-VN')}
+                <Text type="secondary" style={{ fontSize: 12 }}>
+                  Last update:{" "}
+                  {new Date(metrics.timestamp).toLocaleTimeString("vi-VN")}
                 </Text>
               )}
             </Card>
@@ -186,9 +186,9 @@ const LiveDashboard = () => {
       {/* Metrics History (simple visual) */}
       <Row gutter={[16, 16]} style={{ marginTop: 24 }}>
         <Col xs={24} md={12}>
-          <Card title='CPU Usage History'>
-            <div className='metrics-history'>
-              <Text type='secondary'>
+          <Card title="CPU Usage History">
+            <div className="metrics-history">
+              <Text type="secondary">
                 Real-time CPU usage tracking
                 <br />
                 Updates every 5 seconds via WebSocket
@@ -197,9 +197,9 @@ const LiveDashboard = () => {
           </Card>
         </Col>
         <Col xs={24} md={12}>
-          <Card title='Memory Usage History'>
-            <div className='metrics-history'>
-              <Text type='secondary'>
+          <Card title="Memory Usage History">
+            <div className="metrics-history">
+              <Text type="secondary">
                 Real-time memory usage tracking
                 <br />
                 Updates every 5 seconds via WebSocket

@@ -1,107 +1,98 @@
-import React, { useState, useEffect } from 'react';
-import { googleSheetsApiService } from '../../services/googleSheetsApi';
+import React, { useState, useEffect } from 'react'
+import { googleSheetsApiService } from '../../services/googleSheetsApi'
 
 const SheetTester = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [testResult, setTestResult] = useState('');
-  const [range, setRange] = useState('A1:E10');
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [testResult, setTestResult] = useState('')
+  const [range, setRange] = useState('A1:E10')
 
   // Test data để ghi vào sheet
   const sampleData = [
     ['Timestamp', 'Product', 'Quantity', 'Price', 'Total'],
     [new Date().toISOString(), 'Test Product', '10', '100', '1000'],
     [new Date().toISOString(), 'Another Product', '5', '200', '1000'],
-  ];
+  ]
 
   useEffect(() => {
     // Check backend connection
-    setTestResult('✅ Using backend API proxy');
-  }, []);
+    setTestResult('✅ Using backend API proxy')
+  }, [])
 
   // Test đọc dữ liệu từ Google Sheet
   const handleReadSheet = async () => {
-    setLoading(true);
-    setError(null);
+    setLoading(true)
+    setError(null)
 
     try {
-      const result = await googleSheetsApiService.readSheet(range);
-      setData(result.data);
-      setTestResult(`✅ Read successful: ${result.data.length} rows retrieved`);
+      const result = await googleSheetsApiService.readSheet(range)
+      setData(result.data)
+      setTestResult(`✅ Read successful: ${result.data.length} rows retrieved`)
     } catch (error) {
-      setError(`Failed to read sheet: ${error.message}`);
-      setTestResult('❌ Read failed');
+      setError(`Failed to read sheet: ${error.message}`)
+      setTestResult('❌ Read failed')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   // Test ghi dữ liệu vào Google Sheet
   const handleWriteSheet = async () => {
-    setLoading(true);
-    setError(null);
+    setLoading(true)
+    setError(null)
 
     try {
-      const result = await googleSheetsApiService.writeSheet(range, sampleData);
-      setTestResult(
-        `✅ Write successful: ${result.updatedCells} cells updated`
-      );
+      const result = await googleSheetsApiService.writeSheet(range, sampleData)
+      setTestResult(`✅ Write successful: ${result.updatedCells} cells updated`)
 
       // Refresh data after writing
-      setTimeout(() => handleReadSheet(), 1000);
+      setTimeout(() => handleReadSheet(), 1000)
     } catch (error) {
-      setError(`Failed to write to sheet: ${error.message}`);
-      setTestResult('❌ Write failed');
+      setError(`Failed to write to sheet: ${error.message}`)
+      setTestResult('❌ Write failed')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   // Test append dữ liệu vào Google Sheet
   const handleAppendSheet = async () => {
-    setLoading(true);
-    setError(null);
+    setLoading(true)
+    setError(null)
 
     try {
-      const newRow = [
-        [new Date().toISOString(), 'Appended Product', '3', '50', '150'],
-      ];
+      const newRow = [[new Date().toISOString(), 'Appended Product', '3', '50', '150']]
 
-      const result = await googleSheetsApiService.appendToSheet(
-        'A1:E1',
-        newRow
-      );
-      setTestResult(`✅ Append successful: ${result.updatedCells} cells added`);
+      const result = await googleSheetsApiService.appendToSheet('A1:E1', newRow)
+      setTestResult(`✅ Append successful: ${result.updatedCells} cells added`)
 
       // Refresh data after appending
-      setTimeout(() => handleReadSheet(), 1000);
+      setTimeout(() => handleReadSheet(), 1000)
     } catch (error) {
-      setError(`Failed to append to sheet: ${error.message}`);
-      setTestResult('❌ Append failed');
+      setError(`Failed to append to sheet: ${error.message}`)
+      setTestResult('❌ Append failed')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   // Test lấy metadata của sheet
   const handleGetMetadata = async () => {
-    setLoading(true);
-    setError(null);
+    setLoading(true)
+    setError(null)
 
     try {
-      const metadata = await googleSheetsApiService.getSheetMetadata();
-      setTestResult(
-        `✅ Metadata: "${metadata.title}" - ${metadata.sheets.length} sheets`
-      );
-      console.log('Sheet metadata:', metadata);
+      const metadata = await googleSheetsApiService.getSheetMetadata()
+      setTestResult(`✅ Metadata: "${metadata.title}" - ${metadata.sheets.length} sheets`)
+      console.log('Sheet metadata:', metadata)
     } catch (error) {
-      setError(`Failed to get metadata: ${error.message}`);
-      setTestResult('❌ Metadata retrieval failed');
+      setError(`Failed to get metadata: ${error.message}`)
+      setTestResult('❌ Metadata retrieval failed')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
@@ -129,14 +120,14 @@ const SheetTester = () => {
 
       {/* Range input */}
       <div style={{ margin: '20px 0' }}>
-        <label htmlFor='range'>Sheet Range:</label>
+        <label htmlFor="range">Sheet Range:</label>
         <input
-          id='range'
-          type='text'
+          id="range"
+          type="text"
           value={range}
-          onChange={e => setRange(e.target.value)}
+          onChange={(e) => setRange(e.target.value)}
           style={{ marginLeft: '10px', padding: '5px', width: '200px' }}
-          placeholder='A1:E10'
+          placeholder="A1:E10"
         />
       </div>
 
@@ -211,7 +202,7 @@ const SheetTester = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default SheetTester;
+export default SheetTester

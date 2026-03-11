@@ -18,8 +18,6 @@ import {
   EditOutlined,
   DeleteOutlined,
   ReloadOutlined,
-  PlusOutlined,
-  SafetyOutlined,
   SearchOutlined,
 } from '@ant-design/icons'
 import securityService from '../../services/securityService'

@@ -5,133 +5,120 @@
  * Displays sales, inventory, customer, and store performance metrics.
  */
 
-import React, { useState, useEffect } from 'react';
-import { Card, Typography, Spin, Alert, Row, Col, Tag, Space } from 'antd';
-import { Line, Bar, Pie } from 'react-chartjs-2';
+import React, { useState, useEffect } from 'react'
+import { Card, Typography, Spin, Alert, Row, Col, Tag, Space } from 'antd'
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts'
 import {
   fetchRetailDashboard,
   fetchSalesMetrics,
   fetchInventoryStatus,
   fetchCustomerAnalytics,
   formatVND,
-  formatNumber,
-} from '../../services/retailService';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarElement,
-  ArcElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-
-// Register Chart.js components
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarElement,
-  ArcElement,
-  Title,
-  Tooltip,
-  Legend
-);
+} from '../../services/retailService'
 
 const MIARetailDashboard = () => {
-  const [dashboardData, setDashboardData] = useState(null);
-  const [salesData, setSalesData] = useState(null);
-  const [inventoryData, setInventoryData] = useState(null);
-  const [customerData, setCustomerData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [dashboardData, setDashboardData] = useState(null)
+  const [salesData, setSalesData] = useState(null)
+  const [inventoryData, setInventoryData] = useState(null)
+  const [customerData, setCustomerData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetchRetailData();
+    fetchRetailData()
     // Refresh every 30 seconds
-    const interval = setInterval(fetchRetailData, 30000);
-    return () => clearInterval(interval);
-  }, []);
+    const interval = setInterval(fetchRetailData, 30000)
+    return () => clearInterval(interval)
+  }, [])
 
   const fetchRetailData = async () => {
     try {
-      setLoading(true);
-      setError(null);
+      setLoading(true)
+      setError(null)
 
-      const [dashboard, sales, inventory, customers] = await Promise.all([
-        fetchRetailDashboard(),
-        fetchSalesMetrics('30d'),
-        fetchInventoryStatus(),
-        fetchCustomerAnalytics('30d'),
-      ]);
+      // Use Promise.allSettled to handle individual failures gracefully
+      const [dashboardResult, salesResult, inventoryResult, customersResult] =
+        await Promise.allSettled([
+          fetchRetailDashboard(),
+          fetchSalesMetrics('30d'),
+          fetchInventoryStatus(),
+          fetchCustomerAnalytics('30d'),
+        ])
 
-      if (dashboard) setDashboardData(dashboard);
-      if (sales) setSalesData(sales);
-      if (inventory) setInventoryData(inventory);
-      if (customers) setCustomerData(customers);
+      // Handle each result individually
+      if (dashboardResult.status === 'fulfilled' && dashboardResult.value) {
+        setDashboardData(dashboardResult.value)
+      }
+      if (salesResult.status === 'fulfilled' && salesResult.value) {
+        setSalesData(salesResult.value)
+      }
+      if (inventoryResult.status === 'fulfilled' && inventoryResult.value) {
+        setInventoryData(inventoryResult.value)
+      }
+      if (customersResult.status === 'fulfilled' && customersResult.value) {
+        setCustomerData(customersResult.value)
+      }
+
+      // Only set error if all requests failed
+      const allFailed = [dashboardResult, salesResult, inventoryResult, customersResult].every(
+        (result) => result.status === 'rejected',
+      )
+
+      if (allFailed) {
+        setError('Không thể tải dữ liệu. Vui lòng thử lại sau.')
+      }
     } catch (err) {
       // eslint-disable-next-line no-console
-      console.error('Error fetching retail data:', err);
-      setError(err.message);
+      console.error('Error fetching retail data:', err)
+      setError(err.message || 'Đã xảy ra lỗi khi tải dữ liệu')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
-  // Sales trend chart data
-  const salesChartData = {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    datasets: [
-      {
-        label: 'Revenue (VND)',
-        data: [120000, 150000, 180000, 140000, 160000, 200000, 220000],
-        borderColor: '#3b82f6',
-        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-        tension: 0.4,
-      },
-    ],
-  };
+  // Sales trend chart data (Recharts format)
+  const salesChartData = [
+    { name: 'Mon', revenue: 120000 },
+    { name: 'Tue', revenue: 150000 },
+    { name: 'Wed', revenue: 180000 },
+    { name: 'Thu', revenue: 140000 },
+    { name: 'Fri', revenue: 160000 },
+    { name: 'Sat', revenue: 200000 },
+    { name: 'Sun', revenue: 220000 },
+  ]
 
-  // Top products chart
+  // Top products chart (Recharts format)
   const topProductsData = salesData?.topProducts
-    ? {
-        labels: salesData.topProducts.map(p => p.name),
-        datasets: [
-          {
-            label: 'Sales (VND)',
-            data: salesData.topProducts.map(p => p.sales),
-            backgroundColor: [
-              '#3b82f6',
-              '#60a5fa',
-              '#2563eb',
-              '#06a77d',
-              '#1d4ed8',
-            ],
-          },
-        ],
-      }
-    : null;
+    ? salesData.topProducts.map((p) => ({
+        name: p.name,
+        sales: p.sales,
+      }))
+    : []
 
-  // Inventory status pie chart
+  // Inventory status pie chart (Recharts format)
   const inventoryStatusData = inventoryData
-    ? {
-        labels: ['In Stock', 'Low Stock', 'Out of Stock'],
-        datasets: [
-          {
-            data: [
-              inventoryData.inStock,
-              inventoryData.lowStock,
-              inventoryData.outOfStock,
-            ],
-            backgroundColor: ['#06a77d', '#f59e0b', '#d62828'],
-          },
-        ],
-      }
-    : null;
+    ? [
+        { name: 'In Stock', value: inventoryData.inStock },
+        { name: 'Low Stock', value: inventoryData.lowStock },
+        { name: 'Out of Stock', value: inventoryData.outOfStock },
+      ]
+    : []
+
+  const COLORS = ['#06a77d', '#f59e0b', '#d62828']
 
   if (loading && !dashboardData) {
     return (
@@ -143,29 +130,26 @@ const MIARetailDashboard = () => {
           minHeight: '400px',
         }}
       >
-        <Spin size='large' />
+        <Spin size="large" />
       </div>
-    );
+    )
   }
 
   if (error) {
     return (
       <Alert
-        message='Error'
+        message="Error"
         description={`Error loading retail data: ${error}`}
-        type='error'
+        type="error"
         showIcon
         style={{ margin: 16 }}
       />
-    );
+    )
   }
 
   return (
     <div style={{ padding: 16 }}>
-      <Typography.Title
-        level={2}
-        style={{ marginBottom: 24, fontWeight: 700, color: '#3b82f6' }}
-      >
+      <Typography.Title level={2} style={{ marginBottom: 24, fontWeight: 700, color: '#3b82f6' }}>
         🛒 MIA Retail Dashboard
       </Typography.Title>
 
@@ -188,10 +172,7 @@ const MIARetailDashboard = () => {
             >
               Today's Revenue
             </Typography.Text>
-            <Typography.Title
-              level={3}
-              style={{ fontWeight: 700, color: 'white', margin: 0 }}
-            >
+            <Typography.Title level={3} style={{ fontWeight: 700, color: 'white', margin: 0 }}>
               {formatVND(dashboardData?.today?.revenue || 0)}
             </Typography.Title>
             <Typography.Text
@@ -225,10 +206,7 @@ const MIARetailDashboard = () => {
             >
               Active Customers
             </Typography.Text>
-            <Typography.Title
-              level={3}
-              style={{ fontWeight: 700, color: 'white', margin: 0 }}
-            >
+            <Typography.Title level={3} style={{ fontWeight: 700, color: 'white', margin: 0 }}>
               {customerData?.activeCustomers?.toLocaleString() || 0}
             </Typography.Title>
             <Typography.Text
@@ -262,12 +240,8 @@ const MIARetailDashboard = () => {
             >
               Inventory
             </Typography.Text>
-            <Typography.Title
-              level={3}
-              style={{ fontWeight: 700, color: 'white', margin: 0 }}
-            >
-              {inventoryData?.inStock || 0} /{' '}
-              {inventoryData?.totalProducts || 0}
+            <Typography.Title level={3} style={{ fontWeight: 700, color: 'white', margin: 0 }}>
+              {inventoryData?.inStock || 0} / {inventoryData?.totalProducts || 0}
             </Typography.Title>
             <Typography.Text
               style={{
@@ -286,7 +260,7 @@ const MIARetailDashboard = () => {
         <Col xs={24} sm={12} md={6}>
           <Card
             style={{
-              background: 'linear-gradient(135deg, #3b82f6 0%, #667eea 100%)',
+              background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
               color: 'white',
             }}
           >
@@ -300,10 +274,7 @@ const MIARetailDashboard = () => {
             >
               Conversion Rate
             </Typography.Text>
-            <Typography.Title
-              level={3}
-              style={{ fontWeight: 700, color: 'white', margin: 0 }}
-            >
+            <Typography.Title level={3} style={{ fontWeight: 700, color: 'white', margin: 0 }}>
               {salesData?.conversionRate?.toFixed(1) || 0}%
             </Typography.Title>
             <Typography.Text
@@ -325,39 +296,39 @@ const MIARetailDashboard = () => {
             <Typography.Title level={4} style={{ marginBottom: 16 }}>
               📈 Sales Trend (Last 7 Days)
             </Typography.Title>
-            <div style={{ height: '300px' }}>
-              <Line
-                data={salesChartData}
-                options={{
-                  responsive: true,
-                  maintainAspectRatio: false,
-                  plugins: {
-                    legend: { display: true },
-                    tooltip: {
-                      callbacks: {
-                        label: function (context) {
-                          return (
-                            'Revenue: ' +
-                            context.parsed.y.toLocaleString('vi-VN') +
-                            '₫'
-                          );
-                        },
-                      },
-                    },
-                  },
-                  scales: {
-                    y: {
-                      beginAtZero: true,
-                      ticks: {
-                        callback: function (value) {
-                          return value.toLocaleString('vi-VN') + '₫';
-                        },
-                      },
-                    },
-                  },
+            {salesChartData && salesChartData.length > 0 ? (
+              <div style={{ width: '100%', height: 300 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={salesChartData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis tickFormatter={(value) => value.toLocaleString('vi-VN') + '₫'} />
+                    <Tooltip
+                      formatter={(value) => [value.toLocaleString('vi-VN') + '₫', 'Revenue']}
+                    />
+                    <Legend />
+                    <Line
+                      type="monotone"
+                      dataKey="revenue"
+                      stroke="#3b82f6"
+                      strokeWidth={2}
+                      name="Revenue (VND)"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            ) : (
+              <div
+                style={{
+                  height: 300,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
-              />
-            </div>
+              >
+                <Typography.Text type="secondary">Không có dữ liệu để hiển thị</Typography.Text>
+              </div>
+            )}
           </Card>
         </Col>
 
@@ -367,18 +338,39 @@ const MIARetailDashboard = () => {
             <Typography.Title level={4} style={{ marginBottom: 16 }}>
               📦 Inventory Status
             </Typography.Title>
-            {inventoryStatusData && (
-              <div style={{ height: '300px' }}>
-                <Pie
-                  data={inventoryStatusData}
-                  options={{
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                      legend: { position: 'bottom' },
-                    },
-                  }}
-                />
+            {inventoryStatusData && inventoryStatusData.length > 0 ? (
+              <div style={{ width: '100%', height: 300 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={inventoryStatusData}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                      outerRadius={80}
+                      fill="#8884d8"
+                      dataKey="value"
+                    >
+                      {inventoryStatusData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            ) : (
+              <div
+                style={{
+                  height: 300,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Typography.Text type="secondary">Không có dữ liệu để hiển thị</Typography.Text>
               </div>
             )}
           </Card>
@@ -390,39 +382,30 @@ const MIARetailDashboard = () => {
             <Typography.Title level={4} style={{ marginBottom: 16 }}>
               🏆 Top Selling Products
             </Typography.Title>
-            {topProductsData && (
-              <div style={{ height: '300px' }}>
-                <Bar
-                  data={topProductsData}
-                  options={{
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                      legend: { display: false },
-                      tooltip: {
-                        callbacks: {
-                          label: function (context) {
-                            return (
-                              'Sales: ' +
-                              context.parsed.y.toLocaleString('vi-VN') +
-                              '₫'
-                            );
-                          },
-                        },
-                      },
-                    },
-                    scales: {
-                      y: {
-                        beginAtZero: true,
-                        ticks: {
-                          callback: function (value) {
-                            return value.toLocaleString('vi-VN') + '₫';
-                          },
-                        },
-                      },
-                    },
-                  }}
-                />
+            {topProductsData && topProductsData.length > 0 ? (
+              <div style={{ width: '100%', height: 300 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={topProductsData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis tickFormatter={(value) => value.toLocaleString('vi-VN') + '₫'} />
+                    <Tooltip
+                      formatter={(value) => [value.toLocaleString('vi-VN') + '₫', 'Sales']}
+                    />
+                    <Bar dataKey="sales" fill="#3b82f6" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            ) : (
+              <div
+                style={{
+                  height: 300,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Typography.Text type="secondary">Không có dữ liệu để hiển thị</Typography.Text>
               </div>
             )}
           </Card>
@@ -434,7 +417,7 @@ const MIARetailDashboard = () => {
             <Typography.Title level={4} style={{ marginBottom: 16 }}>
               👥 Customer Metrics
             </Typography.Title>
-            <Space direction='vertical' size='middle' style={{ width: '100%' }}>
+            <Space direction="vertical" size="middle" style={{ width: '100%' }}>
               <div
                 style={{
                   display: 'flex',
@@ -443,9 +426,7 @@ const MIARetailDashboard = () => {
                 }}
               >
                 <Typography.Text>Total Customers</Typography.Text>
-                <Tag color='blue'>
-                  {customerData?.totalCustomers?.toLocaleString() || 0}
-                </Tag>
+                <Tag color="blue">{customerData?.totalCustomers?.toLocaleString() || 0}</Tag>
               </div>
               <div
                 style={{
@@ -455,9 +436,7 @@ const MIARetailDashboard = () => {
                 }}
               >
                 <Typography.Text>Retention Rate</Typography.Text>
-                <Tag color='green'>
-                  {`${customerData?.retentionRate?.toFixed(1) || 0}%`}
-                </Tag>
+                <Tag color="green">{`${customerData?.retentionRate?.toFixed(1) || 0}%`}</Tag>
               </div>
               <div
                 style={{
@@ -467,7 +446,7 @@ const MIARetailDashboard = () => {
                 }}
               >
                 <Typography.Text>Customer Lifetime Value</Typography.Text>
-                <Tag color='cyan'>
+                <Tag color="cyan">
                   {`${customerData?.customerLifetimeValue?.toLocaleString('vi-VN') || 0}₫`}
                 </Tag>
               </div>
@@ -479,7 +458,7 @@ const MIARetailDashboard = () => {
                 }}
               >
                 <Typography.Text>Average Order Frequency</Typography.Text>
-                <Tag color='orange'>
+                <Tag color="orange">
                   {`${customerData?.averageOrderFrequency?.toFixed(1) || 0}x`}
                 </Tag>
               </div>
@@ -488,7 +467,7 @@ const MIARetailDashboard = () => {
         </Col>
       </Row>
     </div>
-  );
-};
+  )
+}
 
-export default MIARetailDashboard;
+export default MIARetailDashboard

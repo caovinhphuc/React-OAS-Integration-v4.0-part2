@@ -13,7 +13,7 @@ import './Security.css'
 
 const SSOLogin = () => {
   const [loading, setLoading] = useState(null)
-  const [providers, setProviders] = useState([
+  const [providers] = useState([
     {
       id: 'google',
       name: 'Google',

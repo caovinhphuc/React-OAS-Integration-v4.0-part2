@@ -25,17 +25,17 @@ export const connectionData = [
     icon: '🤖',
     status: 'connected',
   },
-];
+]
 
 // Default user info
 export const defaultUserInfo = {
   name: 'Admin',
   role: 'Quản trị viên',
   avatar: '👤',
-};
+}
 
 // Default system status
 export const defaultSystemStatus = {
   message: 'Hệ thống hoạt động bình thường',
   status: 'online',
-};
+}

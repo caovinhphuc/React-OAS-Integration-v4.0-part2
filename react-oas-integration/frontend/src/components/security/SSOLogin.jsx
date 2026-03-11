@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Card, Button, Space, Divider, Alert, Spin } from 'antd';
+import React, { useState, useEffect } from 'react'
+import { Card, Button, Space, Divider, Alert, Spin } from 'antd'
 import {
   GoogleOutlined,
   GithubOutlined,
   WindowsOutlined,
   LoginOutlined,
   SafetyOutlined,
-} from '@ant-design/icons';
-import { message } from 'antd';
-import securityService from '../../services/securityService';
-import './Security.css';
+} from '@ant-design/icons'
+import { message } from 'antd'
+import securityService from '../../services/securityService'
+import './Security.css'
 
 const SSOLogin = () => {
-  const [loading, setLoading] = useState(null);
-  const [providers, setProviders] = useState([
+  const [loading, setLoading] = useState(null)
+  const [providers] = useState([
     {
       id: 'google',
       name: 'Google',
@@ -32,75 +32,68 @@ const SSOLogin = () => {
       icon: <WindowsOutlined />,
       color: '#00A1F1',
     },
-  ]);
+  ])
 
-  const handleSSOLogin = async provider => {
-    setLoading(provider);
+  const handleSSOLogin = async (provider) => {
+    setLoading(provider)
     try {
       // Get authorization URL
-      const authData = await securityService.getSSOAuthUrl(provider);
+      const authData = await securityService.getSSOAuthUrl(provider)
 
       if (authData?.authUrl) {
         // Redirect to OAuth provider
-        window.location.href = authData.authUrl;
+        window.location.href = authData.authUrl
       } else {
-        message.error(`Không thể lấy URL xác thực từ ${provider}`);
-        setLoading(null);
+        message.error(`Không thể lấy URL xác thực từ ${provider}`)
+        setLoading(null)
       }
     } catch (error) {
-      console.error(`SSO login error for ${provider}:`, error);
-      message.error(error.message || `Đăng nhập ${provider} thất bại`);
-      setLoading(null);
+      console.error(`SSO login error for ${provider}:`, error)
+      message.error(error.message || `Đăng nhập ${provider} thất bại`)
+      setLoading(null)
     }
-  };
+  }
 
   // Handle SSO callback from URL params
   useEffect(() => {
     if (typeof window !== 'undefined' && window.location) {
-      const urlParams = new (window.URLSearchParams || URLSearchParams)(
-        window.location.search
-      );
-      const code = urlParams.get('code');
-      const state = urlParams.get('state');
-      const provider =
-        urlParams.get('provider') || (state ? state.split('_')[0] : null);
+      const urlParams = new (window.URLSearchParams || URLSearchParams)(window.location.search)
+      const code = urlParams.get('code')
+      const state = urlParams.get('state')
+      const provider = urlParams.get('provider') || (state ? state.split('_')[0] : null)
 
       if (code && provider) {
-        handleSSOCallback(provider, code, state);
+        handleSSOCallback(provider, code, state)
       }
     }
-  }, []);
+  }, [])
 
   const handleSSOCallback = async (provider, code, state) => {
-    setLoading(provider);
+    setLoading(provider)
     try {
-      const userData = await securityService.handleSSOCallback(
-        provider,
-        code,
-        state
-      );
+      const userData = await securityService.handleSSOCallback(provider, code, state)
 
       if (userData?.token) {
-        message.success(`Đăng nhập ${provider} thành công!`);
+        message.success(`Đăng nhập ${provider} thành công!`)
         // Redirect to dashboard or home
         setTimeout(() => {
-          window.location.href = '/';
-        }, 1000);
+          window.location.href = '/'
+        }, 1000)
       } else {
-        message.error(`Đăng nhập ${provider} thất bại`);
+        message.error(`Đăng nhập ${provider} thất bại`)
       }
     } catch (error) {
-      console.error(`SSO callback error for ${provider}:`, error);
-      message.error(error.message || `Đăng nhập ${provider} thất bại`);
+      console.error(`SSO callback error for ${provider}:`, error)
+      message.error(error.message || `Đăng nhập ${provider} thất bại`)
     } finally {
-      setLoading(null);
+      setLoading(null)
       // Clean URL
-      window.history.replaceState({}, document.title, window.location.pathname);
+      window.history.replaceState({}, document.title, window.location.pathname)
     }
-  };
+  }
 
   return (
-    <div className='security-container'>
+    <div className="security-container">
       <Card
         title={
           <Space>
@@ -108,32 +101,31 @@ const SSOLogin = () => {
             <span>Đăng nhập bằng SSO</span>
           </Space>
         }
-        className='security-card'
+        className="security-card"
       >
         <Alert
-          message='Đăng nhập nhanh và an toàn'
-          description='Sử dụng tài khoản Google, GitHub, hoặc Microsoft để đăng nhập. Không cần nhớ mật khẩu riêng.'
-          type='info'
+          message="Đăng nhập nhanh và an toàn"
+          description="Sử dụng tài khoản Google, GitHub, hoặc Microsoft để đăng nhập. Không cần nhớ mật khẩu riêng."
+          type="info"
           icon={<SafetyOutlined />}
           showIcon
           style={{ marginBottom: '24px' }}
         />
 
-        <div className='sso-buttons-container'>
-          <Space direction='vertical' size='middle' style={{ width: '100%' }}>
-            {providers.map(provider => (
+        <div className="sso-buttons-container">
+          <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+            {providers.map((provider) => (
               <Button
                 key={provider.id}
-                type='primary'
-                size='large'
+                type="primary"
+                size="large"
                 icon={provider.icon}
                 loading={loading === provider.id}
                 onClick={() => handleSSOLogin(provider.id)}
                 style={{
                   width: '100%',
                   height: '50px',
-                  backgroundColor:
-                    loading === provider.id ? '#d9d9d9' : provider.color,
+                  backgroundColor: loading === provider.id ? '#d9d9d9' : provider.color,
                   borderColor: provider.color,
                   display: 'flex',
                   alignItems: 'center',
@@ -152,14 +144,13 @@ const SSOLogin = () => {
 
         <div style={{ textAlign: 'center', color: '#666' }}>
           <p>
-            Bạn có thể sử dụng email và mật khẩu để đăng nhập{' '}
-            <a href='/login'>tại đây</a>
+            Bạn có thể sử dụng email và mật khẩu để đăng nhập <a href="/login">tại đây</a>
           </p>
         </div>
 
         {loading && (
           <div style={{ textAlign: 'center', marginTop: '24px' }}>
-            <Spin size='large' />
+            <Spin size="large" />
             <p style={{ marginTop: '16px', color: '#666' }}>
               Đang chuyển hướng đến nhà cung cấp...
             </p>
@@ -167,7 +158,7 @@ const SSOLogin = () => {
         )}
       </Card>
     </div>
-  );
-};
+  )
+}
 
-export default SSOLogin;
+export default SSOLogin

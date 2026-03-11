@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ActionButton = ({ icon, title, onClick, className = '' }) => {
   return (
     <button
@@ -10,7 +8,7 @@ const ActionButton = ({ icon, title, onClick, className = '' }) => {
     >
       {icon}
     </button>
-  );
-};
+  )
+}
 
-export default ActionButton;
+export default ActionButton

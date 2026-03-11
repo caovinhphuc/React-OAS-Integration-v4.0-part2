@@ -110,4 +110,4 @@ export const navigationData = {
       description: 'Hỗ trợ kỹ thuật',
     },
   ],
-};
+}

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Tabs, Card, Space } from 'antd';
+import React, { useState } from 'react'
+import { Tabs, Card, Space } from 'antd'
 import {
   SafetyOutlined,
   UserOutlined,
@@ -7,16 +7,16 @@ import {
   SettingOutlined,
   LoginOutlined,
   LockOutlined,
-} from '@ant-design/icons';
-import MFASetup from './MFASetup';
-import SSOLogin from './SSOLogin';
-import UserManagement from './UserManagement';
-import AuditLogsViewer from './AuditLogsViewer';
-import SecuritySettings from './SecuritySettings';
-import './Security.css';
+} from '@ant-design/icons'
+import MFASetup from './MFASetup'
+import SSOLogin from './SSOLogin'
+import UserManagement from './UserManagement'
+import AuditLogsViewer from './AuditLogsViewer'
+import SecuritySettings from './SecuritySettings'
+import './Security.css'
 
 const SecurityDashboard = () => {
-  const [activeTab, setActiveTab] = useState('mfa');
+  const [activeTab, setActiveTab] = useState('mfa')
 
   const tabItems = [
     {
@@ -69,10 +69,10 @@ const SecurityDashboard = () => {
       ),
       children: <SecuritySettings />,
     },
-  ];
+  ]
 
   return (
-    <div className='security-dashboard'>
+    <div className="security-dashboard">
       <Card
         title={
           <Space>
@@ -80,18 +80,18 @@ const SecurityDashboard = () => {
             <span>Enterprise Security Dashboard</span>
           </Space>
         }
-        className='security-dashboard-card'
+        className="security-dashboard-card"
       >
         <Tabs
           activeKey={activeTab}
           onChange={setActiveTab}
-          type='card'
-          size='large'
+          type="card"
+          size="large"
           items={tabItems}
         />
       </Card>
     </div>
-  );
-};
+  )
+}
 
-export default SecurityDashboard;
+export default SecurityDashboard

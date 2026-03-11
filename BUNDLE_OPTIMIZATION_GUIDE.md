@@ -3,6 +3,7 @@
 ## 🎯 Mục tiêu
 
 Giảm bundle size để cải thiện:
+
 - ⚡ Tốc độ tải trang (Load Time)
 - 📱 Trải nghiệm mobile
 - 💰 Chi phí bandwidth
@@ -201,7 +202,7 @@ function ImportCSV() {
 
 ### 5. Webpack Optimization
 
-#### In `package.json`:
+#### In `package.json`
 
 ```json
 {
@@ -212,7 +213,7 @@ function ImportCSV() {
 }
 ```
 
-#### Environment Variables:
+#### Environment Variables
 
 ```bash
 # Disable source maps in production
@@ -277,16 +278,19 @@ npx lighthouse https://your-app.com --view
 ### Immediate Actions (< 1 hour)
 
 1. **Enable Production Build**
+
    ```bash
    NODE_ENV=production npm run build
    ```
 
 2. **Disable Source Maps**
+
    ```bash
    GENERATE_SOURCEMAP=false npm run build
    ```
 
 3. **Remove Unused Dependencies**
+
    ```bash
    npm run perf:deps
    npm uninstall <unused-package>
@@ -433,4 +437,3 @@ Lighthouse:      92/100  (↑ 42%)
 
 **Last Updated:** December 11, 2025
 **Version:** 4.0
-

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Loading from '../Common/Loading'
 import { googleSheetsApiService } from '../../services/googleSheetsApi'
 import './GoogleSheetsIntegration.css'
@@ -7,7 +7,6 @@ import './GoogleSheetsIntegration.css'
 const GoogleSheetsIntegration = () => {
   // const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.sheets)
-  const { isAuthenticated, serviceAccount } = useSelector((state) => state.auth)
 
   const [selectedSheet, setSelectedSheet] = useState(null)
   const [sheetContent, setSheetContent] = useState([])
@@ -19,7 +18,6 @@ const GoogleSheetsIntegration = () => {
   const [newSheetName, setNewSheetName] = useState('')
   const [showColumnModal, setShowColumnModal] = useState(false)
   const [newColumnName, setNewColumnName] = useState('')
-  const [selectedRows, setSelectedRows] = useState([])
   const [spreadsheets, setSpreadsheets] = useState([])
   const [isLoadingMetadata, setIsLoadingMetadata] = useState(false)
   const [isLoadingContent, setIsLoadingContent] = useState(false)
@@ -210,61 +208,8 @@ const GoogleSheetsIntegration = () => {
     setShowColumnModal(false)
   }
 
-  const handleDeleteColumn = (columnIndex) => {
-    if (!selectedSheet) return
-
-    const updatedContent = sheetContent.map((row) =>
-      row.filter((_, index) => index !== columnIndex),
-    )
-
-    setSheetContent(updatedContent)
-  }
-
-  const handleAddRow = () => {
-    if (!selectedSheet) return
-
-    const newRow = Array(selectedSheet.headers.length).fill('')
-    setSheetContent([...sheetContent, newRow])
-  }
-
-  const handleDeleteRow = (rowIndex) => {
-    const updatedContent = sheetContent.filter((_, index) => index !== rowIndex)
-    setSheetContent(updatedContent)
-  }
-
-  const handleDeleteEmptyRows = () => {
-    const updatedContent = sheetContent.filter((row) =>
-      row.some((cell) => cell.toString().trim() !== ''),
-    )
-    setSheetContent(updatedContent)
-  }
-
-  const handleRowSelect = (rowIndex) => {
-    setSelectedRows((prev) =>
-      prev.includes(rowIndex) ? prev.filter((index) => index !== rowIndex) : [...prev, rowIndex],
-    )
-  }
-
-  const handleSelectAllRows = () => {
-    const allRowIndices = sheetContent.map((_, index) => index)
-    setSelectedRows(selectedRows.length === allRowIndices.length ? [] : allRowIndices)
-  }
-
-  const handleDeleteSelectedRows = () => {
-    const updatedContent = sheetContent.filter((_, index) => !selectedRows.includes(index))
-    setSheetContent(updatedContent)
-    setSelectedRows([])
-  }
-
   const handleViewId = (item) => {
     alert(`ID: ${item.id || selectedSheet?.id}`)
-  }
-
-  const handleMoveRow = (fromIndex, toIndex) => {
-    const updatedContent = [...sheetContent]
-    const [movedRow] = updatedContent.splice(fromIndex, 1)
-    updatedContent.splice(toIndex, 0, movedRow)
-    setSheetContent(updatedContent)
   }
 
   if (loading) {

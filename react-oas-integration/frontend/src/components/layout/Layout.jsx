@@ -1,54 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { Dropdown, message } from 'antd';
-import {
-  LogoutOutlined,
-  UserOutlined,
-  SettingOutlined,
-} from '@ant-design/icons';
-import './Layout.css';
-import HamburgerMenu from './HamburgerMenu';
-import ActionButton from './ActionButton';
-import NavSection from './NavSection';
-import ConnectionSection from './ConnectionSection';
-import {
-  connectionData,
-  defaultUserInfo,
-  defaultSystemStatus,
-} from './layoutData';
-import { navigationData } from './navigationData';
-import { BRAND_CONFIG } from '../../config/brand';
-import { logout } from '../../store/actions/authActions';
+import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons'
+import { App, Dropdown } from 'antd'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { BRAND_CONFIG } from '../../config/brand'
+import { logout } from '../../store/actions/authActions'
+import ActionButton from './ActionButton'
+import ConnectionSection from './ConnectionSection'
+import HamburgerMenu from './HamburgerMenu'
+import './Layout.css'
+import { connectionData } from './layoutData'
+import { navigationData } from './navigationData'
+import NavSection from './NavSection'
 
 const Layout = ({ children }) => {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [connectionStatusExpanded, setConnectionStatusExpanded] =
-    useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { user, isAuthenticated } = useSelector(state => state.auth);
+  const { message } = App.useApp()
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+  const [connectionStatusExpanded, setConnectionStatusExpanded] = useState(false)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { user, isAuthenticated } = useSelector((state) => state.auth)
 
   // Kiểm tra session khi component mount và định kỳ
   useEffect(() => {
     const checkSession = async () => {
       // Chỉ kiểm tra nếu đã authenticated
       if (!isAuthenticated) {
-        return;
+        return
       }
 
-      const token =
-        localStorage.getItem('authToken') || localStorage.getItem('token');
+      const token = localStorage.getItem('authToken') || localStorage.getItem('token')
       if (!token) {
-        return;
+        return
       }
 
       try {
         const API_BASE_URL =
-          import.meta.env.VITE_API_URL ||
-          import.meta.env.REACT_APP_API_URL ||
-          'http://localhost:3001';
+          process.env.REACT_APP_API_URL || process.env.VITE_API_URL || 'http://localhost:3001'
 
         const response = await fetch(`${API_BASE_URL}/api/auth/verify`, {
           method: 'GET',
@@ -56,77 +45,71 @@ const Layout = ({ children }) => {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
-        });
+        })
 
         if (!response.ok || response.status === 401) {
           // Session hết hạn, logout và redirect
           try {
-            await dispatch(logout(false));
+            await dispatch(logout(false))
           } catch (e) {
             // Ignore errors
           }
-          message.warning(
-            'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.'
-          );
-          navigate('/login');
+          message.warning('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.')
+          navigate('/login')
         }
       } catch (error) {
         // Network error, không làm gì (có thể backend chưa chạy)
-        console.warn('Session check error:', error);
+        console.warn('Session check error:', error)
       }
-    };
+    }
 
     // Kiểm tra ngay khi mount
-    checkSession();
+    checkSession()
 
     // Kiểm tra định kỳ mỗi 5 phút
-    const interval = setInterval(checkSession, 5 * 60 * 1000);
+    const interval = setInterval(checkSession, 5 * 60 * 1000)
 
-    return () => clearInterval(interval);
-  }, [isAuthenticated, dispatch, navigate]);
+    return () => clearInterval(interval)
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- message from useApp is stable
+  }, [isAuthenticated, dispatch, navigate])
 
-  const isActive = path => {
-    if (!path) return false;
+  const isActive = (path) => {
+    if (!path) return false
 
     // Exact match for root
     if (path === '/') {
-      return location.pathname === '/';
+      return location.pathname === '/'
     }
 
     // Exact match for other paths
     if (location.pathname === path) {
-      return true;
+      return true
     }
 
     // For nested routes, check if current path starts with the nav path
     // But avoid matching parent paths when on child routes
-    const pathSegments = path.split('/').filter(Boolean);
-    const currentSegments = location.pathname.split('/').filter(Boolean);
+    const pathSegments = path.split('/').filter(Boolean)
+    const currentSegments = location.pathname.split('/').filter(Boolean)
 
     // Only match if first segment matches (to avoid /security matching /security/mfa)
     if (pathSegments.length > 0 && currentSegments.length > 0) {
-      return (
-        currentSegments[0] === pathSegments[0] &&
-        location.pathname.startsWith(path)
-      );
+      return currentSegments[0] === pathSegments[0] && location.pathname.startsWith(path)
     }
 
-    return false;
-  };
+    return false
+  }
 
   const handleLogout = async (logoutAll = false) => {
     try {
-      await dispatch(logout(logoutAll));
-      message.success('Đăng xuất thành công');
-      navigate('/login');
+      await dispatch(logout(logoutAll))
+      message.success('Đăng xuất thành công')
+      navigate('/login')
     } catch (error) {
-      message.error(
-        'Đăng xuất thất bại: ' + (error.message || 'Unknown error')
-      );
+      message.error('Đăng xuất thất bại: ' + (error.message || 'Unknown error'))
       // Still navigate to login even if logout fails
-      navigate('/login');
+      navigate('/login')
     }
-  };
+  }
 
   const userMenuItems = [
     {
@@ -158,43 +141,39 @@ const Layout = ({ children }) => {
       danger: true,
       onClick: () => handleLogout(true),
     },
-  ];
+  ]
 
   return (
-    <div className='layout-container'>
+    <div className="layout-container">
       {/* Header */}
-      <header className='app-header'>
-        <div className='header-left'>
+      <header className="app-header">
+        <div className="header-left">
           <HamburgerMenu
             collapsed={sidebarCollapsed}
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
           />
-          <div className='brand'>
-            <span className='brand-icon'>🛒</span>
-            <span className='brand-text'>{BRAND_CONFIG.companyName}</span>
-            <span className='brand-version'>v4.0</span>
+          <div className="brand">
+            <span className="brand-icon">🛒</span>
+            <span className="brand-text">{BRAND_CONFIG.companyName}</span>
+            <span className="brand-version">v4.0</span>
           </div>
         </div>
 
-        <div className='header-center'>
-          <div className='system-status'>
-            <div className='status-indicator online'></div>
+        <div className="header-center">
+          <div className="system-status">
+            <div className="status-indicator online"></div>
             <span>Hệ thống hoạt động bình thường</span>
           </div>
         </div>
 
-        <div className='header-right'>
+        <div className="header-right">
           {isAuthenticated && user ? (
-            <Dropdown
-              menu={{ items: userMenuItems }}
-              placement='bottomRight'
-              trigger={['click']}
-            >
-              <div className='user-info' style={{ cursor: 'pointer' }}>
-                <div className='user-avatar'>👤</div>
-                <div className='user-details'>
-                  <span className='user-name'>{user.email || 'User'}</span>
-                  <span className='user-role'>
+            <Dropdown menu={{ items: userMenuItems }} placement="bottomRight" trigger={['click']}>
+              <div className="user-info" style={{ cursor: 'pointer' }}>
+                <div className="user-avatar">👤</div>
+                <div className="user-details">
+                  <span className="user-name">{user.email || 'User'}</span>
+                  <span className="user-role">
                     {user.role === 'admin'
                       ? 'Quản trị viên'
                       : user.role === 'manager'
@@ -205,61 +184,54 @@ const Layout = ({ children }) => {
               </div>
             </Dropdown>
           ) : (
-            <div className='user-info'>
-              <div className='user-avatar'>👤</div>
-              <div className='user-details'>
-                <span className='user-name'>Guest</span>
-                <span className='user-role'>Khách</span>
+            <div className="user-info">
+              <div className="user-avatar">👤</div>
+              <div className="user-details">
+                <span className="user-name">Guest</span>
+                <span className="user-role">Khách</span>
               </div>
             </div>
           )}
-          <div className='header-actions'>
-            <ActionButton icon='🔔' title='Thông báo' />
-            <ActionButton icon='⚙️' title='Cài đặt' />
+          <div className="header-actions">
+            <ActionButton icon="🔔" title="Thông báo" />
+            <ActionButton icon="⚙️" title="Cài đặt" />
           </div>
         </div>
       </header>
 
-      <div className='layout-body'>
+      <div className="layout-body">
         {/* Sidebar */}
         <aside className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
-          <nav className='sidebar-nav'>
+          <nav className="sidebar-nav">
             <NavSection
-              title='Điều hướng'
+              title="Điều hướng"
               items={navigationData.main}
               collapsed={sidebarCollapsed}
               isActive={isActive}
             />
-
+            <NavSection title="Công cụ" items={navigationData.tools} collapsed={sidebarCollapsed} />
             <NavSection
-              title='Công cụ'
-              items={navigationData.tools}
-              collapsed={sidebarCollapsed}
-            />
-
-            <NavSection
-              title='Hỗ trợ'
+              title="Hỗ trợ"
               items={navigationData.support}
               collapsed={sidebarCollapsed}
             />
+            s
           </nav>
 
           <ConnectionSection
             connections={connectionData}
             expanded={connectionStatusExpanded}
-            onToggle={() =>
-              setConnectionStatusExpanded(!connectionStatusExpanded)
-            }
+            onToggle={() => setConnectionStatusExpanded(!connectionStatusExpanded)}
           />
         </aside>
 
         {/* Main Content */}
-        <main className='main-content'>
-          <div className='content-wrapper'>{children}</div>
+        <main className="main-content">
+          <div className="content-wrapper">{children}</div>
         </main>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

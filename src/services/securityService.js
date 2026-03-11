@@ -530,7 +530,7 @@ export const generateComplianceReport = async (startDate, endDate) => {
 
 // ==================== EXPORTS ====================
 
-export default {
+const securityService = {
   // Auth
   registerUser,
   loginUser,
@@ -561,3 +561,4 @@ export default {
   getAuditStatistics,
   generateComplianceReport,
 }
+export default securityService

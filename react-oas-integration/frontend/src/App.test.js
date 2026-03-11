@@ -1,10 +1,10 @@
-import { render, screen } from "@testing-library/react";
-import App from "./App";
+import { render, screen } from '@testing-library/react'
+import App from './App'
 
-test("renders MIA Logistics app", () => {
-  render(<App />);
-  const brandElement = screen.getByText("MIA Logistics", {
-    selector: ".brand-text",
-  });
-  expect(brandElement).toBeInTheDocument();
-});
+test('renders MIA Retail app', () => {
+  render(<App />)
+  const brandElement = screen.getByText('MIA Retail', {
+    selector: '.brand-text',
+  })
+  expect(brandElement).toBeInTheDocument()
+})

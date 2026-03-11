@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import SheetReader from './SheetReader.jsx';
-import SheetWriter from './SheetWriter.jsx';
-import { googleSheetsApiService } from '../../services/googleSheetsApi';
+import React, { useState } from 'react'
+import SheetReader from './SheetReader.jsx'
+import SheetWriter from './SheetWriter.jsx'
+import { googleSheetsApiService } from '../../services/googleSheetsApi'
 
 const SheetManager = ({ sheetId }) => {
-  const [activeTab, setActiveTab] = useState('reader');
-  const [sheetMetadata, setSheetMetadata] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [activeTab, setActiveTab] = useState('reader')
+  const [sheetMetadata, setSheetMetadata] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
-  const tabStyle = isActive => ({
+  const tabStyle = (isActive) => ({
     padding: '10px 20px',
     margin: '0 5px',
     border: '1px solid #ddd',
@@ -17,34 +17,34 @@ const SheetManager = ({ sheetId }) => {
     color: isActive ? 'white' : '#333',
     cursor: 'pointer',
     borderRadius: '4px 4px 0 0',
-  });
+  })
 
   const handleGetMetadata = async () => {
-    setLoading(true);
-    setError(null);
+    setLoading(true)
+    setError(null)
 
     try {
-      const metadata = await googleSheetsApiService.getSheetMetadata(sheetId);
-      setSheetMetadata(metadata);
+      const metadata = await googleSheetsApiService.getSheetMetadata(sheetId)
+      setSheetMetadata(metadata)
     } catch (err) {
-      setError(`Failed to get metadata: ${err.message}`);
+      setError(`Failed to get metadata: ${err.message}`)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
-  const handleDataLoaded = result => {
-    console.log('Data loaded:', result);
-  };
+  const handleDataLoaded = (result) => {
+    console.log('Data loaded:', result)
+  }
 
-  const handleDataWritten = result => {
-    console.log('Data written:', result);
+  const handleDataWritten = (result) => {
+    console.log('Data written:', result)
     // Optionally refresh the reader
     if (activeTab === 'reader') {
       // Trigger a refresh of the reader component
-      window.location.reload();
+      window.location.reload()
     }
-  };
+  }
 
   return (
     <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '20px' }}>
@@ -94,8 +94,8 @@ const SheetManager = ({ sheetId }) => {
                     {sheet.gridProperties && (
                       <span style={{ color: '#666', fontSize: '12px' }}>
                         {' '}
-                        - {sheet.gridProperties.rowCount} rows ×{' '}
-                        {sheet.gridProperties.columnCount} columns
+                        - {sheet.gridProperties.rowCount} rows × {sheet.gridProperties.columnCount}{' '}
+                        columns
                       </span>
                     )}
                   </li>
@@ -123,16 +123,10 @@ const SheetManager = ({ sheetId }) => {
 
       {/* Tab Navigation */}
       <div style={{ marginBottom: '20px', borderBottom: '1px solid #ddd' }}>
-        <button
-          style={tabStyle(activeTab === 'reader')}
-          onClick={() => setActiveTab('reader')}
-        >
+        <button style={tabStyle(activeTab === 'reader')} onClick={() => setActiveTab('reader')}>
           📖 Read Data
         </button>
-        <button
-          style={tabStyle(activeTab === 'writer')}
-          onClick={() => setActiveTab('writer')}
-        >
+        <button style={tabStyle(activeTab === 'writer')} onClick={() => setActiveTab('writer')}>
           ✏️ Write Data
         </button>
       </div>
@@ -208,7 +202,7 @@ const SheetManager = ({ sheetId }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SheetManager;
+export default SheetManager

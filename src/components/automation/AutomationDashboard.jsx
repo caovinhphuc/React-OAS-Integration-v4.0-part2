@@ -5,7 +5,6 @@ import './AutomationDashboard.css'
 
 const AutomationDashboard = () => {
   const { loading, error } = useSelector((state) => state.auth)
-  const { isAuthenticated, serviceAccount } = useSelector((state) => state.auth)
 
   const [automations, setAutomations] = useState([])
   const [selectedAutomation, setSelectedAutomation] = useState(null)
@@ -141,6 +140,7 @@ const AutomationDashboard = () => {
   useEffect(() => {
     setAutomations(sampleAutomations)
     setExecutionLogs(sampleLogs)
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- init with static sample data
   }, [])
 
   const handleAutomationSelect = (automation) => {

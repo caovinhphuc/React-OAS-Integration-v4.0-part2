@@ -1,13 +1,13 @@
-import { actionTypes } from "../actionTypes";
+import { actionTypes } from '../actionTypes'
 
 const initialState = {
-  activeTab: "overview",
+  activeTab: 'overview',
   data: {
     overview: {
       totalSheets: 0,
       totalFiles: 0,
       lastSync: null,
-      systemHealth: "healthy",
+      systemHealth: 'healthy',
     },
     analytics: {
       charts: [],
@@ -22,7 +22,7 @@ const initialState = {
   loading: false,
   error: null,
   lastUpdated: null,
-};
+}
 
 const dashboardReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -31,7 +31,7 @@ const dashboardReducer = (state = initialState, action) => {
         ...state,
         loading: true,
         error: null,
-      };
+      }
 
     case actionTypes.UPDATE_DASHBOARD_DATA:
       return {
@@ -43,17 +43,17 @@ const dashboardReducer = (state = initialState, action) => {
         loading: false,
         error: null,
         lastUpdated: new Date().toISOString(),
-      };
+      }
 
     case actionTypes.SET_ACTIVE_TAB:
       return {
         ...state,
         activeTab: action.payload,
-      };
+      }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default dashboardReducer;
+export default dashboardReducer

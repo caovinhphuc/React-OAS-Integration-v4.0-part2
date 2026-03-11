@@ -7,7 +7,6 @@ import './TelegramIntegration.css'
 
 const TelegramIntegration = () => {
   const { loading, error } = useSelector((state) => state.auth)
-  const { isAuthenticated, serviceAccount } = useSelector((state) => state.auth)
 
   const [botInfo, setBotInfo] = useState(null)
   const [chats, setChats] = useState([])
@@ -86,6 +85,7 @@ const TelegramIntegration = () => {
     setChats(sampleChats)
     setMessages(sampleMessages)
     setIsConnected(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- init with static sample data
   }, [])
 
   const handleChatSelect = (chat) => {

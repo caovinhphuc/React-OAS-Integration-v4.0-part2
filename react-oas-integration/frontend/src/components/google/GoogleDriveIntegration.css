@@ -2,7 +2,7 @@
 .drive-integration-container {
   padding: 0;
   background: transparent;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #1e293b;
 }
 
@@ -158,11 +158,13 @@
   overflow: hidden;
 }
 
-.folders-section, .files-section {
+.folders-section,
+.files-section {
   padding: 24px;
 }
 
-.folders-section h3, .files-section h3 {
+.folders-section h3,
+.files-section h3 {
   font-size: 1.125rem;
   color: #1e293b;
   font-weight: 600;
@@ -379,7 +381,6 @@
   border-top: 1px solid #e2e8f0;
   background: #f8fafc;
 }
-
 
 /* Responsive Design */
 @media (max-width: 768px) {

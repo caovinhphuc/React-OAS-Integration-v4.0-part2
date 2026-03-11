@@ -148,7 +148,7 @@ export const getStatusColor = (value, thresholds = { good: 0.8, excellent: 1.2 }
   return '#d62828' // Red - Poor
 }
 
-export default {
+const retailService = {
   fetchRetailDashboard,
   fetchSalesMetrics,
   fetchInventoryStatus,
@@ -160,3 +160,4 @@ export default {
   calculateGrowth,
   getStatusColor,
 }
+export default retailService

@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-03-11T13:37:27.764Z",
+  "envFile": "✅ Exists",
+  "dependencies": "✅ Installed",
+  "build": "✅ Built",
+  "services": {
+    "google": "❌ Not configured",
+    "email": "❌ Not configured",
+    "telegram": "❌ Not configured"
+  }
+}

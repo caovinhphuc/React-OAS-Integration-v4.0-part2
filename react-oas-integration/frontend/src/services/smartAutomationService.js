@@ -5,9 +5,7 @@
  */
 
 const API_BASE_URL =
-  import.meta.env.VITE_AI_SERVICE_URL ||
-  import.meta.env.REACT_APP_AI_SERVICE_URL ||
-  'http://localhost:8000';
+  process.env.REACT_APP_AI_SERVICE_URL || process.env.VITE_AI_SERVICE_URL || 'http://localhost:8000'
 
 class SmartAutomationService {
   /**
@@ -25,17 +23,17 @@ class SmartAutomationService {
           value_column: valueColumn,
           date_column: dateColumn,
         }),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error(`Pattern analysis failed: ${response.statusText}`);
+        throw new Error(`Pattern analysis failed: ${response.statusText}`)
       }
 
-      const result = await response.json();
-      return result.data || result;
+      const result = await response.json()
+      return result.data || result
     } catch (error) {
-      console.error('Error analyzing patterns:', error);
-      throw error;
+      console.error('Error analyzing patterns:', error)
+      throw error
     }
   }
 
@@ -53,17 +51,17 @@ class SmartAutomationService {
           data,
           value_column: valueColumn,
         }),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error(`Trend analysis failed: ${response.statusText}`);
+        throw new Error(`Trend analysis failed: ${response.statusText}`)
       }
 
-      const result = await response.json();
-      return result.data || result;
+      const result = await response.json()
+      return result.data || result
     } catch (error) {
-      console.error('Error analyzing trends:', error);
-      throw error;
+      console.error('Error analyzing trends:', error)
+      throw error
     }
   }
 
@@ -81,29 +79,24 @@ class SmartAutomationService {
           data,
           value_column: valueColumn,
         }),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error(`Anomaly detection failed: ${response.statusText}`);
+        throw new Error(`Anomaly detection failed: ${response.statusText}`)
       }
 
-      const result = await response.json();
-      return result.data || result;
+      const result = await response.json()
+      return result.data || result
     } catch (error) {
-      console.error('Error detecting anomalies:', error);
-      throw error;
+      console.error('Error detecting anomalies:', error)
+      throw error
     }
   }
 
   /**
    * Generate predictive alerts
    */
-  async generatePredictiveAlerts(
-    data,
-    valueColumn,
-    metricName = null,
-    threshold = null
-  ) {
+  async generatePredictiveAlerts(data, valueColumn, metricName = null, threshold = null) {
     try {
       const response = await fetch(`${API_BASE_URL}/api/alerts/predictive`, {
         method: 'POST',
@@ -116,17 +109,17 @@ class SmartAutomationService {
           metric_name: metricName,
           threshold,
         }),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error(`Predictive alert failed: ${response.statusText}`);
+        throw new Error(`Predictive alert failed: ${response.statusText}`)
       }
 
-      const result = await response.json();
-      return result.data || result;
+      const result = await response.json()
+      return result.data || result
     } catch (error) {
-      console.error('Error generating predictive alerts:', error);
-      throw error;
+      console.error('Error generating predictive alerts:', error)
+      throw error
     }
   }
 
@@ -144,17 +137,17 @@ class SmartAutomationService {
           column_name: columnName,
           sample_values: sampleValues,
         }),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error(`Categorization failed: ${response.statusText}`);
+        throw new Error(`Categorization failed: ${response.statusText}`)
       }
 
-      const result = await response.json();
-      return result.data || result;
+      const result = await response.json()
+      return result.data || result
     } catch (error) {
-      console.error('Error categorizing column:', error);
-      throw error;
+      console.error('Error categorizing column:', error)
+      throw error
     }
   }
 
@@ -172,17 +165,17 @@ class SmartAutomationService {
           data,
           category_rules: categoryRules,
         }),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error(`Row categorization failed: ${response.statusText}`);
+        throw new Error(`Row categorization failed: ${response.statusText}`)
       }
 
-      const result = await response.json();
-      return result.data || result;
+      const result = await response.json()
+      return result.data || result
     } catch (error) {
-      console.error('Error categorizing rows:', error);
-      throw error;
+      console.error('Error categorizing rows:', error)
+      throw error
     }
   }
 
@@ -194,7 +187,7 @@ class SmartAutomationService {
     valueColumn,
     reportType = 'comprehensive',
     dateColumn = null,
-    title = null
+    title = null,
   ) {
     try {
       const response = await fetch(`${API_BASE_URL}/api/reports/generate`, {
@@ -209,17 +202,17 @@ class SmartAutomationService {
           report_type: reportType,
           title,
         }),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error(`Report generation failed: ${response.statusText}`);
+        throw new Error(`Report generation failed: ${response.statusText}`)
       }
 
-      const result = await response.json();
-      return result.data || result;
+      const result = await response.json()
+      return result.data || result
     } catch (error) {
-      console.error('Error generating report:', error);
-      throw error;
+      console.error('Error generating report:', error)
+      throw error
     }
   }
 
@@ -237,17 +230,17 @@ class SmartAutomationService {
           query,
           context,
         }),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error(`NLP chat failed: ${response.statusText}`);
+        throw new Error(`NLP chat failed: ${response.statusText}`)
       }
 
-      const result = await response.json();
-      return result.data || result;
+      const result = await response.json()
+      return result.data || result
     } catch (error) {
-      console.error('Error processing chat query:', error);
-      throw error;
+      console.error('Error processing chat query:', error)
+      throw error
     }
   }
 
@@ -265,17 +258,17 @@ class SmartAutomationService {
           data,
           max_length: maxLength,
         }),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error(`Summary generation failed: ${response.statusText}`);
+        throw new Error(`Summary generation failed: ${response.statusText}`)
       }
 
-      const result = await response.json();
-      return result.data || result;
+      const result = await response.json()
+      return result.data || result
     } catch (error) {
-      console.error('Error generating summary:', error);
-      throw error;
+      console.error('Error generating summary:', error)
+      throw error
     }
   }
 
@@ -294,17 +287,17 @@ class SmartAutomationService {
           data,
           columns,
         }),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error(`Smart search failed: ${response.statusText}`);
+        throw new Error(`Smart search failed: ${response.statusText}`)
       }
 
-      const result = await response.json();
-      return result.data || result;
+      const result = await response.json()
+      return result.data || result
     } catch (error) {
-      console.error('Error in smart search:', error);
-      throw error;
+      console.error('Error in smart search:', error)
+      throw error
     }
   }
 
@@ -322,20 +315,20 @@ class SmartAutomationService {
           query: command,
           context,
         }),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error(`Voice command processing failed: ${response.statusText}`);
+        throw new Error(`Voice command processing failed: ${response.statusText}`)
       }
 
-      const result = await response.json();
-      return result.data || result;
+      const result = await response.json()
+      return result.data || result
     } catch (error) {
-      console.error('Error processing voice command:', error);
-      throw error;
+      console.error('Error processing voice command:', error)
+      throw error
     }
   }
 }
 
-export const smartAutomationService = new SmartAutomationService();
-export default smartAutomationService;
+export const smartAutomationService = new SmartAutomationService()
+export default smartAutomationService

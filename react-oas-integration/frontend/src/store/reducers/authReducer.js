@@ -1,4 +1,4 @@
-import { actionTypes } from '../actionTypes';
+import { actionTypes } from '../actionTypes'
 
 const initialState = {
   isAuthenticated: false,
@@ -10,7 +10,7 @@ const initialState = {
     projectId: null,
     isConfigured: false,
   },
-};
+}
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -19,7 +19,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         loading: true,
         error: null,
-      };
+      }
 
     case actionTypes.LOGIN_SUCCESS:
       return {
@@ -35,7 +35,7 @@ const authReducer = (state = initialState, action) => {
         },
         loading: false,
         error: null,
-      };
+      }
 
     case actionTypes.LOGIN_FAILURE:
       return {
@@ -44,16 +44,16 @@ const authReducer = (state = initialState, action) => {
         user: null,
         loading: false,
         error: action.payload,
-      };
+      }
 
     case actionTypes.LOGOUT:
       return {
         ...initialState,
-      };
+      }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default authReducer;
+export default authReducer

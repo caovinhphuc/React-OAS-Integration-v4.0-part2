@@ -1,100 +1,121 @@
-/* eslint-disable */
 /**
- * React Hook for WebSocket Connection
- * Provides easy access to WebSocket functionality
+ * React Hook for WebSocket
+ * Sử dụng trong React components
  */
 
-import { useEffect, useState, useCallback, useRef } from 'react';
-import { websocketService } from '../services/websocketService';
+import { useEffect, useRef, useState } from "react";
+import { getWebSocketClient } from "../utils/websocket";
 
-export const useWebSocket = (userId = null, autoConnect = true) => {
+/**
+ * Hook để sử dụng WebSocket trong React components
+ * @param {string} url - WebSocket server URL (optional)
+ * @param {string|string[]} rooms - Room IDs to join (optional)
+ * @returns {object} WebSocket client và connection state
+ */
+export function useWebSocket(url = null, rooms = []) {
+  const [client] = useState(() => getWebSocketClient(url));
   const [connected, setConnected] = useState(false);
-  const [socketId, setSocketId] = useState(null);
+  const [lastMessage, setLastMessage] = useState(null);
   const [error, setError] = useState(null);
-  const listenersRef = useRef([]);
+  const roomsRef = useRef(
+    Array.isArray(rooms) ? rooms : [rooms].filter(Boolean),
+  );
 
-  // Connect on mount
   useEffect(() => {
-    if (autoConnect) {
-      const socket = websocketService.connect(userId);
+    // Connect on mount
+    client.connect().catch((err) => {
+      setError(err);
+      console.error("WebSocket connection error:", err);
+    });
 
-      // Set up connection listeners
-      const onConnected = ({ socketId: id }) => {
-        setConnected(true);
-        setSocketId(id);
-        setError(null);
-      };
+    // Setup listeners
+    const onConnected = () => {
+      setConnected(true);
+      setError(null);
 
-      const onDisconnected = () => {
-        setConnected(false);
-        setSocketId(null);
-      };
+      // Join rooms after connection
+      roomsRef.current.forEach((room) => {
+        if (room) {
+          client.joinRoom(room);
+        }
+      });
+    };
 
-      const onError = ({ error: err }) => {
-        setError(err);
-        setConnected(false);
-      };
+    const onDisconnected = () => {
+      setConnected(false);
+    };
 
-      websocketService.on('connected', onConnected);
-      websocketService.on('disconnected', onDisconnected);
-      websocketService.on('connection-error', onError);
+    const onMessage = (data) => {
+      setLastMessage(data);
+    };
 
-      listenersRef.current = [
-        { event: 'connected', callback: onConnected },
-        { event: 'disconnected', callback: onDisconnected },
-        { event: 'connection-error', callback: onError },
-      ];
+    const onError = (err) => {
+      setError(err);
+    };
 
-      return () => {
-        // Cleanup listeners
-        listenersRef.current.forEach(({ event, callback }) => {
-          websocketService.off(event, callback);
-        });
-      };
+    client.on("connected", onConnected);
+    client.on("disconnected", onDisconnected);
+    client.on("message", onMessage);
+    client.on("error", onError);
+
+    // Cleanup on unmount
+    return () => {
+      client.off("connected", onConnected);
+      client.off("disconnected", onDisconnected);
+      client.off("message", onMessage);
+      client.off("error", onError);
+
+      // Leave all rooms
+      roomsRef.current.forEach((room) => {
+        if (room) {
+          client.leaveRoom(room);
+        }
+      });
+    };
+  }, [client]);
+
+  // Join new rooms when rooms prop changes
+  useEffect(() => {
+    if (connected) {
+      const newRooms = Array.isArray(rooms) ? rooms : [rooms].filter(Boolean);
+      const oldRooms = roomsRef.current;
+
+      // Join new rooms
+      newRooms.forEach((room) => {
+        if (room && !oldRooms.includes(room)) {
+          client.joinRoom(room);
+        }
+      });
+
+      // Leave old rooms
+      oldRooms.forEach((room) => {
+        if (room && !newRooms.includes(room)) {
+          client.leaveRoom(room);
+        }
+      });
+
+      roomsRef.current = newRooms;
     }
-  }, [userId, autoConnect]);
-
-  // Disconnect on unmount
-  useEffect(() => {
-    return () => {
-      if (!autoConnect) {
-        websocketService.disconnect();
-      }
-    };
-  }, [autoConnect]);
-
-  // Subscribe to event
-  const subscribe = useCallback((event, callback) => {
-    websocketService.on(event, callback);
-    listenersRef.current.push({ event, callback });
-
-    return () => {
-      websocketService.off(event, callback);
-      const index = listenersRef.current.findIndex(
-        l => l.event === event && l.callback === callback
-      );
-      if (index > -1) {
-        listenersRef.current.splice(index, 1);
-      }
-    };
-  }, []);
-
-  // Unsubscribe from event
-  const unsubscribe = useCallback((event, callback) => {
-    websocketService.off(event, callback);
-  }, []);
+  }, [connected, rooms, client]);
 
   return {
+    client,
     connected,
-    socketId,
+    lastMessage,
     error,
-    subscribe,
-    unsubscribe,
-    websocket: websocketService,
-    connect: () => websocketService.connect(userId),
-    disconnect: () => websocketService.disconnect(),
-    isConnected: () => websocketService.isConnected(),
+    send: (type, data) => client.send(type, data),
+    joinRoom: (roomId) => {
+      if (!roomsRef.current.includes(roomId)) {
+        roomsRef.current.push(roomId);
+      }
+      client.joinRoom(roomId);
+    },
+    leaveRoom: (roomId) => {
+      roomsRef.current = roomsRef.current.filter((r) => r !== roomId);
+      client.leaveRoom(roomId);
+    },
+    broadcastToRoom: (roomId, data) => client.broadcastToRoom(roomId, data),
   };
-};
+}
 
 export default useWebSocket;

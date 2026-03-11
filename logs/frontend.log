@@ -2,4 +2,32 @@
 > react-oas-integration@3.0.0 dev
 > concurrently "npm run start" "npm run backend" "npm run ai-service"
 
-sh: concurrently: command not found
+[0] 
+[0] > react-oas-integration@3.0.0 start
+[0] > react-scripts start
+[0] 
+[1] 
+[1] > react-oas-integration@3.0.0 backend
+[1] > cd backend && npm start
+[1] 
+[2] 
+[2] > react-oas-integration@3.0.0 ai-service
+[2] > cd ai-service && python -m uvicorn main_simple:app --host 0.0.0.0 --port 8000 --reload
+[2] 
+[2] sh: python: command not found
+[2] npm run ai-service exited with code 127
+[1] 
+[1] > react-oas-integration-backend@1.0.0 start
+[1] > node src/server.js
+[1] 
+[1] 🚀 Backend server running on port 3001
+[1] 📊 Health check: http://localhost:3001/health
+[1] 🌐 WebSocket server ready for connections
+[0] Something is already running on port 3001.
+[0] npm run start exited with code 0
+[1] ::1 - - [11/Mar/2026:13:31:40 +0000] "GET /health HTTP/1.1" 200 104 "-" "-"
+[1] ::1 - - [11/Mar/2026:13:31:40 +0000] "GET /api/reports HTTP/1.1" 200 853 "-" "-"
+[1] ::1 - - [11/Mar/2026:13:31:40 +0000] "GET /health HTTP/1.1" 200 104 "-" "-"
+[1] Client connected: b048sJbraulALbC8AAAB
+[1] Client disconnected: b048sJbraulALbC8AAAB
+[1] npm run backend exited with code SIGHUP

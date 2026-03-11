@@ -7,7 +7,6 @@ import './GoogleAppsScriptIntegration.css'
 
 const GoogleAppsScriptIntegration = () => {
   const { loading, error } = useSelector((state) => state.auth)
-  const { isAuthenticated, serviceAccount } = useSelector((state) => state.auth)
 
   const [scripts, setScripts] = useState([])
   const [selectedScript, setSelectedScript] = useState(null)
@@ -85,6 +84,7 @@ const GoogleAppsScriptIntegration = () => {
 
   useEffect(() => {
     setScripts(sampleScripts)
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- init with static sample data
   }, [])
 
   const handleScriptSelect = (script) => {
@@ -209,16 +209,6 @@ const GoogleAppsScriptIntegration = () => {
       setSelectedScript(null)
       setScriptCode('')
     }
-  }
-
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('vi-VN', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-    })
   }
 
   const getStatusColor = (status) => {

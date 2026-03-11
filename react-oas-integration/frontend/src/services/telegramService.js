@@ -3,9 +3,7 @@
  */
 
 const API_BASE_URL =
-  import.meta.env.VITE_API_URL ||
-  import.meta.env.REACT_APP_API_URL ||
-  'http://localhost:3001';
+  process.env.REACT_APP_API_URL || process.env.VITE_API_URL || 'http://localhost:3001'
 
 class TelegramService {
   /**
@@ -21,26 +19,22 @@ class TelegramService {
         body: JSON.stringify({
           message,
           chatId:
-            chatId ||
-            import.meta.env.VITE_TELEGRAM_CHAT_ID ||
-            import.meta.env.REACT_APP_TELEGRAM_CHAT_ID,
+            chatId || process.env.REACT_APP_TELEGRAM_CHAT_ID || process.env.VITE_TELEGRAM_CHAT_ID,
           parseMode,
           disableNotification: false,
         }),
-      });
+      })
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(
-          errorData.error || `Telegram send failed: ${response.statusText}`
-        );
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.error || `Telegram send failed: ${response.statusText}`)
       }
 
-      return await response.json();
+      return await response.json()
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error('Error sending Telegram message:', error);
-      throw error;
+      console.error('Error sending Telegram message:', error)
+      throw error
     }
   }
 
@@ -48,21 +42,21 @@ class TelegramService {
    * Gửi tin nhắn đơn giản
    */
   async sendSimpleMessage(text) {
-    return this.sendMessage(text);
+    return this.sendMessage(text)
   }
 
   /**
    * Gửi tin nhắn với format HTML
    */
   async sendHTMLMessage(htmlContent) {
-    return this.sendMessage(htmlContent, null, 'HTML');
+    return this.sendMessage(htmlContent, null, 'HTML')
   }
 
   /**
    * Gửi tin nhắn với format Markdown
    */
   async sendMarkdownMessage(markdownContent) {
-    return this.sendMessage(markdownContent, null, 'Markdown');
+    return this.sendMessage(markdownContent, null, 'Markdown')
   }
 
   /**
@@ -78,21 +72,21 @@ class TelegramService {
         body: JSON.stringify({
           channel: 'telegram',
         }),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error(`Test failed: ${response.statusText}`);
+        throw new Error(`Test failed: ${response.statusText}`)
       }
 
-      return await response.json();
+      return await response.json()
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error('Error testing Telegram connection:', error);
-      throw error;
+      console.error('Error testing Telegram connection:', error)
+      throw error
     }
   }
 }
 
 // Export singleton instance
-export const telegramService = new TelegramService();
-export default telegramService;
+export const telegramService = new TelegramService()
+export default telegramService

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 
 const Notification = ({
   type = 'info',
@@ -9,37 +9,37 @@ const Notification = ({
   position = 'top-right',
   show = true,
 }) => {
-  const [visible, setVisible] = useState(show);
-  const [progress, setProgress] = useState(100);
+  const [visible, setVisible] = useState(show)
+  const [progress, setProgress] = useState(100)
 
   const handleClose = React.useCallback(() => {
-    setVisible(false);
+    setVisible(false)
     if (onClose) {
-      onClose();
+      onClose()
     }
-  }, [onClose]);
+  }, [onClose])
 
   useEffect(() => {
-    setVisible(show);
-    setProgress(100);
-  }, [show]);
+    setVisible(show)
+    setProgress(100)
+  }, [show])
 
   useEffect(() => {
-    if (!visible) return;
+    if (!visible) return
 
     const timer = setInterval(() => {
-      setProgress(prev => {
-        const newProgress = prev - 100 / (duration / 100);
+      setProgress((prev) => {
+        const newProgress = prev - 100 / (duration / 100)
         if (newProgress <= 0) {
-          handleClose();
-          return 0;
+          handleClose()
+          return 0
         }
-        return newProgress;
-      });
-    }, 100);
+        return newProgress
+      })
+    }, 100)
 
-    return () => clearInterval(timer);
-  }, [visible, duration, handleClose]);
+    return () => clearInterval(timer)
+  }, [visible, duration, handleClose])
 
   const getNotificationStyle = () => {
     const baseStyle = {
@@ -55,7 +55,7 @@ const Notification = ({
       gap: '12px',
       fontFamily: 'Arial, sans-serif',
       animation: 'slideIn 0.3s ease-out',
-    };
+    }
 
     // Position styles
     const positionStyles = {
@@ -69,7 +69,7 @@ const Notification = ({
         left: '50%',
         transform: 'translateX(-50%)',
       },
-    };
+    }
 
     // Type styles
     const typeStyles = {
@@ -93,14 +93,14 @@ const Notification = ({
         border: '1px solid #2196f3',
         color: '#1565c0',
       },
-    };
+    }
 
     return {
       ...baseStyle,
       ...positionStyles[position],
       ...typeStyles[type],
-    };
-  };
+    }
+  }
 
   const getIcon = () => {
     const icons = {
@@ -108,11 +108,11 @@ const Notification = ({
       error: '❌',
       warning: '⚠️',
       info: 'ℹ️',
-    };
-    return icons[type] || icons.info;
-  };
+    }
+    return icons[type] || icons.info
+  }
 
-  if (!visible) return null;
+  if (!visible) return null
 
   return (
     <>
@@ -157,8 +157,8 @@ const Notification = ({
             marginLeft: '8px',
             flexShrink: 0,
           }}
-          onMouseEnter={e => (e.target.style.opacity = '1')}
-          onMouseLeave={e => (e.target.style.opacity = '0.7')}
+          onMouseEnter={(e) => (e.target.style.opacity = '1')}
+          onMouseLeave={(e) => (e.target.style.opacity = '0.7')}
         >
           ×
         </button>
@@ -191,36 +191,36 @@ const Notification = ({
         }
       `}</style>
     </>
-  );
-};
+  )
+}
 
 // Notification Context for global notifications
-const NotificationContext = React.createContext();
+const NotificationContext = React.createContext()
 
 export const NotificationProvider = ({ children }) => {
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState([])
 
-  const addNotification = notification => {
-    const id = Date.now() + Math.random();
+  const addNotification = (notification) => {
+    const id = Date.now() + Math.random()
     const newNotification = {
       id,
       ...notification,
       onClose: () => removeNotification(id),
-    };
+    }
 
-    setNotifications(prev => [...prev, newNotification]);
+    setNotifications((prev) => [...prev, newNotification])
 
     // Auto remove after duration
     if (notification.duration !== 0) {
       setTimeout(() => {
-        removeNotification(id);
-      }, notification.duration || 5000);
+        removeNotification(id)
+      }, notification.duration || 5000)
     }
-  };
+  }
 
-  const removeNotification = id => {
-    setNotifications(prev => prev.filter(n => n.id !== id));
-  };
+  const removeNotification = (id) => {
+    setNotifications((prev) => prev.filter((n) => n.id !== id))
+  }
 
   const showSuccess = (message, options = {}) => {
     addNotification({
@@ -228,8 +228,8 @@ export const NotificationProvider = ({ children }) => {
       title: 'Success',
       message,
       ...options,
-    });
-  };
+    })
+  }
 
   const showError = (message, options = {}) => {
     addNotification({
@@ -238,8 +238,8 @@ export const NotificationProvider = ({ children }) => {
       message,
       duration: 0, // Don't auto-hide errors
       ...options,
-    });
-  };
+    })
+  }
 
   const showWarning = (message, options = {}) => {
     addNotification({
@@ -247,8 +247,8 @@ export const NotificationProvider = ({ children }) => {
       title: 'Warning',
       message,
       ...options,
-    });
-  };
+    })
+  }
 
   const showInfo = (message, options = {}) => {
     addNotification({
@@ -256,8 +256,8 @@ export const NotificationProvider = ({ children }) => {
       title: 'Info',
       message,
       ...options,
-    });
-  };
+    })
+  }
 
   return (
     <NotificationContext.Provider
@@ -270,24 +270,24 @@ export const NotificationProvider = ({ children }) => {
       }}
     >
       {children}
-      {notifications.map(notification => (
+      {notifications.map((notification) => (
         <Notification key={notification.id} {...notification} />
       ))}
     </NotificationContext.Provider>
-  );
-};
+  )
+}
 
 export const useNotification = () => {
-  const context = React.useContext(NotificationContext);
+  const context = React.useContext(NotificationContext)
   if (!context) {
-    throw new Error('useNotification must be used within NotificationProvider');
+    throw new Error('useNotification must be used within NotificationProvider')
   }
-  return context;
-};
+  return context
+}
 
 // Simple notification hook for basic usage
 export const useSimpleNotification = () => {
-  const [notification, setNotification] = useState(null);
+  const [notification, setNotification] = useState(null)
 
   const showNotification = (type, message, duration = 5000) => {
     setNotification({
@@ -295,30 +295,26 @@ export const useSimpleNotification = () => {
       message,
       show: true,
       duration,
-    });
-  };
+    })
+  }
 
   const hideNotification = () => {
-    setNotification(null);
-  };
+    setNotification(null)
+  }
 
   const notificationComponent = notification ? (
     <Notification {...notification} onClose={hideNotification} />
-  ) : null;
+  ) : null
 
   return {
     showNotification,
     hideNotification,
     notificationComponent,
-    showSuccess: (message, duration) =>
-      showNotification('success', message, duration),
-    showError: (message, duration) =>
-      showNotification('error', message, duration),
-    showWarning: (message, duration) =>
-      showNotification('warning', message, duration),
-    showInfo: (message, duration) =>
-      showNotification('info', message, duration),
-  };
-};
+    showSuccess: (message, duration) => showNotification('success', message, duration),
+    showError: (message, duration) => showNotification('error', message, duration),
+    showWarning: (message, duration) => showNotification('warning', message, duration),
+    showInfo: (message, duration) => showNotification('info', message, duration),
+  }
+}
 
-export default Notification;
+export default Notification

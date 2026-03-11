@@ -50,7 +50,7 @@ export const BRAND_CONFIG = {
     multiLanguage: false,
     customReports: true,
   },
-};
+}
 
 // Export default for easy import
-export default BRAND_CONFIG;
+export default BRAND_CONFIG

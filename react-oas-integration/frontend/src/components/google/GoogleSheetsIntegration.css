@@ -366,9 +366,7 @@
   flex: 1;
   overflow: auto;
   background: white;
-  max-height: calc(
-    100vh - 400px
-  ); /* ✅ Ensure scrollable when content is long */
+  max-height: calc(100vh - 400px); /* ✅ Ensure scrollable when content is long */
 }
 
 .sheet-table {

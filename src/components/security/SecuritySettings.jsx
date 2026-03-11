@@ -3,7 +3,6 @@ import {
   Card,
   Space,
   Button,
-  Input,
   Switch,
   Form,
   message,
@@ -32,6 +31,7 @@ const SecuritySettings = () => {
 
   useEffect(() => {
     loadUserProfile()
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- mount-only load
   }, [])
 
   const loadUserProfile = async () => {
