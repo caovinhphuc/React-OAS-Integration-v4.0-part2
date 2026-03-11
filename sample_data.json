@@ -16,7 +16,7 @@
       "product": "Sản phẩm A"
     },
     {
-      "id": "ORD-002", 
+      "id": "ORD-002",
       "customer": "Trần Thị B",
       "amount": 250000,
       "status": "pending",

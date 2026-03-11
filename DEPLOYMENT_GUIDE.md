@@ -19,9 +19,10 @@ npm start
 ```
 
 **Truy cập:**
-- Frontend: http://localhost:3000
-- Backend: http://localhost:3001
-- AI Service: http://localhost:8000
+
+- Frontend: <http://localhost:3000>
+- Backend: <http://localhost:3001>
+- AI Service: <http://localhost:8000>
 
 ---
 
@@ -37,7 +38,7 @@ npm run serve:deployed
 ./serve-build.sh 3000
 ```
 
-**Truy cập:** http://localhost:3000
+**Truy cập:** <http://localhost:3000>
 
 **Build location:** `~/Sites/mia-vn-integration`
 
@@ -54,8 +55,9 @@ npm run serve:deployed
 ```
 
 **Truy cập:**
-- Frontend: https://your-app.vercel.app
-- Backend: https://your-app.railway.app
+
+- Frontend: <https://your-app.vercel.app>
+- Backend: <https://your-app.railway.app>
 
 ---
 
@@ -66,6 +68,7 @@ npm run serve:deployed
 **Mục đích:** Build và deploy production-ready application
 
 **Tính năng:**
+
 - ✅ System requirements check
 - ✅ Clean install dependencies
 - ✅ Lint check (ESLint)
@@ -74,16 +77,19 @@ npm run serve:deployed
 - ✅ Deployment verification
 
 **Sử dụng:**
+
 ```bash
 ./deploy-production.sh
 ```
 
 **Output (macOS):**
+
 - Build directory: `./build`
 - Deploy directory: `~/Sites/mia-vn-integration`
 - Không cần sudo
 
 **Output (Linux):**
+
 - Build directory: `./build`
 - Deploy directory: `/opt/mia-vn-integration`
 - Setup nginx
@@ -96,12 +102,14 @@ npm run serve:deployed
 **Mục đích:** Deploy tất cả services local (Frontend + Backend + AI)
 
 **Tính năng:**
+
 - ✅ Port management (3000, 3001, 8000)
 - ✅ Kill existing processes
 - ✅ Start all services
 - ✅ Health checks
 
 **Sử dụng:**
+
 ```bash
 # Start all services
 ./deploy_platform.sh start
@@ -120,6 +128,7 @@ npm run serve:deployed
 **Mục đích:** Commit + Deploy nhanh lên Vercel + Railway
 
 **Tính năng:**
+
 - ✅ Auto commit changes
 - ✅ Push to GitHub
 - ✅ Deploy frontend to Vercel
@@ -127,6 +136,7 @@ npm run serve:deployed
 - ✅ Handle secret scanning errors
 
 **Sử dụng:**
+
 ```bash
 # Deploy với commit message mặc định
 ./quick-deploy.sh
@@ -142,6 +152,7 @@ npm run serve:deployed
 **Mục đích:** Deploy chỉ frontend lên Vercel
 
 **Tính năng:**
+
 - ✅ Check prerequisites
 - ✅ Install Vercel CLI
 - ✅ Build application
@@ -149,6 +160,7 @@ npm run serve:deployed
 - ✅ Environment variables setup
 
 **Sử dụng:**
+
 ```bash
 ./deploy-vercel.sh
 ```
@@ -160,11 +172,13 @@ npm run serve:deployed
 **Mục đích:** Serve production build locally
 
 **Tính năng:**
+
 - ✅ Auto-detect server tool (npx, Python)
 - ✅ Custom port
 - ✅ Custom build directory
 
 **Sử dụng:**
+
 ```bash
 # Serve trên port 3000 (default)
 ./serve-build.sh
@@ -229,22 +243,26 @@ npm run verify:setup       # Verify project setup
 ## 🌐 Deployment Targets
 
 ### Local Development
-- **Frontend:** http://localhost:3000
-- **Backend:** http://localhost:3001
-- **AI Service:** http://localhost:8000
+
+- **Frontend:** <http://localhost:3000>
+- **Backend:** <http://localhost:3001>
+- **AI Service:** <http://localhost:8000>
 
 ### Local Production Build
+
 - **Location:** `~/Sites/mia-vn-integration`
-- **Access:** http://localhost:3000 (with serve)
+- **Access:** <http://localhost:3000> (with serve)
 
 ### Cloud (Vercel + Railway)
-- **Frontend:** https://your-app.vercel.app
-- **Backend:** https://your-app.railway.app
+
+- **Frontend:** <https://your-app.vercel.app>
+- **Backend:** <https://your-app.railway.app>
 
 ### Production Server (VPS/Linux)
+
 - **Location:** `/opt/mia-vn-integration`
 - **Nginx:** Port 80
-- **Access:** http://your-domain.com
+- **Access:** <http://your-domain.com>
 
 ---
 
@@ -291,6 +309,7 @@ npm run verify:setup
 ## 📝 Environment Variables
 
 ### Frontend (.env)
+
 ```bash
 PORT=3000
 REACT_APP_API_URL=http://localhost:3001
@@ -301,6 +320,7 @@ GOOGLE_DRIVE_FOLDER_ID=your_folder_id
 ```
 
 ### Backend (backend/.env)
+
 ```bash
 PORT=3001
 NODE_ENV=development
@@ -311,16 +331,19 @@ NODE_ENV=development
 ## 🎯 Recommended Workflow
 
 ### Development
+
 1. Start services: `./deploy_platform.sh start`
 2. Develop and test
 3. Stop services: `./deploy_platform.sh stop`
 
 ### Testing Production Build
+
 1. Build: `./deploy-production.sh`
 2. Serve: `npm run serve:deployed`
-3. Test at http://localhost:3000
+3. Test at <http://localhost:3000>
 
 ### Deploy to Cloud
+
 1. Test locally first
 2. Commit changes: `git add . && git commit -m "message"`
 3. Deploy: `./quick-deploy.sh "Deploy message"`
@@ -339,6 +362,7 @@ NODE_ENV=development
 ## 🆘 Support
 
 Nếu gặp vấn đề, kiểm tra:
+
 1. Logs trong thư mục `logs/`
 2. Port conflicts với `npm run check:ports`
 3. Backend health với `npm run check:backend`
@@ -348,4 +372,3 @@ Nếu gặp vấn đề, kiểm tra:
 
 **Last Updated:** December 11, 2025
 **Version:** 4.0
-
