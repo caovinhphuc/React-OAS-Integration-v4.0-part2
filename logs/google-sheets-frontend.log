@@ -2,15 +2,14 @@
 > react-google-sheets-project@1.0.0 start
 > react-scripts start
 
-(node:33905) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:50077) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-(node:33905) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:50077) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 Starting the development server...
 
 Failed to compile.
 
-[eslint] Failed to load config "react-app" to extend from.
-Referenced from: /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/.eslintrc.json
+[eslint] Plugin "react" was conflicted between "../.eslintrc.json » eslint-config-react-app » /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/node_modules/.pnpm/eslint-config-react-app@7.0.1_@babel+plugin-syntax-flow@7.28.6_@babel+core@7.29.0__@bab_70539645c6182f9170cf7ae57204f537/node_modules/eslint-config-react-app/base.js" and "BaseConfig » /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/eslint-config-react-app/base.js".
 LOG from ./node_modules/sass-loader/dist/cjs.js sass-loader ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[8].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[8].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[8].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[8].use[4]!./src/pages/LoginPage.module.scss
 <w> Deprecation The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
 <w> 
@@ -30,7 +29,372 @@ LOG from ./node_modules/sass-loader/dist/cjs.js sass-loader ./node_modules/css-l
 <w> src/pages/LoginPage.module.scss 3:9  root stylesheet
 <w>
 
-ERROR in [eslint] Failed to load config "react-app" to extend from.
-Referenced from: /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/.eslintrc.json
+ERROR in [eslint] Plugin "react" was conflicted between "../.eslintrc.json » eslint-config-react-app » /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/node_modules/.pnpm/eslint-config-react-app@7.0.1_@babel+plugin-syntax-flow@7.28.6_@babel+core@7.29.0__@bab_70539645c6182f9170cf7ae57204f537/node_modules/eslint-config-react-app/base.js" and "BaseConfig » /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/eslint-config-react-app/base.js".
 
 webpack compiled with 1 error
+Failed to compile.
+
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/simple-statistics/dist/simple-statistics.mjs'
+LOG from webpack.FileSystemInfo
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/simple-statistics isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
++ 8 hidden lines
+
+ERROR in ./node_modules/simple-statistics/dist/simple-statistics.mjs
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/simple-statistics/dist/simple-statistics.mjs'
+
+webpack compiled with 1 error
+Compiling...
+Failed to compile.
+
+Attempted import error: 'useSelector' is not exported from 'react-redux' (imported as 'useSelector').
+LOG from webpack.FileSystemInfo
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-router-dom isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-redux isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/recharts isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/ml-matrix isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
++ 18 hidden lines
+
+ERROR in ./src/components/ai/AIDashboard.jsx 19:6-17
+export 'useSelector' (imported as 'useSelector') was not found in 'react-redux' (possible exports: Provider, ReactReduxContext, batch, connect, createDispatchHook, shallowEqual, useDispatch)
+
+ERROR in ./src/components/ai/AIDashboard.jsx 22:6-17
+export 'useSelector' (imported as 'useSelector') was not found in 'react-redux' (possible exports: Provider, ReactReduxContext, batch, connect, createDispatchHook, shallowEqual, useDispatch)
+
+ERROR in ./src/components/ai/AIDashboard.jsx 25:6-17
+export 'useSelector' (imported as 'useSelector') was not found in 'react-redux' (possible exports: Provider, ReactReduxContext, batch, connect, createDispatchHook, shallowEqual, useDispatch)
+
+ERROR in ./src/components/ai/AIDashboard.jsx 1768:10-21
+export 'useSelector' (imported as 'useSelector') was not found in 'react-redux' (possible exports: Provider, ReactReduxContext, batch, connect, createDispatchHook, shallowEqual, useDispatch)
+
+ERROR in ./src/components/ai/AIDashboard.jsx 1768:23-34
+export 'useSelector' (imported as 'useSelector') was not found in 'react-redux' (possible exports: Provider, ReactReduxContext, batch, connect, createDispatchHook, shallowEqual, useDispatch)
+
+ERROR in ./src/components/ai/AIDashboard.jsx 1768:36-47
+export 'useSelector' (imported as 'useSelector') was not found in 'react-redux' (possible exports: Provider, ReactReduxContext, batch, connect, createDispatchHook, shallowEqual, useDispatch)
+
+ERROR in ./src/components/ai/EnhancedAIDashboard.jsx 24:6-17
+export 'useSelector' (imported as 'useSelector') was not found in 'react-redux' (possible exports: Provider, ReactReduxContext, batch, connect, createDispatchHook, shallowEqual, useDispatch)
+
+ERROR in ./src/components/ai/EnhancedAIDashboard.jsx 27:6-17
+export 'useSelector' (imported as 'useSelector') was not found in 'react-redux' (possible exports: Provider, ReactReduxContext, batch, connect, createDispatchHook, shallowEqual, useDispatch)
+
+ERROR in ./src/components/ai/EnhancedAIDashboard.jsx 30:6-17
+export 'useSelector' (imported as 'useSelector') was not found in 'react-redux' (possible exports: Provider, ReactReduxContext, batch, connect, createDispatchHook, shallowEqual, useDispatch)
+
+ERROR in ./src/components/ai/EnhancedAIDashboard.jsx 1092:10-21
+export 'useSelector' (imported as 'useSelector') was not found in 'react-redux' (possible exports: Provider, ReactReduxContext, batch, connect, createDispatchHook, shallowEqual, useDispatch)
+
+ERROR in ./src/components/ai/EnhancedAIDashboard.jsx 1092:23-34
+export 'useSelector' (imported as 'useSelector') was not found in 'react-redux' (possible exports: Provider, ReactReduxContext, batch, connect, createDispatchHook, shallowEqual, useDispatch)
+
+ERROR in ./src/components/ai/EnhancedAIDashboard.jsx 1092:36-47
+export 'useSelector' (imported as 'useSelector') was not found in 'react-redux' (possible exports: Provider, ReactReduxContext, batch, connect, createDispatchHook, shallowEqual, useDispatch)
+
+ERROR in ./node_modules/@tensorflow/tfjs/dist/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs/dist/index.js'
+
+ERROR in ./node_modules/react-redux/es/components/connect.js 16:0-39
+Module not found: Error: Can't resolve '../utils/warning' in '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-redux/es/components'
+
+ERROR in ./node_modules/react-redux/es/components/connect.js 18:0-63
+Module not found: Error: Can't resolve '../utils/useSyncExternalStore' in '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-redux/es/components'
+
+ERROR in ./node_modules/react-redux/es/connect/verifySubselectors.js 1:0-39
+Module not found: Error: Can't resolve '../utils/warning' in '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-redux/es/connect'
+
+ERROR in ./node_modules/react-redux/es/exports.js 5:0-70
+Module not found: Error: Can't resolve './hooks/useSelector' in '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-redux/es'
+
+ERROR in ./node_modules/react-redux/es/exports.js 6:0-61
+Module not found: Error: Can't resolve './hooks/useStore' in '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-redux/es'
+
+ERROR in ./node_modules/react-redux/es/hooks/useDispatch.js 2:0-74
+Module not found: Error: Can't resolve './useStore' in '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-redux/es/hooks'
+
+ERROR in ./node_modules/react-redux/es/index.js 8:0-60
+Module not found: Error: Can't resolve './hooks/useSelector' in '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-redux/es'
+
+ERROR in ./node_modules/react-redux/es/utils/verifyPlainObject.js 2:0-32
+Module not found: Error: Can't resolve './warning' in '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-redux/es/utils'
+
+ERROR in ./node_modules/recharts/es6/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/recharts/es6/index.js'
+
+ERROR in ./node_modules/ml-matrix/matrix.mjs
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/ml-matrix/matrix.mjs'
+
+ERROR in ./node_modules/simple-statistics/dist/simple-statistics.mjs
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/simple-statistics/dist/simple-statistics.mjs'
+
+webpack compiled with 24 errors
+Compiling...
+Failed to compile.
+
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs/dist/index.js'
+LOG from webpack.FileSystemInfo
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-router-dom isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/ml-matrix isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
++ 52 hidden lines
+
+ERROR in ./node_modules/@tensorflow/tfjs/dist/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs/dist/index.js'
+
+ERROR in ./node_modules/recharts/es6/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/recharts/es6/index.js'
+
+ERROR in ./node_modules/ml-matrix/matrix.mjs
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/ml-matrix/matrix.mjs'
+
+ERROR in ./node_modules/simple-statistics/dist/simple-statistics.mjs
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/simple-statistics/dist/simple-statistics.mjs'
+
+webpack compiled with 4 errors
+Failed to compile.
+
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs/dist/index.js'
+LOG from webpack.FileSystemInfo
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/brain.js isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/ml-regression isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/simple-statistics isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/ml-matrix isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
++ 18 hidden lines
+
+ERROR in ./node_modules/@tensorflow/tfjs/dist/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs/dist/index.js'
+
+ERROR in ./node_modules/ml-matrix/matrix.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/ml-matrix/matrix.js'
+
+ERROR in ./node_modules/ml-regression/src/regression/kernel-ridge-regression.js 2:0-42
+Module not found: Error: Can't resolve 'ml-matrix' in '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/ml-regression/src/regression'
+
+ERROR in ./node_modules/ml-regression/src/regression/poly-fit-regression2d.js 1:0-40
+Module not found: Error: Can't resolve 'ml-matrix' in '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/ml-regression/src/regression'
+
+ERROR in ./node_modules/react-dom/client.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom/client.js'
+
+ERROR in ./node_modules/react-dom/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom/index.js'
+
+ERROR in ./node_modules/react/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react/index.js'
+
+ERROR in ./node_modules/react/jsx-dev-runtime.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react/jsx-dev-runtime.js'
+
+ERROR in ./node_modules/recharts/es6/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/recharts/es6/index.js'
+
+ERROR in ./node_modules/ml-matrix/matrix.mjs
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/ml-matrix/matrix.mjs'
+
+webpack compiled with 10 errors
+Failed to compile.
+
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs/dist/index.js'
+ERROR in ./node_modules/@tensorflow/tfjs/dist/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs/dist/index.js'
+
+ERROR in ./node_modules/ml-regression/src/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/ml-regression/src/index.js'
+
+ERROR in ./node_modules/react-dom/client.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom/client.js'
+
+ERROR in ./node_modules/react-dom/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom/index.js'
+
+ERROR in ./node_modules/react/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react/index.js'
+
+ERROR in ./node_modules/react/jsx-dev-runtime.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react/jsx-dev-runtime.js'
+
+ERROR in ./node_modules/recharts/es6/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/recharts/es6/index.js'
+
+webpack compiled with 7 errors
+Failed to compile.
+
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs/dist/index.js'
+LOG from webpack.FileSystemInfo
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-router-dom isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/simple-statistics isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/brain.js isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
++ 18 hidden lines
+
+ERROR in ./node_modules/@tensorflow/tfjs/dist/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs/dist/index.js'
+
+ERROR in ./node_modules/ml-regression/src/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/ml-regression/src/index.js'
+
+ERROR in ./node_modules/react-dom/client.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom/client.js'
+
+ERROR in ./node_modules/react-dom/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom/index.js'
+
+ERROR in ./node_modules/react/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react/index.js'
+
+ERROR in ./node_modules/react/jsx-dev-runtime.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react/jsx-dev-runtime.js'
+
+ERROR in ./node_modules/recharts/es6/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/recharts/es6/index.js'
+
+webpack compiled with 7 errors
+Failed to compile.
+
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs/dist/index.js'
+ERROR in ./node_modules/@tensorflow/tfjs/dist/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs/dist/index.js'
+
+ERROR in ./node_modules/ml-regression/src/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/ml-regression/src/index.js'
+
+ERROR in ./node_modules/react-dom/client.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom/client.js'
+
+ERROR in ./node_modules/react-dom/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom/index.js'
+
+ERROR in ./node_modules/react/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react/index.js'
+
+ERROR in ./node_modules/react/jsx-dev-runtime.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react/jsx-dev-runtime.js'
+
+ERROR in ./node_modules/recharts/es6/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/recharts/es6/index.js'
+
+webpack compiled with 7 errors
+Compiling...
+Failed to compile.
+
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs/dist/index.js'
+LOG from webpack.FileSystemInfo
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-router-dom isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/simple-statistics isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item /Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/brain.js isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
++ 18 hidden lines
+
+ERROR in ./node_modules/@tensorflow/tfjs/dist/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs/dist/index.js'
+
+ERROR in ./node_modules/ml-regression/src/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/ml-regression/src/index.js'
+
+ERROR in ./node_modules/react-dom/client.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom/client.js'
+
+ERROR in ./node_modules/react-dom/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom/index.js'
+
+ERROR in ./node_modules/react-redux/node_modules/react-is/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-redux/node_modules/react-is/index.js'
+
+ERROR in ./node_modules/react/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react/index.js'
+
+ERROR in ./node_modules/react/jsx-dev-runtime.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react/jsx-dev-runtime.js'
+
+ERROR in ./node_modules/recharts/es6/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/recharts/es6/index.js'
+
+webpack compiled with 8 errors
+Compiling...
+Failed to compile.
+
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs/dist/index.js'
+ERROR in ./node_modules/@tensorflow/tfjs/dist/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/@tensorflow/tfjs/dist/index.js'
+
+ERROR in ./node_modules/ml-regression/src/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/ml-regression/src/index.js'
+
+ERROR in ./node_modules/react-dom/client.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom/client.js'
+
+ERROR in ./node_modules/react-dom/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-dom/index.js'
+
+ERROR in ./node_modules/react-redux/node_modules/react-is/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react-redux/node_modules/react-is/index.js'
+
+ERROR in ./node_modules/react/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react/index.js'
+
+ERROR in ./node_modules/react/jsx-dev-runtime.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/react/jsx-dev-runtime.js'
+
+ERROR in ./node_modules/recharts/es6/index.js
+Module build failed (from ./node_modules/source-map-loader/dist/cjs.js):
+Error: ENOENT: no such file or directory, open '/Users/phuccao/Projects/React-OAS-Integration-v4.0-part2/google-sheets-project/node_modules/recharts/es6/index.js'
+
+webpack compiled with 8 errors
+The build failed because the process exited too early. This probably means the system ran out of memory or someone called `kill -9` on the process.
